@@ -1,12 +1,11 @@
 import ContactForm from '../components/ContactForm';
-import Footer from '../layouts/Footer';
+import Content from '../layouts/Content';
 
 function ContactPage() {
   return (
-    <>
+    <Content>
       <ContactForm onSubmit={console.log} />
-      <Footer />
-    </>
+    </Content>
   );
 }
 

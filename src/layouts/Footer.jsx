@@ -1,4 +1,4 @@
-import LinkListWithIcons from '../components/LinkListWithIcons'; // Asegurate de que el path sea correcto
+import LinkListWithIcons from '../components/LinkListWithIcons'; 
 
 function Footer() {
   const listaEstilos = {

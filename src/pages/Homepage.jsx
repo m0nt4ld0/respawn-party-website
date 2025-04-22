@@ -1,11 +1,12 @@
+import Content from '../layouts/Content';
+
 function HomePage() {
-    return (
-      <div>
-        <h1>Respawn Party</h1>
-        <p>Te da la bienvenida</p>
-      </div>
-    );
-  }
-  
-  export default HomePage;
-  
+  return (
+    <Content>
+      <h1>Respawn Party</h1>
+      <p>Te da la bienvenida</p>
+    </Content>
+  );
+}
+
+export default HomePage;
