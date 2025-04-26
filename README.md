@@ -1,12 +1,54 @@
-# React + Vite
+# Proyecto Final: Tienda de Videojuegos Retro
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este es un proyecto realizado como parte del curso **Talento Tech - React** durante el primer cuatrimestre de 2025. El proyecto simula un negocio de venta de videojuegos retro y está desarrollado en **React** utilizando **JSX**.
 
-Currently, two official plugins are available:
+## Descripción
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+La aplicación simula una tienda de videojuegos retro donde los usuarios pueden explorar una variedad de juegos, agregarlos a un carrito de compras y realizar la compra. Los datos de los videojuegos, como títulos, imágenes y logros, se obtienen mediante la API de [RetroAchievements](https://retroachievements.org/), la cual proporciona información detallada sobre los juegos retro y sus logros.
 
-## Expanding the ESLint configuration
+### Características
+- **Carrito de compras:** Los usuarios pueden agregar juegos al carrito y proceder a la compra.
+- **API de RetroAchievements:** Se consumen datos en tiempo real de la API de RetroAchievements para mostrar información sobre los juegos retro y sus logros.
+- **Interfaz intuitiva:** La interfaz es fácil de usar y se enfoca en una experiencia de compra cómoda.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Cómo utilizarlo
+
+### Clonar el repositorio
+
+Para clonar este repositorio en tu máquina local, utiliza el siguiente comando:
+
+```bash
+git clone https://github.com/m0nt4ld0/respawn-party-website.git
+```
+
+### Instalar las dependencias
+Una vez clonado el repositorio, navega a la carpeta del proyecto y ejecuta el siguiente comando para instalar las dependencias:
+```bash
+cd respawn-party-website
+npm install
+```
+
+### Configuración del archivo .env
+Este proyecto utiliza variables de entorno para acceder a la API de RetroAchievements. Para configurarlas:
+
+Crea un archivo .env en la raíz del proyecto.
+
+Abre el archivo .env y agrega tus credenciales de RetroAchievements siguiendo este formato:
+
+```bash
+REACT_APP_RETROACHIEVEMENTS_API_KEY=tu_clave_de_api
+```
+
+### Error de CORS
+Es importante tener en cuenta que la API de RetroAchievements puede devolver un error de CORS (Cross-Origin Resource Sharing) al intentar hacer solicitudes directamente desde el navegador. Para solucionar este problema y continuar con el desarrollo, es necesario instalar y activar una extensión de Chrome que permita las solicitudes CORS.
+
+Puedes usar la extensión Allow CORS: Access-Control-Allow-Origin que puedes encontrar en la Chrome Web Store. Esta extensión permite que las solicitudes se realicen correctamente mientras trabajas en tu entorno de desarrollo.
+
+### Ejecutar el proyecto
+```bash
+npm start
+```
+
+### Contribuciones
+Este proyecto no admite contribuciones, por tratarse de un trabajo práctico del curso Talento Tech.
+

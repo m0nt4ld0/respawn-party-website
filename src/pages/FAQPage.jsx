@@ -9,7 +9,7 @@ function FAQPage() {
       <Accordion defaultActiveKey="0">
         <DropdownItem
           eventKey="0"
-          title="¿Qué es Respawn Party?"
+          title="¿Qué es Talento Games?"
           content="Somos una empresa dedicada a la venta de videojuyegos y consolas retro. Te asesoramos para que puedas disfrutar de la mejor experiencia de entretenimiento."
         />
         <DropdownItem

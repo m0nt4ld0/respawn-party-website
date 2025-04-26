@@ -1,11 +1,13 @@
 import Content from '../layouts/Content';
+import Product from './shoppingCart/Product';
 
 function ProjectorPage() {
   return (
     <Content>
-      <h1>Proyector 1080p 800lm</h1>
-      <p>La solución perfecta para transformar tu hogar en un centro de entretenimiento o para potenciar tus presentaciones profesionales.</p>
-      <p>Con una resolución nativa de 1280x720P y soporte para Full HD 1080p, este proyector ofrece imágenes nítidas y vibrantes que realzan cada detalle.</p>
+      <h1>Juegos para NES</h1>
+      <p>Contamos con un equipo de profesionales que te asesoran para que puedas disfrutar de la mejor experiencia de videojuegos.</p>
+      
+      <Product consoleId={24} />
     </Content>
   );
 }

@@ -3,7 +3,7 @@ import Content from '../layouts/Content';
 function HomePage() {
   return (
     <Content>
-      <h1>Respawn Party</h1>
+      <h1>Talento Games</h1>
       <p>Te da la bienvenida</p>
     </Content>
   );
