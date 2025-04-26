@@ -10,33 +10,30 @@ function FAQPage() {
         <DropdownItem
           eventKey="0"
           title="¿Qué es Respawn Party?"
-          content="Respawn Party es un emprendimiento dedicado al alquiler de consolas de videojuegos y proyectores. Te asesoramos para que puedas disfrutar de la mejor experiencia de videojuegos."
+          content="Somos una empresa dedicada a la venta de videojuyegos y consolas retro. Te asesoramos para que puedas disfrutar de la mejor experiencia de entretenimiento."
         />
         <DropdownItem
           eventKey="1"
-          title="¿Cómo puedo alquilar una consola o proyector?"
+          title="¿Cómo puedo adquirir una consola?"
           content={
             <>
-              Para reservar, completá el siguiente formulario: 
-              <a href="https://forms.gle/PwXzzAsGVJkFTXNh9" target="_blank" rel="noopener noreferrer">
-                Formulario de alquiler
-              </a>
+              Acercándote a nuestros locales o a través de nuestro sitio web.
             </>
           }
         />
         <DropdownItem
           eventKey="2"
-          title="¿Con qué juegos cuenta la consola?"
-          content="La PlayStation 5 cuenta con el catálogo de PlayStation Deluxe y otros juegos en formato físico y digital. Consultanos por los juegos que querés, nosotros los descargamos y lo dejamos listo para que juegues."
+          title="¿Con qué juegos cuentan?"
+          content="Tenés nuestro catálogo de juegos en formato físico en esta web."
         />
         <DropdownItem
           eventKey="3"
           title="¿Cómo puedo abonar?"
-          content="Podés abonar en efectivo o a través de Mercado Pago. El pago se realiza al momento de recibir la consola."
+          content="Podés abonar en efectivo, tarjeta de débito o crédito, o a través de Mercado Pago."
         />
         <DropdownItem
           eventKey="4"
-          title="¿Cómo juego en la Play 5"
+          title="Compré una Play 5 ¿Cómo juego en la Play 5?"
           content={
             <>
               Podés ver un tutorial paso a paso en este video de YouTube:{' '}
@@ -48,7 +45,7 @@ function FAQPage() {
         />
         <DropdownItem
           eventKey="5"
-          title="¿Cómo conecto la Play 5 a mi red Wi-Fi?"
+          title="Compré una Play 5 ¿Cómo conecto la Play 5 a mi red Wi-Fi?"
           content={
             <>
               Podés ver un tutorial paso a paso en este video de YouTube:{' '}
@@ -60,7 +57,7 @@ function FAQPage() {
         />
         <DropdownItem
           eventKey="6"
-          title="¿Cómo conecto más de un joystick a la Play 5?"
+          title="Compré una Play 5 ¿Cómo conecto más de un joystick a la Play 5?"
           content={
             <>
               Podés ver un tutorial paso a paso en este video de YouTube:{' '}

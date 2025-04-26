@@ -5,7 +5,7 @@ function Content({ children }) {
   return (
     <div>
       <Navbar />
-      <main>{children}</main>
+      <main style={{ marginTop: '4rem' }}>{children}</main>
       <Footer />
     </div>
   );
