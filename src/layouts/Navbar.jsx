@@ -12,7 +12,7 @@ function Navbar() {
         <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="navbar-brand" to="/">Respawn Party</Link>
+              <Link className="navbar-brand" to="/">Talento Games</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/">Inicio</Link>
@@ -21,13 +21,7 @@ function Navbar() {
               <Link className="nav-link" to="/about-us">Nosotros</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/ps-games">PlayStation</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/nes-games">Nintendo</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/arcade-games">Arcade (Fichines)</Link>
+              <Link className="nav-link" to="/consoles">Juegos</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/faq">Preguntas frecuentes</Link>
