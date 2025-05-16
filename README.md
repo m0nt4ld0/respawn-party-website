@@ -1,4 +1,4 @@
-# Proyecto Final: Tienda de Videojuegos Retro
+# Proyecto Final: Talento Games - Tienda de Videojuegos Retro
 
 Este es un proyecto realizado como parte del curso **Talento Tech - React** durante el primer cuatrimestre de 2025. El proyecto simula un negocio de venta de videojuegos retro y está desarrollado en **React** utilizando **JSX**.
 
@@ -36,7 +36,8 @@ Crea un archivo .env en la raíz del proyecto.
 Abre el archivo .env y agrega tus credenciales de RetroAchievements siguiendo este formato:
 
 ```bash
-REACT_APP_RETROACHIEVEMENTS_API_KEY=tu_clave_de_api
+VITE_RA_USERNAME=YOUR_RETROACHIEVEMENTS_USERNAME
+VITE_RA_APIKEY=YOUR_RETROACHIEVEMENTS_API_KEY
 ```
 
 ### Error de CORS
