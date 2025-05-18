@@ -1,0 +1,16 @@
+.navbar {
+	background-color: var(--color-very-dark) !important;
+}
+
+.logo-navbar {
+	width: 8rem;
+	height: 5rem;
+}
+
+.nav-link {
+	color: var(--color-very-light) !important;
+}
+
+.nav-link:hover {
+	color: var(--color) !important;
+}

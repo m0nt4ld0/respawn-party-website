@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
+import './Navbar.css';
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg fixed-top w-100 navbar-light bg-light px-4">
+    <nav className="navbar navbar-expand-lg fixed-top w-100 navbar-light px-4">
       <div className="container-fluid">
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,7 +13,11 @@ function Navbar() {
         <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="navbar-brand" to="/">Talento Games</Link>
+              <Link className="navbar-brand" to="/">
+                <img 
+                  src="/public/images/Logo.png" 
+                  alt="Logo Talento Games" 
+                  className="logo-navbar" /></Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/">Inicio</Link>

@@ -51,21 +51,9 @@
 	height:auto;
 }
 
-#tuBlog {
-	color: var(--color-uno); 
-	background-color: var(--color-ocho);
-	border: 0px;
-	border-radius: 0.5rem;
-}
-
-#tuBlog a {
-	text-decoration: none;
-	text-align: center;
-	font-weight: bold;
-}
-
-#descarga-app {
-	width: 5%;
+.logoTalentoGames {
+	width: 18rem;
+	height: 13rem;
 }
 
 .pie-fondo-claro {

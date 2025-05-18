@@ -18,11 +18,8 @@ function Content({ children }) {
           marginTop: '4rem',
         }}
       >
-        {/* Elimina container/container-fluid */}
         {children}
       </main>
-
-      {/* Footer fuera del contenedor */}
       <Footer />
     </div>
   );

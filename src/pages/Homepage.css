@@ -1,0 +1,121 @@
+body {
+    --color: #ff5400;
+    
+}
+/* Logo */
+.floating-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    text-align: center;
+}
+
+.floating-banner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* opcional para contraste */
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+  
+  .logo-img {
+    width: 35vh;
+    height: auto;
+  }
+  
+  .banner-text h3 {
+    color: white;
+    font-size: 1.5rem;
+    text-align: left;
+    max-width: 400px;
+  }
+ 
+
+.floating-logo img {
+    width: 35vw;
+    height: auto;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+}
+
+.carousel-item img {
+    height: 95vh;
+}
+
+b {
+    color: var(--color-link-hover);
+}
+
+.clip-bottom {
+    bottom: 0;
+    clip-path: polygon(0 100%, 100% 100%, 0 0);
+    content: "";
+    height: 6vh;
+    min-width: 1700px;
+    position: absolute;
+    width: 100%;
+    padding-bottom: 12vh;
+    background-color: var(--color-very-dark);
+    margin-bottom:-1px;
+}
+
+.section-below-carousel {
+    margin-top: -10vh; 
+    padding-top: 10vh;
+    background-color: var(--color-very-dark) !important;
+}
+
+/* Console cards */
+.custom-card {
+    height: 200px;
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+.custom-card:hover {
+    transform: scale(1.05);
+}
+
+.custom-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.custom-card:hover .card-overlay {
+    opacity: 1;
+}
+
+.card-overlay a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.card-overlay a:hover {
+    text-decoration: underline;
+}
+  

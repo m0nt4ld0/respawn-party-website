@@ -56,12 +56,12 @@ function Footer() {
       <div className="pie">
         <div className="container-fluid pt-4 pb-4">
             <div className="row">
-                {/* Columna 1: Logo navbar navbar-expand-lg fixed-top w-100 navbar-light bg-light px-4 */}
+                {/* Columna 1: Logo */}
                 <div className="col-12 col-md-3 text-center text-md-start mb-4">
                     <p className="d-flex justify-content-center">
                         <img 
                             className="logoTalentoGames"
-                            src="/PSCERTIFICADOSWEB/images/logo-header-blanco.png" 
+                            src="/public/images/Logo.png" 
                             alt="Logo Talento Games" />
                     </p>
                 </div>
