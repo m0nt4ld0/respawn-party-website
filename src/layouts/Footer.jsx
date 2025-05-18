@@ -1,13 +1,7 @@
+import './Footer.css';
 import LinkListWithIcons from '../components/LinkListWithIcons'; 
 
 function Footer() {
-  const listaEstilos = {
-        textAlign: 'left',
-        paddingLeft: '1rem',
-        fontSize: '1.1rem',
-        listStyleType: 'none',
-    };
-
     const iconosEstilos = {
         width: '24px',
         height: '24px',
@@ -58,9 +52,56 @@ function Footer() {
 }
 
   return (
-    <nav>
-      <LinkListWithIcons title={footerContent.title} socialMedia={footerContent.links} listaEstilos={listaEstilos} iconosEstilos={iconosEstilos}/>
-    </nav>
+    <footer style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}>
+      <div className="pie">
+        <div className="container-fluid pt-4 pb-4">
+            <div className="row">
+                {/* Columna 1: Logo */}
+                <div className="col-12 col-md-3 text-center text-md-start mb-4">
+                    <p className="d-flex justify-content-center">
+                        <img 
+                            className="logoTalentoGames"
+                            src="/public/images/Logo.png" 
+                            alt="Logo Talento Games" />
+                    </p>
+                </div>
+              
+
+                {/* Columna 2: Menús de pie de página */}
+                <div className="col-12 col-md-9">
+                  <div className="row pb-3">
+                    {/* Más populares */}
+                    <div className="col-12 col-md-3 text-center text-md-start mb-4">
+                        <ul className="pie-menu">
+                            <li><h6 className="text-nowrap pb-2">Más populares</h6></li>
+                            <li className="pb-2">
+                                <a  href="https://appsc.provinciaseguros.com.ar/webclientes/#/login" 
+                                    target="_blank"
+                                    className="text-nowrap">PlayStation 2</a></li>
+                            <li className="pb-2">
+                                <a  href="https://terceros.provinciaseguros.com.ar/" 
+                                    target="_blank"
+                                    className="text-nowrap">Nintendo GameCube</a></li>
+                            <li className="pb-2">
+                                <a  href="https://appsc.provinciaseguros.com.ar/PSClientes/clienteFinal" 
+                                    target="_blank"    
+                                    className="text-nowrap">Sega Genesis</a></li>
+                        </ul>
+                    </div>
+                    {/* Columna 3: Nuestras redes sociales */}
+                    <div className="col-12 col-md-3 text-center text-md-start">
+                      <LinkListWithIcons 
+                        title={footerContent.title} 
+                        socialMedia={footerContent.links} 
+                        listaEstilos="pie-menu-redes"
+                        iconosEstilos={iconosEstilos}/>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+      </div>
+    </footer>
   );
 }
 

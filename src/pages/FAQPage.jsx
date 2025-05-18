@@ -1,12 +1,13 @@
 import Content from '../layouts/Content';
 import DropdownItem from '../components/help/DropdownItem';
+import './FAQPage.css';
 import { Accordion } from 'react-bootstrap';
 
 function FAQPage() {
   return (
     <Content>
       <h1>Preguntas Frecuentes</h1>
-      <Accordion defaultActiveKey="0">
+      <Accordion>
         <DropdownItem
           eventKey="0"
           title="¿Qué es Talento Games?"

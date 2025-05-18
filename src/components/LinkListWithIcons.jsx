@@ -4,8 +4,8 @@ function LinkListWithIcons({ title, socialMedia, listaEstilos, iconosEstilos }) 
     
     return (
         <div>
-            <h2>{title}</h2>
-            <ul style={listaEstilos}>
+            <ul className={listaEstilos}>
+                <h2>{title}</h2>
                 {socialMedia.map((social, index) => (
                     <li key={index}>
                         <a href={social.urlAddress} target="_blank" rel="noopener noreferrer">
