@@ -15,7 +15,7 @@ function Navbar() {
             <li className="nav-item">
               <Link className="navbar-brand" to="/">
                 <img 
-                  src="/public/images/Logo.png" 
+                  src="/images/Logo.png" 
                   alt="Logo Talento Games" 
                   className="logo-navbar" /></Link>
             </li>
