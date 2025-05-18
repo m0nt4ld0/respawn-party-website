@@ -1,0 +1,29 @@
+body {
+    background-color: var(--color-medium-light);
+    color:var(--color-very-light);
+}
+
+.accordion-item {
+    margin-bottom: 1rem;
+    background-color: var(--color-medium-dark) !important;
+    color: var(--color-very-light) !important;
+    border:none;
+}
+
+.accordion-button {
+    background-color: var(--color-medium-dark) !important;
+    color: var(--color-very-light) !important;
+}
+
+.accordion-button:hover {
+    color: var(--color) !important;
+}
+
+.accordion-button.collapsed {
+    border:none;
+}
+
+.accordion-body {
+    background-color: var(--color-medium-dark) !important;
+    color: var(--color-very-light) !important;
+}
