@@ -61,7 +61,7 @@ function Footer() {
                     <p className="d-flex justify-content-center">
                         <img 
                             className="logoTalentoGames"
-                            src="/public/images/Logo.png" 
+                            src="/images/Logo.png" 
                             alt="Logo Talento Games" />
                     </p>
                 </div>
