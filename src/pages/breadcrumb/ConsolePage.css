@@ -1,0 +1,95 @@
+/* Console Card */
+.console-card {
+    background-color: var(--color-ultra-dark);
+    border: 1px solid var(--color-medium-dark);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    height: 100%;
+  }
+  
+  .console-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
+  }
+  
+  .console-img {
+    height: 120px;
+    object-fit: contain;
+    background-color: var(--color-ultra-dark);
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-medium-dark);
+  }
+  
+  .console-card-body {
+    padding: 1rem;
+    color: var(--color-very-light);
+  }
+  
+  .console-title {
+    font-size: 1.1rem;
+    color: var(--color);
+    margin-bottom: 0.5rem;
+  }
+  
+  .console-link {
+    text-decoration: none;
+    color: var(--color-very-light);
+    transition: color 0.3s ease;
+  }
+  
+  .console-link:hover {
+    color: var(--color-link-hover);
+    text-decoration: underline;
+  }
+  
+  /* Pagination */
+  .pagination {
+    --bs-pagination-color: var(--color-very-light);
+    --bs-pagination-bg: var(--color-ultra-dark);
+    --bs-pagination-border-color: var(--color-medium-dark);
+    --bs-pagination-hover-color: var(--color-link-hover);
+    --bs-pagination-hover-bg: var(--color-medium-dark);
+    --bs-pagination-hover-border-color: var(--color);
+    --bs-pagination-active-color: #fff;
+    --bs-pagination-active-bg: var(--color);
+    --bs-pagination-active-border-color: var(--color);
+    --bs-pagination-focus-color: var(--color);
+    --bs-pagination-focus-bg: var(--color-dark);
+    --bs-pagination-focus-box-shadow: none;
+  
+    border-radius: 12px;
+  }
+
+.page-link {
+    background-color: var(--color-ultra-dark);
+    border: 1px solid var(--color-medium-dark);
+    color: var(--color-very-light);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .page-link:hover {
+    background-color: var(--color-medium-dark);
+    color: var(--color-link-hover);
+    border-color: var(--color);
+  }
+  
+  .page-item.active .page-link {
+    background-color: var(--color);
+    border-color: var(--color);
+    color: #fff;
+  }
+  
+  .page-item.disabled .page-link {
+    color: var(--color-medium-light);
+    background-color: var(--color-very-dark);
+    border-color: var(--color-medium-dark);
+  }
+  
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+  

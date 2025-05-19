@@ -39,3 +39,26 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Breadcrumb custom styles */
+.breadcrumb {
+  background-color: transparent;
+  padding: 0;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+}
+
+.breadcrumb-item a {
+  color: var(--color);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.breadcrumb-item a:hover {
+  color: var(--color-link-hover);
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  color: var(--color-very-light);
+}

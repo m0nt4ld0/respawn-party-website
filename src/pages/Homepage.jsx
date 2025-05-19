@@ -9,7 +9,7 @@ function HomePage() {
         <div className="floating-banner d-flex align-items-center">
           <img src="/images/Logo.png" alt="Talento Games Logo" className="logo-img" />
           <div className="banner-text ms-4">
-            <h3 className="text-white m-0">La tienda de juegos retro más grande de Argentina</h3>
+            <h3 className="text-white m-0">La tienda de juegos retro <br/><b>más grande de Argentina</b></h3>
           </div>
         </div>
 
@@ -42,11 +42,11 @@ function HomePage() {
       
       </div>
       <div className="container-fluid section-below-carousel text-center">
-        <h1>Talento Games</h1>
+        <h1>Clásicos</h1>
         <p>
-          <b>+1000 de aura retro gamer</b> con estos clásicos
+          Que te dan <b>+1000 de aura retro gamer</b>
         </p>
-        <h3 className="mt-5 mb-4">Consolas retro más populares</h3>
+        <h3 className="mt-5 mb-4">Sólo para entendidos</h3>
         <p>
             <div className="row justify-content-center g-4">
               
