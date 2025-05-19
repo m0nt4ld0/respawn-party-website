@@ -1,10 +1,19 @@
 .navbar {
 	background-color: var(--color-very-dark) !important;
+	min-height: 5rem;
+	padding-top: 0.5rem;
+}
+
+.navbar-nav {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	gap: 1rem; 
 }
 
 .logo-navbar {
-	width: 8rem;
-	height: 5rem;
+	width: 5rem;
+	object-fit: contain;
 }
 
 .nav-link {
