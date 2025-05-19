@@ -45,7 +45,7 @@ function Product({ consoleId }) {
                                         <Card.Text>
                                             {product.ConsoleName}
                                             <br />
-                                            <strong>${Math.floor(Math.random() * 60) + 10}</strong>
+                                            <strong>${product.ID}</strong>
                                         </Card.Text>
                                         <div className="d-flex align-items-center">
                                             <Button variant="primary" onClick={() => addToCart(product)}>
