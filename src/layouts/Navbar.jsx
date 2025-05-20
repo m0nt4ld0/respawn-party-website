@@ -1,7 +1,12 @@
 import { NavLink } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import './Navbar.css';
 
-function Navbar() {
+function Navbar({ logueado, setLogueado }) {
+  const handleLoginClick = () => {
+    setLogueado(!logueado);
+  };
+
   return (
     <nav className="navbar navbar-expand-lg fixed-top w-100 navbar-light px-4">
       <div className="container-fluid">
@@ -14,28 +19,19 @@ function Navbar() {
           <ul className="navbar-nav">
             <li className="nav-item">
               <NavLink className="navbar-brand" to="/">
-                <img 
-                  src="/images/Logo.png" 
-                  alt="Logo Talento Games" 
-                  className="logo-navbar" /></NavLink>
+                <img src="/images/Logo.png" alt="Logo Talento Games" className="logo-navbar" />
+              </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/">Inicio</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/about-us">Nosotros</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/consoles">Juegos</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/faq">Preguntas frecuentes</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/contact-us">Contacto</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/shopping-cart">Carrito</NavLink>
+            <li className="nav-item"><NavLink className="nav-link" to="/">Inicio</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link" to="/about-us">Nosotros</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link" to="/consoles">Juegos</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link" to="/faq">Preguntas frecuentes</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link" to="/contact-us">Contacto</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link" to="/shopping-cart">Carrito</NavLink></li>
+            <li className="nav-item d-flex align-items-center">
+              <Button variant={logueado ? "outline-danger" : "outline-primary"} size="sm" onClick={handleLoginClick}>
+                {logueado ? "Cerrar sesión" : "Ingresar"}
+              </Button>
             </li>
           </ul>
         </div>
