@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 
 function Navbar() {
@@ -13,29 +13,29 @@ function Navbar() {
         <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="navbar-brand" to="/">
+              <NavLink className="navbar-brand" to="/">
                 <img 
                   src="/images/Logo.png" 
                   alt="Logo Talento Games" 
-                  className="logo-navbar" /></Link>
+                  className="logo-navbar" /></NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/">Inicio</Link>
+              <NavLink className="nav-link" to="/">Inicio</NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/about-us">Nosotros</Link>
+              <NavLink className="nav-link" to="/about-us">Nosotros</NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/consoles">Juegos</Link>
+              <NavLink className="nav-link" to="/consoles">Juegos</NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/faq">Preguntas frecuentes</Link>
+              <NavLink className="nav-link" to="/faq">Preguntas frecuentes</NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/contact-us">Contacto</Link>
+              <NavLink className="nav-link" to="/contact-us">Contacto</NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/shopping-cart">Carrito</Link>
+              <NavLink className="nav-link" to="/shopping-cart">Carrito</NavLink>
             </li>
           </ul>
         </div>

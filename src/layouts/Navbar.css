@@ -23,3 +23,9 @@
 .nav-link:hover {
 	color: var(--color) !important;
 }
+
+.nav-link.active {
+	color: var(--color) !important;
+	font-weight: bold;
+}
+  

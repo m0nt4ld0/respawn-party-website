@@ -6,6 +6,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import AboutPage from './pages/AboutPage';
 import FAQPage from './pages/FAQPage';
 import ShoppingCart from './pages/shoppingCart/ShoppingCart'; 
+import ProductDetailPage from './pages/breadcrumb/ProductDetailPage'; 
 import ShoppingCartPage from './pages/ShoppingCartPage';
 import ConsolePage from './pages/breadcrumb/ConsolePage';
 import GamesPage from './pages/breadcrumb/GamesPage';
@@ -23,6 +24,7 @@ function App() {
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/consoles" element={<ConsolePage />} />
           <Route path="/shopping-cart" element={<ShoppingCartPage />} />
+          <Route path="/product/:id" element={<ProductDetailPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
