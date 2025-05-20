@@ -3,11 +3,11 @@ import { ListGroup, Button, Container } from 'react-bootstrap';
 import { ShoppingCartContext } from './shoppingCart/ShoppingCart';
 import Content from '../layouts/Content';
 
-function ShoppingCartPage() {
+function ShoppingCartPage({ logueado, setLogueado }) {
   const { cart, addToCart, removeFromCart, emptyCart } = useContext(ShoppingCartContext);
 
   return (
-    <Content>
+    <Content logueado={logueado} setLogueado={setLogueado}>
       <h1>Mi carrito</h1>
       <Container className="mt-4">
         {cart.length === 0 ? (

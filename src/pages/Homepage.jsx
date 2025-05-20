@@ -3,9 +3,9 @@ import { Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Homepage.css';
 
-function HomePage() {
+function HomePage({ logueado, setLogueado })  {
   return (
-    <Content>
+    <Content logueado={logueado} setLogueado={setLogueado}>
       <div style={{ position: 'relative' }}>
         <div className="floating-banner d-flex align-items-center">
           <img src="/images/Logo.png" alt="Talento Games Logo" className="logo-img" />

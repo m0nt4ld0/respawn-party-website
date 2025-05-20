@@ -3,9 +3,9 @@ import DropdownItem from '../components/help/DropdownItem';
 import './FAQPage.css';
 import { Accordion } from 'react-bootstrap';
 
-function FAQPage() {
+function FAQPage({ logueado, setLogueado }) {
   return (
-    <Content>
+    <Content logueado={logueado} setLogueado={setLogueado}>
       <h1>Preguntas Frecuentes</h1>
       <Accordion>
         <DropdownItem

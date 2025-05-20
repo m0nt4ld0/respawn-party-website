@@ -4,21 +4,21 @@ import { Breadcrumb } from 'react-bootstrap';
 import Content from '../../layouts/Content';
 import ProductDetail from '../shoppingCart/ProductDetail';
 
-function ProductDetailPage() {
+function ProductDetailPage({ logueado, setLogueado }) {
   const { state } = useLocation();
   const { id } = useParams();
 
   const consoleName = state?.consoleName || 'Consola desconocida';
 
   return (
-    <Content>
+    <Content logueado={logueado} setLogueado={setLogueado}>
       <Breadcrumb>
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/' }}>Inicio</Breadcrumb.Item>
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/consoles' }}>Consolas</Breadcrumb.Item>
         <Breadcrumb.Item active>Detalle del juego #{id} ({consoleName})</Breadcrumb.Item>
       </Breadcrumb>
 
-      <ProductDetail /> {/* El botón está dentro de este componente */}
+      <ProductDetail />
     </Content>
   );
 }

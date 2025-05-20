@@ -5,7 +5,7 @@ import Content from '../../layouts/Content';
 import { Link } from 'react-router-dom';
 import './ConsolePage.css'
 
-function ConsolePage() {
+function ConsolePage({ logueado, setLogueado }) {
     const [consoles, setConsoles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
@@ -33,7 +33,7 @@ function ConsolePage() {
     };
 
     return (
-        <Content>
+        <Content logueado={logueado} setLogueado={setLogueado}>
             <Container className="mt-4">
                 <Breadcrumb>
                     <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/' }}>Inicio</Breadcrumb.Item>

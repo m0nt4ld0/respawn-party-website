@@ -1,9 +1,9 @@
 import ContactForm from '../components/ContactForm';
 import Content from '../layouts/Content';
 
-function ContactPage() {
+function ContactPage({ logueado, setLogueado }) {
   return (
-    <Content>
+    <Content logueado={logueado} setLogueado={setLogueado}>
       <ContactForm onSubmit={console.log} />
     </Content>
   );
