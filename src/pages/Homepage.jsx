@@ -1,5 +1,6 @@
 import Content from '../layouts/Content';
 import { Carousel } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import './Homepage.css';
 
 function HomePage() {
@@ -58,7 +59,11 @@ function HomePage() {
                     className="img-fluid w-100"
                   />
                   <div className="card-overlay d-flex justify-content-center align-items-center">
-                    <h5 className="text-white"><a href={`/console/12`}>PlayStation 1</a></h5>
+                    <h5 className="text-white">
+                      <Link to={`/console/12`} state={{ consoleName: 'PlayStation 1' }}>
+                        PlayStation 1
+                      </Link>
+                    </h5>
                   </div>
                 </div>
               </div>
@@ -71,7 +76,11 @@ function HomePage() {
                     className="img-fluid w-100"
                   />
                   <div className="card-overlay d-flex justify-content-center align-items-center">
-                    <h5 className="text-white"><a href={`/console/21`}>PlayStation 2</a></h5>
+                    <h5 className="text-white">
+                      <Link to={`/console/21`} state={{ consoleName: 'PlayStation 2' }}>
+                        PlayStation 2
+                      </Link>
+                    </h5>
                   </div>
                 </div>
               </div>
@@ -79,12 +88,16 @@ function HomePage() {
               <div className="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div className="custom-card position-relative overflow-hidden">
                   <img
-                    src={`/images/cards/playstation-3.jpg`}
-                    alt="PlayStation 3"
+                    src={`/images/cards/Nintendo-DSi.jpg`}
+                    alt="Nintendo DSi"
                     className="img-fluid w-100"
                   />
                   <div className="card-overlay d-flex justify-content-center align-items-center">
-                    <h5 className="text-white"><a href={`/console/21`}>PlayStation 3</a></h5>
+                    <h5 className="text-white">
+                      <Link to={`/console/78`} state={{ consoleName: 'Nintendo DSi' }}>
+                        Nintendo DSi
+                      </Link>
+                    </h5>
                   </div>
                 </div>
               </div>
@@ -96,7 +109,11 @@ function HomePage() {
                     className="img-fluid w-100"
                   />
                   <div className="card-overlay d-flex justify-content-center align-items-center">
-                    <h5 className="text-white"><a href={`/console/12`}>Nintendo 64</a></h5>
+                    <h5 className="text-white">
+                      <Link to={`/console/2`} state={{ consoleName: 'Nintendo 64' }}>
+                        Nintendo 64
+                      </Link>
+                    </h5>
                   </div>
                 </div>
               </div>
@@ -105,11 +122,15 @@ function HomePage() {
                 <div className="custom-card position-relative overflow-hidden">
                   <img
                     src={`/images/cards/gba.jpg`}
-                    alt="PlayStation 2"
+                    alt="GameBoy Advance"
                     className="img-fluid w-100"
                   />
                   <div className="card-overlay d-flex justify-content-center align-items-center">
-                    <h5 className="text-white"><a href={`/console/21`}>GameBoy Advance</a></h5>
+                    <h5 className="text-white">
+                      <Link to={`/console/5`} state={{ consoleName: 'GameBoy Advance' }}>
+                        GameBoy Advance
+                      </Link>
+                    </h5>
                   </div>
                 </div>
               </div>
@@ -122,7 +143,11 @@ function HomePage() {
                     className="img-fluid w-100"
                   />
                   <div className="card-overlay d-flex justify-content-center align-items-center">
-                    <h5 className="text-white"><a href={`/console/21`}>Sega MegaDrive</a></h5>
+                    <h5 className="text-white">
+                      <Link to={`/console/1`} state={{ consoleName: 'Sega MegaDrive' }}>
+                        Sega MegaDrive
+                      </Link>
+                    </h5>
                   </div>
                 </div>
               </div>
@@ -134,7 +159,11 @@ function HomePage() {
                     className="img-fluid w-100"
                   />
                   <div className="card-overlay d-flex justify-content-center align-items-center">
-                    <h5 className="text-white"><a href={`/console/21`}>Sega DreamCast</a></h5>
+                    <h5 className="text-white">
+                      <Link to={`/console/40`} state={{ consoleName: 'Sega DreamCast' }}>
+                        Sega DreamCast
+                      </Link>
+                    </h5>
                   </div>
                 </div>
               </div>
@@ -146,8 +175,12 @@ function HomePage() {
                     className="img-fluid w-100"
                   />
                   <div className="card-overlay d-flex justify-content-center align-items-center">
-                    <h5 className="text-white"><a href={`/console/21`}>Nintendo GameCube</a></h5>
-                  </div>
+                      <h5 className="text-white">
+                        <Link to={`/console/16`} state={{ consoleName: 'Nintendo GameCube' }}>
+                          Nintendo GameCube
+                        </Link>
+                      </h5>
+                    </div>
                 </div>
               </div>
               
