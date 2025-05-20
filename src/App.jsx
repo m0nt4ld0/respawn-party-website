@@ -11,15 +11,14 @@ import ProductDetailPage from './pages/breadcrumb/ProductDetailPage';
 import ShoppingCartPage from './pages/ShoppingCartPage';
 import ConsolePage from './pages/breadcrumb/ConsolePage';
 import GamesPage from './pages/breadcrumb/GamesPage';
+import UserPage from './pages/userPanel/UserPage';
 
 function App() {
-  // 🔁 Estado inicial desde localStorage
   const [logueado, setLogueado] = useState(() => {
     const saved = localStorage.getItem("logueado");
     return saved === "true";
   });
 
-  // 💾 Guardar en localStorage cuando cambie
   useEffect(() => {
     localStorage.setItem("logueado", logueado);
   }, [logueado]);
@@ -36,6 +35,7 @@ function App() {
           <Route path="/consoles" element={<ConsolePage logueado={logueado} setLogueado={setLogueado} />} />
           <Route path="/shopping-cart" element={<ShoppingCartPage logueado={logueado} setLogueado={setLogueado} />} />
           <Route path="/product/:id" element={<ProductDetailPage logueado={logueado} setLogueado={setLogueado} />} />
+          <Route path="/user" element={<UserPage logueado={logueado} setLogueado={setLogueado} />} />
           <Route path="*" element={<NotFoundPage logueado={logueado} setLogueado={setLogueado} />} />
         </Routes>
       </Router>

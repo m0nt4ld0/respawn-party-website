@@ -28,6 +28,15 @@ function Navbar({ logueado, setLogueado }) {
             <li className="nav-item"><NavLink className="nav-link" to="/faq">Preguntas frecuentes</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" to="/contact-us">Contacto</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" to="/shopping-cart">Carrito</NavLink></li>
+
+            {logueado && (
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/user">
+                  Mi Perfil
+                </NavLink>
+              </li>
+            )}
+
             <li className="nav-item d-flex align-items-center">
               <Button variant={logueado ? "outline-danger" : "outline-primary"} size="sm" onClick={handleLoginClick}>
                 {logueado ? "Cerrar sesión" : "Ingresar"}
