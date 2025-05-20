@@ -15,6 +15,15 @@
     box-shadow: 0 6px 18px rgba(255, 165, 0, 0.2);
   }
   
+  .product-link {
+    text-decoration: none;
+    color: var(--color-very-light);
+  }
+  
+  .product-link:hover {
+    color: var(--color);
+  }
+  
   .product-img {
     height: 200px;
     object-fit: contain;

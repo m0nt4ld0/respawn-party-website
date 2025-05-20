@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Card, Button, Container, Row, Col, Form, Spinner, Pagination } from 'react-bootstrap';
 import { ShoppingCartContext } from './ShoppingCart';
 import { fetchGameListByConsoleId } from '../../api/retroAchievements';
+import { Link } from 'react-router-dom';
 import './Product.css';
 
 
@@ -57,7 +58,13 @@ function Product({ consoleId }) {
                                             className="product-img"
                                         />
                                         <Card.Body>
-                                            <Card.Title className="product-card-title">{product.Title}</Card.Title>
+                                            <Card.Title className="product-card-title">
+                                                <Link to={`/product/${product.ID}`} 
+                                                      state={{ consoleName: product.ConsoleName }}
+                                                      className="product-link">
+                                                    {product.Title}
+                                                </Link>
+                                            </Card.Title>
                                             <Card.Text>
                                                 {product.ConsoleName}
                                                 <br />
