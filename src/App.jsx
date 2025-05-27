@@ -2,6 +2,11 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Homepage from './pages/Homepage';
+import { AuthProvider } from "./contexts/AuthContext";
+import LoginPage from "./pages/LoginPage";
+import DashboardPage from "./pages/DashboardPage";
+import RegisterPage from "./pages/RegisterPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 import AboutPage from './pages/AboutPage';
@@ -26,7 +31,17 @@ function App() {
   return (
     <ShoppingCart>
       <Router>
+      <AuthProvider>
         <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/" element={<Homepage logueado={logueado} setLogueado={setLogueado} />} />
           <Route path="/about-us" element={<AboutPage logueado={logueado} setLogueado={setLogueado} />} />
           <Route path="/contact-us" element={<ContactPage logueado={logueado} setLogueado={setLogueado} />} />
@@ -36,8 +51,10 @@ function App() {
           <Route path="/shopping-cart" element={<ShoppingCartPage logueado={logueado} setLogueado={setLogueado} />} />
           <Route path="/product/:id" element={<ProductDetailPage logueado={logueado} setLogueado={setLogueado} />} />
           <Route path="/user" element={<UserPage logueado={logueado} setLogueado={setLogueado} />} />
+          <Route path="/register" element={<RegisterPage logueado={logueado} setLogueado={setLogueado} />} />
           <Route path="*" element={<NotFoundPage logueado={logueado} setLogueado={setLogueado} />} />
         </Routes>
+      </AuthProvider>
       </Router>
     </ShoppingCart>
   );
