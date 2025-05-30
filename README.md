@@ -10,6 +10,7 @@ La aplicación simula una tienda de videojuegos retro donde los usuarios pueden 
 - **Carrito de compras:** Los usuarios pueden agregar juegos al carrito y proceder a la compra.
 - **API de RetroAchievements:** Se consumen datos en tiempo real de la API de RetroAchievements para mostrar información sobre los juegos retro y sus logros.
 - **Interfaz intuitiva:** La interfaz es fácil de usar y se enfoca en una experiencia de compra cómoda.
+- **Autenticación de usuarios con Firebase:** Tanto con cuenta de Google como con cualquier otro e-mail.
 
 ## Cómo utilizarlo
 
@@ -39,11 +40,6 @@ Abre el archivo .env y agrega tus credenciales de RetroAchievements siguiendo es
 VITE_RA_USERNAME=YOUR_RETROACHIEVEMENTS_USERNAME
 VITE_RA_APIKEY=YOUR_RETROACHIEVEMENTS_API_KEY
 ```
-
-### Error de CORS
-Es importante tener en cuenta que la API de RetroAchievements puede devolver un error de CORS (Cross-Origin Resource Sharing) al intentar hacer solicitudes directamente desde el navegador. Para solucionar este problema y continuar con el desarrollo, es necesario instalar y activar una extensión de Chrome que permita las solicitudes CORS.
-
-Puedes usar la extensión Allow CORS: Access-Control-Allow-Origin que puedes encontrar en la Chrome Web Store. Esta extensión permite que las solicitudes se realicen correctamente mientras trabajas en tu entorno de desarrollo.
 
 ### Ejecutar el proyecto
 ```bash
