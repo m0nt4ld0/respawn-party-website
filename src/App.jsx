@@ -17,12 +17,24 @@ import ShoppingCartPage from './pages/ShoppingCartPage';
 import ConsolePage from './pages/breadcrumb/ConsolePage';
 import GamesPage from './pages/breadcrumb/GamesPage';
 import UserPage from './pages/userPanel/UserPage';
+import { auth } from "./api/firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import LoginWithGoogle from "./components/LoginWithGoogle";
 
 function App() {
+  const [user, setUser] = useState(null);
   const [logueado, setLogueado] = useState(() => {
     const saved = localStorage.getItem("logueado");
     return saved === "true";
   });
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("logueado", logueado);
