@@ -5,7 +5,6 @@ import Homepage from './pages/Homepage';
 import { AuthProvider } from "./contexts/AuthContext";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
-import RegisterPage from "./pages/RegisterPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -63,7 +62,6 @@ function App() {
           <Route path="/shopping-cart" element={<ShoppingCartPage  />} />
           <Route path="/product/:id" element={<ProductDetailPage  />} />
           <Route path="/user" element={<UserPage  />} />
-          <Route path="/register" element={<RegisterPage  />} />
           <Route path="*" element={<NotFoundPage  />} />
         </Routes>
       </AuthProvider>
