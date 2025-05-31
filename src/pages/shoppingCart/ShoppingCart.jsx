@@ -64,7 +64,7 @@ function ShoppingCart({ children }) {
 
   const emptyCart = () => {
     setCart([]);
-    toast.warn('Carrito vaciado');
+    toast.warn('Carrito vacío');
   };
 
   return (

@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import Homepage from './pages/Homepage';
 import { AuthProvider } from "./contexts/AuthContext";
 import LoginPage from "./pages/LoginPage";
-import DashboardPage from "./pages/DashboardPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -42,10 +41,10 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route
-            path="/dashboard"
+            path="/user"
             element={
               <ProtectedRoute>
-                <DashboardPage />
+                <UserPage />
               </ProtectedRoute>
             }
           />
@@ -65,7 +64,6 @@ function App() {
           <Route path="/consoles" element={<ConsolePage  />} />
           <Route path="/shopping-cart" element={<ShoppingCartPage  />} />
           <Route path="/product/:id" element={<ProductDetailPage  />} />
-          <Route path="/user" element={<UserPage  />} />
           <Route path="*" element={<NotFoundPage  />} />
         </Routes>
       </AuthProvider>
