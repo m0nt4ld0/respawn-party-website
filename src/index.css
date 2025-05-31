@@ -3,6 +3,7 @@ html, body, #root {
   margin: 0;
   padding: 0;
   --color: #ff5400;
+  --color-error: #e74c3c;
   --color-link-hover: #ffa700;
   --color-very-light: #a8a8a8;
   --color-medium-light: #6d6d6d;
@@ -10,4 +11,39 @@ html, body, #root {
   --color-medium-dark: #323232;
   --color-very-dark: #1d1d1d;
   --color-ultra-dark: #101010;
+
+  --toastify-icon-color-success: var(--color);
+  --toastify-icon-color-warning: var(--color-link-hover);
+  --toastify-icon-color-error: var(--color-error);
+  --toastify-icon-color-info: var(--color-link-hover);
+}
+
+/* #### Notificaciones (Toast) #### */
+.Toastify__toast {
+  background-color: var(--color-dark) !important;
+  color: var(--color-white) !important;
+}
+
+.Toastify__toast-icon {
+  color: var(--color-white) !important;
+}
+
+.Toastify__progress-bar--bg.Toastify__progress-bar--success {
+  background-color: var(--color); /* o el color personalizado que quieras */
+}
+
+.Toastify__toast--success .Toastify__progress-bar {
+  background: var(--color) !important;
+}
+
+.Toastify__toast--warning .Toastify__progress-bar {
+  background: var(--color-link-hover) !important;
+}
+
+.Toastify__toast--error .Toastify__progress-bar {
+  background: #e74c3c !important;
+}
+
+.Toastify__toast--info .Toastify__progress-bar {
+  background: var(--color-link-hover) !important;
 }
