@@ -33,13 +33,15 @@ function ConsolePage() {
 
     return (
         <Content>
-            <Container className="mt-4">
+            <div className="angled-background" />
+            <Container className="py-4">
+                <div className="header-hero">
+                    <h1>Catálogo por consola</h1>
+                </div>
                 <Breadcrumb>
                     <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/' }}>Inicio</Breadcrumb.Item>
                     <Breadcrumb.Item active>Consolas</Breadcrumb.Item>
                 </Breadcrumb>
-
-                <h2>Tenemos juegos disponibles para estas consolas</h2>
                     
                     <div className="d-flex justify-content-center mt-4">
                         <Pagination className="custom-pagination">
