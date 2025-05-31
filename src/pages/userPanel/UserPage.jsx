@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Content from '../../layouts/Content';
-import './UserPage.css'
+import './UserPage.css';
+import { useAuth } from '../../contexts/AuthContext';
 
-function UserPage({ logueado, setLogueado }) {
-  // JSON hardcodeado con los datos del usuario para poder probar la ruta protegida del usuario al loguearse
+function UserPage() {
+  const { currentUser } = useAuth(); // Obtenemos el usuario autenticado
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  // Datos mockeados (pueden convivir con los de Google si querés)
   const hardcodedUserData = {
     User: "MaxMilyin",
     ULID: "00003EMFWR7XB8SDPEHB3K56ZQ",
@@ -23,61 +28,22 @@ function UserPage({ logueado, setLogueado }) {
     Motto: "Join me on Twitch! GameSquadSquad for live RA"
   };
 
-  const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
   useEffect(() => {
-    if (!logueado) return;
+    if (!currentUser) return;
 
-    // En vez de llamar a la API, directamente seteo el JSON hardcodeado.
     setLoading(true);
-    setError(null);
 
-    // Simulo una pequeña demora para la "carga"
+    // Simulamos que se carga info adicional (como hacías antes)
     setTimeout(() => {
       setUserData(hardcodedUserData);
       setLoading(false);
     }, 500);
+  }, [currentUser]);
 
-    /*
-    // Código original comentado por problema CORS al llamar al endpoint de usuario de la API remota
-    const fetchUserData = async () => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        // Variables de entorno con credenciales
-        const username = import.meta.env.VITE_RA_USERNAME;
-        const password = import.meta.env.VITE_RA_APIKEY;
-
-        const url = `https://retroachievements.org/API/API_GetUserProfile.php?u=${username}`;
-        const response = await fetch(url, {
-          headers: {
-            // Autenticación básica con base64
-            Authorization: `Basic ${btoa(username + ':' + password)}`,
-          },
-        });
-
-        if (!response.ok) throw new Error('Error al obtener datos del usuario');
-
-        const data = await response.json();
-        setUserData(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUserData();
-    */
-
-  }, [logueado]);
-
-  if (!logueado) {
+  // Si no hay usuario logueado
+  if (!currentUser) {
     return (
-      <Content logueado={logueado} setLogueado={setLogueado}>
+      <Content>
         <div className="alert alert-danger text-center mt-5" role="alert">
           No tenés permisos para ver esta página.
         </div>
@@ -86,54 +52,39 @@ function UserPage({ logueado, setLogueado }) {
   }
 
   return (
-    <Content logueado={logueado} setLogueado={setLogueado}>
+    <Content>
       <div className="user-profile-container">
         {loading && <p>Cargando...</p>}
-        {error && <p className="error-message">{error}</p>}
-        {userData && (
-          <>
+
+        {/* Datos de Firebase Auth */}
+        <div className="user-firebase-info">
+          {currentUser.photoURL && (
             <div className="user-pic-wrapper">
               <img
-                src={`https://retroachievements.org${userData.UserPic}`}
-                alt={`Avatar de ${userData.User}`}
+                src={currentUser.photoURL}
+                alt="Foto de perfil"
                 className="user-pic"
               />
             </div>
+          )}
+          <table className="user-data-table">
+            <tbody>
+              <tr>
+                <th>Nombre</th>
+                <td>{currentUser.displayName || "No disponible"}</td>
+              </tr>
+              <tr>
+                <th>Email</th>
+                <td>{currentUser.email}</td>
+              </tr>
+              <tr>
+                <th>UID</th>
+                <td>{currentUser.uid}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-            <table className="user-data-table">
-              <tbody>
-                <tr>
-                  <th>Apodo</th>
-                  <td>{userData.User}</td>
-                </tr>
-                <tr>
-                  <th>Cliente desde</th>
-                  <td>{new Date(userData.MemberSince).toLocaleDateString()}</td>
-                </tr>
-                <tr>
-                  <th>Puntos acumulados</th>
-                  <td>{userData.TotalPoints.toLocaleString()}</td>
-                </tr>
-                <tr>
-                  <th>Puntos cambiados</th>
-                  <td>{userData.TotalTruePoints.toLocaleString()}</td>
-                </tr>
-                <tr>
-                  <th>Jugando</th>
-                  <td>{userData.RichPresenceMsg}</td>
-                </tr>
-                <tr>
-                  <th>Firma</th>
-                  <td>{userData.Motto}</td>
-                </tr>
-                <tr>
-                  <th>Devoluciones</th>
-                  <td>{userData.ContribCount}</td>
-                </tr>
-              </tbody>
-            </table>
-          </>
-        )}
       </div>
     </Content>
   );

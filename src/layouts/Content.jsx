@@ -1,7 +1,7 @@
 import Navbar from './Navbar';
 import Footer from './Footer';
 
-function Content({ children, logueado, setLogueado }) {
+function Content({children}) {
   return (
     <div
       style={{
@@ -10,7 +10,7 @@ function Content({ children, logueado, setLogueado }) {
         minHeight: '100vh',
       }}
     >
-      <Navbar logueado={logueado} setLogueado={setLogueado} />
+      <Navbar/>
 
       <main
         style={{
