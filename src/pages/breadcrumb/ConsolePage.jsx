@@ -3,7 +3,6 @@ import { Card, Container, Row, Col, Spinner, Breadcrumb, Pagination } from 'reac
 import { fetchAllConsoles } from '../../api/retroAchievements';
 import Content from '../../layouts/Content';
 import { Link } from 'react-router-dom';
-import './ConsolePage.css'
 
 function ConsolePage() {
     const [consoles, setConsoles] = useState([]);
@@ -71,28 +70,35 @@ function ConsolePage() {
                     <>
                         <Row>
                             {currentConsoles.map((console, index) => (
-                                <Col key={index} md={4} className="mb-4">
-                                    <Card className="console-card">
-                                        <Card.Img 
-                                            variant="top" 
-                                            src={console.IconURL} 
-                                            alt={console.Name} 
-                                            className="console-img"
-                                        />
-                                        <Card.Body className="console-card-body">
-                                            <Card.Title className="console-title">{console.Name}</Card.Title>
-                                            <Link
-                                                to={`/console/${console.ID}`}
-                                                state={{ console }}
-                                                className="console-link"
-                                            >
-                                                Ver juegos de {console.Name}
-                                            </Link>
-                                        </Card.Body>
-                                    </Card>
+                                <Col key={index} md={6} lg={4} className="mb-4">
+                                <Card className="console-card h-100 shadow-sm border-0">
+                                    <div className="text-center pt-4 px-4">
+                                    <Card.Img
+                                        variant="top"
+                                        src={console.IconURL}
+                                        alt={console.Name}
+                                        className="console-img mx-auto"
+                                    />
+                                    </div>
+                                    <Card.Body className="console-card-body d-flex flex-column justify-content-between">
+                                    <div>
+                                        <Card.Title className="console-title text-center mb-3">{console.Name}</Card.Title>
+                                    </div>
+                                    <div className="text-center mt-auto">
+                                        <Link
+                                        to={`/console/${console.ID}`}
+                                        state={{ console }}
+                                        className="btn btn-primary rounded-pill px-4"
+                                        >
+                                        Ver juegos
+                                        </Link>
+                                    </div>
+                                    </Card.Body>
+                                </Card>
                                 </Col>
                             ))}
                         </Row>
+
 
                         <div className="d-flex justify-content-center mt-4">
                             <Pagination className="custom-pagination">

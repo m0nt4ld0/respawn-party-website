@@ -6,10 +6,10 @@
     --color-link-hover: #ffa700;
     --color-very-light: #a8a8a8;
     --color-medium-light: #6d6d6d;
+    --color-ultra-dark: #101010;
+    --color-very-dark: #1d1d1d;
     --color-dark: #272727;
     --color-medium-dark: #323232;
-    --color-very-dark: #1d1d1d;
-    --color-ultra-dark: #101010;
     --color-white:#f8f9fa;
 }
 
@@ -50,7 +50,7 @@ body {
 
 .btn-primary:hover {
    background-color: var(--color) !important;
-   border: 1px solid var(--color) !important;
+   border: 1px solid var(--color-white) !important;
    color:var(--color-very-light) !important;
 }
 
@@ -115,3 +115,35 @@ body {
     justify-content: center !important;
     margin-top: 1.5rem !important;
 }
+
+/* #### Cards (consolas y juegos) #### */
+.card {
+    background: linear-gradient(135deg, var(--color-ultra-dark), var(--color-very-dark));
+    border-radius: 20px !important;
+    transition: transform 0.25s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+  }
+  
+  .card-img-top {
+    height: 100px;
+    object-fit: contain;
+    background-color: transparent;
+    padding: 1rem;
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+    color: var(--color-very-light) !important;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-very-light);
+  }
+  

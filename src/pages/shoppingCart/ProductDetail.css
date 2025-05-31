@@ -1,6 +1,4 @@
-
 .card {
-  background-color: var(--color-white);
   transition: transform 0.2s ease-in-out;
 }
 
@@ -8,11 +6,10 @@
   transform: scale(1.01);
 }
 
-.card-title {
-  color: var(--color-very-dark);
-}
-
-body {
-  background-color: var(--color-white);
-  font-family: 'Inter', sans-serif;
+.game-img {
+  max-height: 400px;
+  width: 100%;
+  object-fit: contain;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.02);
 }

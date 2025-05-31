@@ -44,33 +44,30 @@ function ProductDetail() {
       <Row className="justify-content-center">
         <Col md={10} lg={8}>
           <Card className="shadow-lg border-0 rounded-4 p-4">
-            <Row>
-              <Col md={5} className="text-center">
-                <Card.Img
-                  variant="top"
+            <Row className="align-items-center">
+              <Col md={5} className="text-center mb-4 mb-md-0">
+                <img
                   src={`https://retroachievements.org${game.ImageBoxArt}`}
                   alt={game.Title}
-                  style={{ maxHeight: '300px', objectFit: 'contain' }}
-                  className="rounded-3 mb-3"
+                  className="img-fluid rounded-3 game-img"
                 />
               </Col>
               <Col md={7}>
                 <Card.Body>
                   <Card.Title className="fs-2 fw-bold mb-3">{game.Title}</Card.Title>
                   <Card.Text className="mb-4">
-                  <strong>Consola:</strong>{' '}
+                    <strong>Consola:</strong>{' '}
                     <Link to={`/console/${game.ConsoleID}`} className="text-decoration-none">
                       {game.ConsoleName}
                     </Link>
                     <br />
                     <strong>Lanzamiento:</strong> {game.Released} <br />
                     <strong>Jugadores:</strong> {game.NumDistinctPlayers} <br />
-                    <strong>Logros:</strong> {game.NumAchievements} <br />
                     <strong>Desarrollador:</strong> {game.Developer || 'Desconocido'} <br />
                     <strong>Género:</strong> {game.Genre || 'N/A'} <br />
                     <strong>Precio:</strong> ${game.ID || 'N/A'}
                   </Card.Text>
-                  <Button variant="btn btn-primary" onClick={() => addToCart(game)}>
+                  <Button variant="primary" onClick={() => addToCart(game)}>
                     Agregar al carrito
                   </Button>
                 </Card.Body>
