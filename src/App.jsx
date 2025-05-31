@@ -17,6 +17,7 @@ import ShoppingCartPage from './pages/ShoppingCartPage';
 import ConsolePage from './pages/breadcrumb/ConsolePage';
 import GamesPage from './pages/breadcrumb/GamesPage';
 import UserPage from './pages/userPanel/UserPage';
+import CustomProductPage from './pages/CustomProductPage';
 import { auth } from "./api/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -55,6 +56,7 @@ function App() {
           <Route path="/product/:id" element={<ProductDetailPage  />} />
           <Route path="/user" element={<UserPage  />} />
           <Route path="/register" element={<RegisterPage  />} />
+          <Route path="/create-product" element={<CustomProductPage  />} />
           <Route path="*" element={<NotFoundPage  />} />
         </Routes>
       </AuthProvider>
