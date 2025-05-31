@@ -8,7 +8,6 @@ import { Link, useParams } from 'react-router-dom';
 import Content from '../../layouts/Content';
 import Product from '../shoppingCart/Product';
 import { fetchAllConsoles } from '../../api/retroAchievements';
-import './GamesPage.css';
 
 function GamesPage() {
   const { id } = useParams();
@@ -52,7 +51,7 @@ function GamesPage() {
           <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/consoles' }}>Consolas</Breadcrumb.Item>
           <Breadcrumb.Item active>Juegos para {consoleData.Name}</Breadcrumb.Item>
         </Breadcrumb>
-        
+
         <Product consoleId={consoleData.ID} />
       </Container>
     </Content>
