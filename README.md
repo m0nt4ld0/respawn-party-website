@@ -30,15 +30,23 @@ npm install
 ```
 
 ### Configuración del archivo .env
-Este proyecto utiliza variables de entorno para acceder a la API de RetroAchievements. Para configurarlas:
+Este proyecto utiliza variables de entorno para acceder a la API de RetroAchievements y a Firebase. Para configurarlas:
 
 Crea un archivo .env en la raíz del proyecto.
 
-Abre el archivo .env y agrega tus credenciales de RetroAchievements siguiendo este formato:
+Abre el archivo .env y agrega tus credenciales de RetroAchievements y de Firebase siguiendo este formato:
 
 ```bash
 VITE_RA_USERNAME=YOUR_RETROACHIEVEMENTS_USERNAME
 VITE_RA_APIKEY=YOUR_RETROACHIEVEMENTS_API_KEY
+
+VITE_FIREBASE_API_KEY=YOUR_FIREBASE_API_KEY
+VITE_FIREBASE_AUTH_DOMAIN=YOUR_FIREBASE_AUTH_DOMAIN
+VITE_FIREBASE_PROJECT_ID=YOUR_FIREBASE_PROJECT_ID
+VITE_FIREBASE_STORAGE_BUCKET=YOUR_FIREBASE_STORAGE_BUCKET
+VITE_FIREBASE_MESSAGING_SENDER_ID=YOUR_FIREBASE_MESSAGING_SENDER_ID
+VITE_FIREBASE_APP_ID=YOUR_FIREBASE_APP_ID
+
 ```
 
 ### Ejecutar el proyecto
