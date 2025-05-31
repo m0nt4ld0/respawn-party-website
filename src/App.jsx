@@ -46,6 +46,14 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/create-product"
+            element={
+              <ProtectedRoute>
+                <CustomProductPage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/" element={<Homepage />} />
           <Route path="/about-us" element={<AboutPage />} />
           <Route path="/contact-us" element={<ContactPage />} />
@@ -56,7 +64,6 @@ function App() {
           <Route path="/product/:id" element={<ProductDetailPage  />} />
           <Route path="/user" element={<UserPage  />} />
           <Route path="/register" element={<RegisterPage  />} />
-          <Route path="/create-product" element={<CustomProductPage  />} />
           <Route path="*" element={<NotFoundPage  />} />
         </Routes>
       </AuthProvider>
