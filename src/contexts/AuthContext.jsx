@@ -1,42 +1,56 @@
-import React, { createContext, useState, useContext, useEffect } from "react";
+// AuthContext.jsx
+import { createContext, useContext, useEffect, useState } from "react";
+import {
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth } from "../api/firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true); // 👈 agregado
 
-  // Escuchar cambios en el estado de autenticación de Firebase
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      setUser(firebaseUser);
+      setLoading(false); // 👈 solo después de que Firebase responde
     });
 
     return () => unsubscribe();
   }, []);
 
-  // Login local opcional (si querés seguir usándolo para pruebas)
-  const login = (username, password) => {
-    if (username === "admin" && password === "1234") {
-      // Mock user manual
-      const fakeUser = { email: "admin@example.com", displayName: "Admin Local" };
-      setCurrentUser(fakeUser);
+  const login = async (email, password) => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
       return true;
+    } catch (error) {
+      console.error("Login error:", error);
+      return false;
     }
-    return false;
+  };
+
+  const loginWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    await signInWithPopup(auth, provider);
   };
 
   const logout = async () => {
     await signOut(auth);
-    setCurrentUser(null);
+    setUser(null);
   };
 
   const value = {
-    currentUser,
+    user,
     login,
     logout,
-    isAuthenticated: !!currentUser,
+    loginWithGoogle,
+    isAuthenticated: !!user,
+    loading, // 👈 lo exponemos para usarlo en ProtectedRoute
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
