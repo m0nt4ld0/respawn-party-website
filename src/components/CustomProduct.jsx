@@ -9,7 +9,6 @@ function CustomProduct() {
   const [editProductId, setEditProductId] = useState(null);
   const [editProductData, setEditProductData] = useState({ name: '', price: '', description: '' });
 
-  // Leer productos
   useEffect(() => {
     setLoading(true);
     fetch(API_URL)
@@ -20,7 +19,6 @@ function CustomProduct() {
       });
   }, []);
 
-  // Crear producto
   const handleCreate = () => {
     fetch(API_URL, {
       method: 'POST',
@@ -34,13 +32,11 @@ function CustomProduct() {
       });
   };
 
-  // Iniciar edición
   const startEdit = (product) => {
     setEditProductId(product.id);
     setEditProductData({ name: product.name, price: product.price, description: product.description });
   };
 
-  // Actualizar producto
   const handleUpdate = () => {
     fetch(`${API_URL}/${editProductId}`, {
       method: 'PUT',
@@ -55,7 +51,6 @@ function CustomProduct() {
       });
   };
 
-  // Eliminar producto
   const handleDelete = (id) => {
     fetch(`${API_URL}/${id}`, { method: 'DELETE' })
       .then(() => {
@@ -64,64 +59,105 @@ function CustomProduct() {
   };
 
   return (
-    <div>
+    <div className="container mt-4">
+      
+      <h3>Agregar Producto</h3>
+      <div className="row g-2 align-items-center">
+        <div className="col-md-4">
+          <input
+            className="form-control"
+            value={newProduct.name}
+            onChange={e => setNewProduct({ ...newProduct, name: e.target.value })}
+            placeholder="Nombre"
+          />
+        </div>
+        <div className="col-md-3">
+          <input
+            type="number"
+            className="form-control"
+            value={newProduct.price}
+            onChange={e => setNewProduct({ ...newProduct, price: e.target.value })}
+            placeholder="Precio"
+          />
+        </div>
+        <div className="col-md-4">
+          <input
+            className="form-control"
+            value={newProduct.description}
+            onChange={e => setNewProduct({ ...newProduct, description: e.target.value })}
+            placeholder="Descripción"
+          />
+        </div>
+        <div className="col-md-1 d-grid">
+          <button className="btn btn-primary" onClick={handleCreate}>Agregar</button>
+        </div>
+      </div>
+      
       <h2>Productos</h2>
-
-      {loading ? <p>Cargando productos...</p> : (
-        <ul>
-          {products.map(p => (
-            <li key={p.id}>
-              {editProductId === p.id ? (
-                <>
-                  <input
-                    value={editProductData.name}
-                    onChange={e => setEditProductData({ ...editProductData, name: e.target.value })}
-                    placeholder="Nombre"
-                  />
-                  <input
-                    type="number"
-                    value={editProductData.price}
-                    onChange={e => setEditProductData({ ...editProductData, price: e.target.value })}
-                    placeholder="Precio"
-                  />
-                  <input
-                    value={editProductData.description}
-                    onChange={e => setEditProductData({ ...editProductData, description: e.target.value })}
-                    placeholder="Descripción"
-                  />
-                  <button onClick={handleUpdate}>Guardar</button>
-                  <button onClick={() => setEditProductId(null)}>Cancelar</button>
-                </>
-              ) : (
-                <>
-                  <b>{p.name}</b> - ${p.price} - {p.description}
-                  <button onClick={() => startEdit(p)}>Editar</button>
-                  <button onClick={() => handleDelete(p.id)}>Eliminar</button>
-                </>
-              )}
-            </li>
-          ))}
-        </ul>
+      {loading ? (
+        <p>Cargando productos...</p>
+      ) : (
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Descripción</th>
+              <th className="text-end">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map(p => (
+              <tr key={p.id}>
+                {editProductId === p.id ? (
+                  <>
+                    <td>
+                      <input
+                        className="form-control"
+                        value={editProductData.name}
+                        onChange={e => setEditProductData({ ...editProductData, name: e.target.value })}
+                        placeholder="Nombre"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        className="form-control"
+                        value={editProductData.price}
+                        onChange={e => setEditProductData({ ...editProductData, price: e.target.value })}
+                        placeholder="Precio"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="form-control"
+                        value={editProductData.description}
+                        onChange={e => setEditProductData({ ...editProductData, description: e.target.value })}
+                        placeholder="Descripción"
+                      />
+                    </td>
+                    <td className="text-end">
+                      <button className="btn btn-danger btn-sm me-2" onClick={handleUpdate}>Guardar</button>
+                      <button className="btn btn-secondary btn-sm" onClick={() => setEditProductId(null)}>Cancelar</button>
+                    </td>
+                  </>
+                ) : (
+                  <>
+                    <td>{p.name}</td>
+                    <td>${p.price}</td>
+                    <td>{p.description}</td>
+                    <td className="text-end">
+                      <button className="btn btn-primary btn-sm me-2" onClick={() => startEdit(p)}>Editar</button>
+                      <button className="btn btn-danger btn-sm" onClick={() => handleDelete(p.id)}>Eliminar</button>
+                    </td>
+                  </>
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
 
-      <h3>Agregar Producto</h3>
-      <input
-        value={newProduct.name}
-        onChange={e => setNewProduct({ ...newProduct, name: e.target.value })}
-        placeholder="Nombre"
-      />
-      <input
-        type="number"
-        value={newProduct.price}
-        onChange={e => setNewProduct({ ...newProduct, price: e.target.value })}
-        placeholder="Precio"
-      />
-      <input
-        value={newProduct.description}
-        onChange={e => setNewProduct({ ...newProduct, description: e.target.value })}
-        placeholder="Descripción"
-      />
-      <button onClick={handleCreate}>Agregar</button>
     </div>
   );
 }

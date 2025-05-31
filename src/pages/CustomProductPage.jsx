@@ -1,12 +1,14 @@
 import React from 'react';
 import CustomProduct from '../components/CustomProduct';
+import Content from '../layouts/Content';
 
 function CustomProductPage() {
   return (
-    <div>
-      <h1>Página de Productos</h1>
-      <CustomProduct />
-    </div>
+    <Content>
+      <div className="pt-5">
+        <CustomProduct />
+      </div>
+    </Content>
   );
 }
 
