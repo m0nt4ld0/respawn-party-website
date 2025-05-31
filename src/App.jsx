@@ -17,16 +17,19 @@ import ShoppingCartPage from './pages/ShoppingCartPage';
 import ConsolePage from './pages/breadcrumb/ConsolePage';
 import GamesPage from './pages/breadcrumb/GamesPage';
 import UserPage from './pages/userPanel/UserPage';
+import { auth } from "./api/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 function App() {
-  const [logueado, setLogueado] = useState(() => {
-    const saved = localStorage.getItem("logueado");
-    return saved === "true";
-  });
-
+  const [user, setUser] = useState(null);
+  
   useEffect(() => {
-    localStorage.setItem("logueado", logueado);
-  }, [logueado]);
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <ShoppingCart>
@@ -42,17 +45,17 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/" element={<Homepage logueado={logueado} setLogueado={setLogueado} />} />
-          <Route path="/about-us" element={<AboutPage logueado={logueado} setLogueado={setLogueado} />} />
-          <Route path="/contact-us" element={<ContactPage logueado={logueado} setLogueado={setLogueado} />} />
-          <Route path="/console/:id" element={<GamesPage logueado={logueado} setLogueado={setLogueado} />} />
-          <Route path="/faq" element={<FAQPage logueado={logueado} setLogueado={setLogueado} />} />
-          <Route path="/consoles" element={<ConsolePage logueado={logueado} setLogueado={setLogueado} />} />
-          <Route path="/shopping-cart" element={<ShoppingCartPage logueado={logueado} setLogueado={setLogueado} />} />
-          <Route path="/product/:id" element={<ProductDetailPage logueado={logueado} setLogueado={setLogueado} />} />
-          <Route path="/user" element={<UserPage logueado={logueado} setLogueado={setLogueado} />} />
-          <Route path="/register" element={<RegisterPage logueado={logueado} setLogueado={setLogueado} />} />
-          <Route path="*" element={<NotFoundPage logueado={logueado} setLogueado={setLogueado} />} />
+          <Route path="/" element={<Homepage />} />
+          <Route path="/about-us" element={<AboutPage />} />
+          <Route path="/contact-us" element={<ContactPage />} />
+          <Route path="/console/:id" element={<GamesPage />} />
+          <Route path="/faq" element={<FAQPage  />} />
+          <Route path="/consoles" element={<ConsolePage  />} />
+          <Route path="/shopping-cart" element={<ShoppingCartPage  />} />
+          <Route path="/product/:id" element={<ProductDetailPage  />} />
+          <Route path="/user" element={<UserPage  />} />
+          <Route path="/register" element={<RegisterPage  />} />
+          <Route path="*" element={<NotFoundPage  />} />
         </Routes>
       </AuthProvider>
       </Router>

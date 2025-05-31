@@ -5,7 +5,7 @@ import Content from '../../layouts/Content';
 import Product from '../shoppingCart/Product';
 import { fetchAllConsoles } from '../../api/retroAchievements';
 
-function GamesPage({ logueado, setLogueado }) {
+function GamesPage() {
   const { id } = useParams();
   const [consoleData, setConsoleData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -31,7 +31,7 @@ function GamesPage({ logueado, setLogueado }) {
   }
 
   return (
-    <Content logueado={logueado} setLogueado={setLogueado}>
+    <Content>
       <h3>Juegos para {consoleData.Name}</h3>
       <Breadcrumb>
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/' }}>Inicio</Breadcrumb.Item>

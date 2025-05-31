@@ -1,10 +1,19 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import { useAuth } from '../contexts/AuthContext';
 import './Navbar.css';
 
-function Navbar({ logueado, setLogueado }) {
-  const handleLoginClick = () => {
-    setLogueado(!logueado);
+function Navbar() {
+  const { user, logout, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  const handleAuthClick = () => {
+    if (isAuthenticated) {
+      logout();
+      navigate('/');
+    } else {
+      navigate('/login');
+    }
   };
 
   return (
@@ -29,7 +38,7 @@ function Navbar({ logueado, setLogueado }) {
             <li className="nav-item"><NavLink className="nav-link" to="/contact-us">Contacto</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" to="/shopping-cart">Carrito</NavLink></li>
 
-            {logueado && (
+            {isAuthenticated && (
               <li className="nav-item">
                 <NavLink className="nav-link" to="/user">
                   Mi Perfil
@@ -38,8 +47,12 @@ function Navbar({ logueado, setLogueado }) {
             )}
 
             <li className="nav-item d-flex align-items-center">
-              <Button variant={logueado ? "outline-danger" : "outline-primary"} size="sm" onClick={handleLoginClick}>
-                {logueado ? "Cerrar sesión" : "Ingresar"}
+              <Button
+                variant={isAuthenticated ? "outline-danger" : "outline-primary"}
+                size="sm"
+                onClick={handleAuthClick}
+              >
+                {isAuthenticated ? "Cerrar sesión" : "Ingresar"}
               </Button>
             </li>
           </ul>

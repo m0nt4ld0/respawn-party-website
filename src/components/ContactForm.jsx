@@ -2,9 +2,6 @@ import PropTypes from 'prop-types';
 import useForm from '../hooks/useForm';
 
 function ContactForm({ onSubmit }) {
-  // useState es un hook de React
-  // formData y setFormData son variables reactivas (del estado interno del componente)
-  // formData es el valor y setFormData, la manera de cambiarlo
   const { formData, handleChange, resetForm } = useForm({
     nombre: '',
     email: '',
@@ -12,9 +9,9 @@ function ContactForm({ onSubmit }) {
   });
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // evita que recargue la pagina
-    onSubmit(formData); // ejecuta la funcion con los datos que nos pasaron
-    resetForm(); // resetea el formulario
+    e.preventDefault(); 
+    onSubmit(formData); 
+    resetForm(); 
   };
 
   return (

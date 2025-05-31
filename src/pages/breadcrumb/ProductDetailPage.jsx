@@ -4,14 +4,14 @@ import { Breadcrumb } from 'react-bootstrap';
 import Content from '../../layouts/Content';
 import ProductDetail from '../shoppingCart/ProductDetail';
 
-function ProductDetailPage({ logueado, setLogueado }) {
+function ProductDetailPage() {
   const { state } = useLocation();
   const { id } = useParams();
 
   const consoleName = state?.consoleName || 'Consola desconocida';
 
   return (
-    <Content logueado={logueado} setLogueado={setLogueado}>
+    <Content>
       <Breadcrumb>
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/' }}>Inicio</Breadcrumb.Item>
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/consoles' }}>Consolas</Breadcrumb.Item>
