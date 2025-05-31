@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import { ListGroup, Button, Container } from 'react-bootstrap';
-import { ShoppingCartContext } from './shoppingCart/ShoppingCart';
+import { ShoppingCartContext } from '../contexts/ShoppingCartContext';
+import { useNavigate } from 'react-router-dom';
 import Content from '../layouts/Content';
 
 function ShoppingCartPage() {
   const { cart, addToCart, removeFromCart, emptyCart } = useContext(ShoppingCartContext);
+
+  const navigate = useNavigate();
 
   const total = cart.reduce((acc, item) => {
     const price = Number(item.producto?.ID) || 0;
@@ -58,7 +61,10 @@ function ShoppingCartPage() {
 
             <div className="d-flex justify-content-between">
               <Button variant="outline-danger" onClick={emptyCart}>Vaciar carrito</Button>
-              <Button variant="success">Finalizar compra</Button>
+              <Button variant="success" onClick={() => navigate('/checkout')}>
+                Finalizar compra
+              </Button>
+
             </div>
           </>
         )}

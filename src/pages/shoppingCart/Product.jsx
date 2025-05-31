@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Card, Button, Container, Row, Col, Form, Spinner, Pagination } from 'react-bootstrap';
-import { ShoppingCartContext } from './ShoppingCart';
+import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
 import { fetchGameListByConsoleId } from '../../api/retroAchievements';
 import { Link } from 'react-router-dom';
 import './Product.css';

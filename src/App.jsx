@@ -9,9 +9,10 @@ import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 import AboutPage from './pages/AboutPage';
 import FAQPage from './pages/FAQPage';
-import ShoppingCart from './pages/shoppingCart/ShoppingCart';
+import ShoppingCartProvider from './contexts/ShoppingCartContext';
 import ProductDetailPage from './pages/breadcrumb/ProductDetailPage';
 import ShoppingCartPage from './pages/ShoppingCartPage';
+import CheckoutPage from './pages/CheckoutPage';
 import ConsolePage from './pages/breadcrumb/ConsolePage';
 import GamesPage from './pages/breadcrumb/GamesPage';
 import UserPage from './pages/userPanel/UserPage';
@@ -34,7 +35,7 @@ function App() {
   }, []);
 
   return (
-    <ShoppingCart>
+    <ShoppingCartProvider>
       <Router>
       <AuthProvider>
       <ToastContainer position="bottom-right" autoClose={2000} />
@@ -64,11 +65,12 @@ function App() {
           <Route path="/consoles" element={<ConsolePage  />} />
           <Route path="/shopping-cart" element={<ShoppingCartPage  />} />
           <Route path="/product/:id" element={<ProductDetailPage  />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="*" element={<NotFoundPage  />} />
         </Routes>
       </AuthProvider>
       </Router>
-    </ShoppingCart>
+    </ShoppingCartProvider>
   );
 }
 

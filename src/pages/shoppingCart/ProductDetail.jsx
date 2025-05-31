@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Container, Card, Row, Col, Spinner, Button } from 'react-bootstrap';
-import { ShoppingCartContext } from './ShoppingCart';
+import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
 import './ProductDetail.css';
 
 function ProductDetail() {

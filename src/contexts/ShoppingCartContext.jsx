@@ -1,9 +1,13 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import { toast } from 'react-toastify';
 
 export const ShoppingCartContext = createContext();
 
-function ShoppingCart({ children }) {
+export function useShoppingCart() {
+  return useContext(ShoppingCartContext);
+}
+
+function ShoppingCartProvider({ children }) {
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem('cart');
     return savedCart ? JSON.parse(savedCart) : [];
@@ -74,4 +78,4 @@ function ShoppingCart({ children }) {
   );
 }
 
-export default ShoppingCart;
+export default ShoppingCartProvider;
