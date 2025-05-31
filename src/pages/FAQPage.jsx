@@ -1,12 +1,25 @@
+import {
+  Container,
+  Breadcrumb,
+  Accordion
+} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import Content from '../layouts/Content';
 import DropdownItem from '../components/help/DropdownItem';
-import { Accordion } from 'react-bootstrap';
 
 function FAQPage() {
   return (
     <Content>
-      <div className="container-fluid mt-5">
-        <h1>Preguntas Frecuentes</h1>
+      <div className="angled-background" />
+      <Container className="py-4">
+        <div className="header-hero">
+          <h1>Preguntas Frecuentes</h1>
+        </div>
+        <Breadcrumb className="bg-transparent px-0 mb-4">
+          <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/' }}>Inicio</Breadcrumb.Item>
+          <Breadcrumb.Item active>FAQ</Breadcrumb.Item>
+        </Breadcrumb>
+    
         <Accordion>
           <DropdownItem
             eventKey="0"
@@ -69,7 +82,7 @@ function FAQPage() {
             }
           />
         </Accordion>
-      </div>
+      </Container>
     </Content>
     
   );
