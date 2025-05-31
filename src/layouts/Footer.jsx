@@ -1,6 +1,7 @@
 import './Footer.css';
 import LinkListWithIcons from '../components/LinkListWithIcons'; 
 
+
 function Footer() {
     const iconosEstilos = {
         width: '24px',
@@ -75,15 +76,15 @@ function Footer() {
                         <ul className="pie-menu">
                             <li><h6 className="text-nowrap pb-2">Más populares</h6></li>
                             <li className="pb-2">
-                                <a  href="https://appsc.provinciaseguros.com.ar/webclientes/#/login" 
+                                <a  href="/console/21" 
                                     target="_blank"
                                     className="text-nowrap">PlayStation 2</a></li>
                             <li className="pb-2">
-                                <a  href="https://terceros.provinciaseguros.com.ar/" 
+                                <a  href="/console/16" 
                                     target="_blank"
                                     className="text-nowrap">Nintendo GameCube</a></li>
                             <li className="pb-2">
-                                <a  href="https://appsc.provinciaseguros.com.ar/PSClientes/clienteFinal" 
+                                <a  href="/console/1" 
                                     target="_blank"    
                                     className="text-nowrap">Sega Genesis</a></li>
                         </ul>

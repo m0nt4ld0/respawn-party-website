@@ -1,5 +1,6 @@
 import Navbar from './Navbar';
 import Footer from './Footer';
+import './Content.css';
 
 function Content({children}) {
   return (

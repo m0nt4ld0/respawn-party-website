@@ -1,0 +1,110 @@
+:root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    --color: #ff5400;
+    --color-link-hover: #ffa700;
+    --color-very-light: #a8a8a8;
+    --color-medium-light: #6d6d6d;
+    --color-dark: #272727;
+    --color-medium-dark: #323232;
+    --color-very-dark: #1d1d1d;
+    --color-ultra-dark: #101010;
+}
+
+body {
+    background-color: var(--color-medium-dark) !important;
+    color:var(--color-very-light) !important;
+}
+
+/* #### Accordion (DropDown Item) #### */
+
+.accordion-item {
+    margin-bottom: 1rem;
+    background-color: var(--color-medium-dark) !important;
+    color: var(--color-very-light) !important;
+    border:none !important;
+}
+
+.accordion-button {
+    background-color: var(--color-dark) !important;
+    color: var(--color-very-light) !important;
+}
+
+.accordion-button:hover {
+    color: var(--color) !important;
+}
+
+.accordion-button.collapsed {
+    border:none !important;
+    background-color: var(--color-dark) !important;
+}
+
+.accordion-body {
+    background-color: var(--color-dark) !important;
+    color: var(--color-very-light) !important;
+}
+
+/* #### Formularios #### */
+
+.btn-primary {
+   background-color: var(--color) !important;
+   border: 1px solid var(--color) !important;
+   color:var(--color-very-light);
+}
+
+.btn-danger {
+    color: var(--color) !important;
+    border: 1px solid var(--color) !important;
+    background-color:var(--color-very-dark) !important;
+ }
+
+/* #### Paginacion #### */
+
+.pagination {
+    --bs-pagination-color: var(--color-very-light) !important;
+    --bs-pagination-bg: var(--color-ultra-dark) !important;
+    --bs-pagination-border-color: var(--color-medium-dark) !important;
+    --bs-pagination-hover-color: var(--color-link-hover) !important;
+    --bs-pagination-hover-bg: var(--color-medium-dark) !important;
+    --bs-pagination-hover-border-color: var(--color) !important;
+    --bs-pagination-active-color: #fff !important;
+    --bs-pagination-active-bg: var(--color) !important;
+    --bs-pagination-active-border-color: var(--color) !important;
+    --bs-pagination-focus-color: var(--color) !important;
+    --bs-pagination-focus-bg: var(--color-dark) !important;
+    --bs-pagination-focus-box-shadow: none !important;
+
+    border-radius: 12px;
+}
+
+.page-link {
+    background-color: var(--color-ultra-dark) !important;
+    border: 1px solid var(--color-medium-dark) !important;
+    color: var(--color-very-light) !important;
+    transition: background-color 0.3s ease, color 0.3s ease !important;
+}
+
+.page-link:hover {
+    background-color: var(--color-medium-dark) !important;
+    color: var(--color-link-hover) !important;
+    border-color: var(--color) !important;
+}
+
+.page-item.active .page-link {
+    background-color: var(--color) !important;
+    border-color: var(--color) !important;
+    color: #fff !important;
+}
+
+.page-item.disabled .page-link {
+    color: var(--color-medium-light) !important;
+    background-color: var(--color-very-dark) !important;
+    border-color: var(--color-medium-dark) !important;
+}
+
+.pagination-container {
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 1.5rem !important;
+}

@@ -14,7 +14,7 @@ function LoginWithGoogle() {
   };
 
   return (
-    <button onClick={handleGoogleLogin}>
+    <button className="btn btn-danger" onClick={handleGoogleLogin}>
       Iniciar sesión con Google
     </button>
   );
