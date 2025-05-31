@@ -18,6 +18,7 @@ function Content({children}) {
           flex: 1,
           marginTop: '4rem',
         }}
+        className="mt-5 pb-5"
       >
         {children}
       </main>

@@ -1,44 +1,8 @@
-.user-profile-container {
-    max-width: 600px;
-    margin: 2rem auto;
-    background-color: var(--color-ultra-dark);
-    padding: 1.5rem;
-    border-radius: 8px;
-    color: var(--color-very-light);
-    box-shadow: 0 0 10px var(--color);
-    text-align: center;
-  }
-  .user-pic-wrapper {
-    margin-bottom: 1rem;
-  }
-  .user-pic {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 3px solid var(--color);
-    object-fit: cover;
-  }
-  .user-data-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-    color: var(--color-very-light);
-  }
-  .user-data-table th,
-  .user-data-table td {
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--color-medium-dark);
-    text-align: left;
-  }
-  .user-data-table th {
-    background-color: var(--color-medium-dark);
-    color: var(--color);
-    width: 40%;
-  }
-  .user-data-table tr:hover {
-    background-color: var(--color-medium-dark);
-  }
-  .error-message {
-    color: #ff4d4d;
-    font-weight: bold;
-  }
+:root {
+  --color: #0ff; /* o el color que estés usando */
+}
+
+/* Si usás variables personalizadas */
+img[alt="Foto de perfil"] {
+  border: 3px solid var(--color);
+}

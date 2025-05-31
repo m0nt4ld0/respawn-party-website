@@ -163,3 +163,56 @@ body {
     color: var(--color-very-light);
   }
 
+/* #### Estilo global para ListGroup #### */
+.list-group {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0;
+  }
+  
+  .list-group-item {
+    background: linear-gradient(135deg, var(--color-ultra-dark), var(--color-very-dark)) !important;
+    border: 1px solid var(--color-dark) !important;
+    border-radius: 12px !important;
+    margin-bottom: 0.75rem;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    color: var(--color-very-light) !important;
+    transition: background-color 0.3s ease;
+  }
+  
+  .list-group-item:hover {
+    background-color: var(--color-dark) !important;
+  }
+  
+  .list-group-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-right: 1rem;
+    border-radius: 8px;
+    background-color: var(--color-ultra-dark);
+    padding: 0.25rem;
+  }
+  
+  .list-group-item .item-content {
+    flex: 1;
+  }
+  
+  .list-group-item .item-content h6 {
+    margin: 0;
+    color: var(--color-white);
+  }
+  
+  .list-group-item .item-content small {
+    display: block;
+    color: var(--color-medium-light);
+  }
+  
+  .list-group-item .item-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
