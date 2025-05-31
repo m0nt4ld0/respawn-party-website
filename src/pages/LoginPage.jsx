@@ -40,13 +40,12 @@ export default function LoginPage() {
 
   return (
     <Content>
-      <div className="container py-5">
+      <div className="container py-5 mt-5">
         <div className="row justify-content-center">
           <div className="col-md-6 col-lg-4">
             <div className="card shadow rounded-3 p-4">
               <h2 className="text-center mb-4 form-title">Iniciar Sesión</h2>
 
-              {/* Formulario unificado */}
               <form>
                 <div className="mb-3">
                   <input

@@ -5,7 +5,7 @@ import { Accordion } from 'react-bootstrap';
 function FAQPage() {
   return (
     <Content>
-      <div className="container-fluid pt-5">
+      <div className="container-fluid mt-5">
         <h1>Preguntas Frecuentes</h1>
         <Accordion>
           <DropdownItem

@@ -3,9 +3,11 @@ import Content from '../layouts/Content';
 
 function ContactPage() {
   return (
-    <Content>
-      <ContactForm onSubmit={console.log} />
-    </Content>
+    <div className="mt-5">
+      <Content>
+        <ContactForm onSubmit={console.log}/>
+      </Content>
+    </div>
   );
 }
 
