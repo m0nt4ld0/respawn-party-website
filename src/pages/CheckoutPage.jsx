@@ -5,6 +5,7 @@ import { Modal, Button } from 'react-bootstrap';
 import useForm from '../hooks/useForm';
 import { useShoppingCart } from '../contexts/ShoppingCartContext';
 import Swal from 'sweetalert2';
+import Content from '../layouts/Content';
 
 export default function CheckoutPage() {
   const { user } = useAuth();
@@ -65,8 +66,9 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="container my-5">
-      <div className="row justify-content-center">
+    <div className="mt-5">
+    <Content>
+      <div className="row justify-content-center mt-5">
         <div className="col-md-8 col-lg-6">
           <div className="card shadow-sm rounded-3 p-4">
             <h3 className="mb-4 text-center form-title">Finalizar Compra</h3>
@@ -142,12 +144,14 @@ export default function CheckoutPage() {
               </div>
 
               <div className="d-grid">
-                <button type="submit" className="btn btn-success">Finalizar compra</button>
+                <button type="submit" className="btn btn-primary">Finalizar compra</button>
               </div>
             </form>
           </div>
         </div>
       </div>
+    
+    </Content>
     </div>
   );
 }
