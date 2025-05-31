@@ -19,6 +19,9 @@ import UserPage from './pages/userPanel/UserPage';
 import CustomProductPage from './pages/CustomProductPage';
 import { auth } from "./api/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -35,6 +38,7 @@ function App() {
     <ShoppingCart>
       <Router>
       <AuthProvider>
+      <ToastContainer position="bottom-right" autoClose={2000} />
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route
