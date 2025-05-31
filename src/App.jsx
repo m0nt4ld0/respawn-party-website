@@ -17,6 +17,7 @@ import ShoppingCartPage from './pages/ShoppingCartPage';
 import ConsolePage from './pages/breadcrumb/ConsolePage';
 import GamesPage from './pages/breadcrumb/GamesPage';
 import UserPage from './pages/userPanel/UserPage';
+import CustomProductPage from './pages/CustomProductPage';
 import { auth } from "./api/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -42,6 +43,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/create-product"
+            element={
+              <ProtectedRoute>
+                <CustomProductPage />
               </ProtectedRoute>
             }
           />
