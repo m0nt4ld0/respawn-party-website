@@ -1,22 +1,18 @@
-.product-button {
-    background-color: var(--color);
-    border: none;
-    color: white;
-    padding: 0.5rem 1.2rem;
-    font-weight: 600;
-    font-size: 1rem;
-    border-radius: 0.5rem;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  }
-  
-  .product-button:hover {
-    background-color: var(--color-link-hover);
-    transform: scale(1.03);
-  }
-  
-  .product-button:active {
-    transform: scale(0.97);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  }
-  
+
+.card {
+  background-color: var(--color-white);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.01);
+}
+
+.card-title {
+  color: var(--color-very-dark);
+}
+
+body {
+  background-color: var(--color-white);
+  font-family: 'Inter', sans-serif;
+}

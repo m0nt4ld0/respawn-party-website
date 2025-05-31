@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import { Container, Table, Spinner, Button } from 'react-bootstrap';
+import { Link, useParams } from 'react-router-dom';
+import { Container, Card, Row, Col, Spinner, Button } from 'react-bootstrap';
 import { ShoppingCartContext } from './ShoppingCart';
-import './ProductDetail.css'
+import './ProductDetail.css';
 
 function ProductDetail() {
   const { id } = useParams();
@@ -28,59 +28,57 @@ function ProductDetail() {
 
   if (loading) {
     return (
-      <div className="d-flex justify-content-center mt-5">
+      <div className="d-flex flex-column align-items-center justify-content-center" style={{ height: '60vh' }}>
         <Spinner animation="border" variant="primary" />
+        <p className="mt-3">Cargando detalles del juego...</p>
       </div>
     );
   }
 
   if (!game) {
-    return <div>No se encontró el juego.</div>;
+    return <div className="text-center mt-5">No se encontró el juego.</div>;
   }
 
   return (
     <Container className="mt-5">
-      <h2>{game.Title}</h2>
-      <img
-        src={`https://retroachievements.org${game.ImageBoxArt}`}
-        alt={game.Title}
-        className="mb-4"
-        style={{ maxHeight: '300px' }}
-      />
-      <Table striped bordered hover>
-        <tbody>
-          <tr>
-            <th>Consola</th>
-            <td>{game.ConsoleName}</td>
-          </tr>
-          <tr>
-            <th>Lanzamiento</th>
-            <td>{game.Released}</td>
-          </tr>
-          <tr>
-            <th>Jugadores</th>
-            <td>{game.NumDistinctPlayers}</td>
-          </tr>
-          <tr>
-            <th>Logros</th>
-            <td>{game.NumAchievements}</td>
-          </tr>
-          <tr>
-            <th>Desarrollador</th>
-            <td>{game.Developer || 'Desconocido'}</td>
-          </tr>
-          <tr>
-            <th>Género</th>
-            <td>{game.Genre || 'N/A'}</td>
-          </tr>
-        </tbody>
-      </Table>
-
-      <div className="d-flex justify-content-end">
-        <Button className="product-button" variant="success" onClick={() => addToCart(game)}>
-          Agregar al carrito
-        </Button>
-      </div>
+      <Row className="justify-content-center">
+        <Col md={10} lg={8}>
+          <Card className="shadow-lg border-0 rounded-4 p-4">
+            <Row>
+              <Col md={5} className="text-center">
+                <Card.Img
+                  variant="top"
+                  src={`https://retroachievements.org${game.ImageBoxArt}`}
+                  alt={game.Title}
+                  style={{ maxHeight: '300px', objectFit: 'contain' }}
+                  className="rounded-3 mb-3"
+                />
+              </Col>
+              <Col md={7}>
+                <Card.Body>
+                  <Card.Title className="fs-2 fw-bold mb-3">{game.Title}</Card.Title>
+                  <Card.Text className="mb-4">
+                  <strong>Consola:</strong>{' '}
+                    <Link to={`/console/${game.ConsoleID}`} className="text-decoration-none">
+                      {game.ConsoleName}
+                    </Link>
+                    <br />
+                    <strong>Lanzamiento:</strong> {game.Released} <br />
+                    <strong>Jugadores:</strong> {game.NumDistinctPlayers} <br />
+                    <strong>Logros:</strong> {game.NumAchievements} <br />
+                    <strong>Desarrollador:</strong> {game.Developer || 'Desconocido'} <br />
+                    <strong>Género:</strong> {game.Genre || 'N/A'} <br />
+                    <strong>Precio:</strong> ${game.ID || 'N/A'}
+                  </Card.Text>
+                  <Button variant="btn btn-primary" onClick={() => addToCart(game)}>
+                    Agregar al carrito
+                  </Button>
+                </Card.Body>
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+      </Row>
     </Container>
   );
 }
