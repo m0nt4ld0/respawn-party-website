@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Card,
   Container,
-  Row,
-  Col,
   Spinner,
   Breadcrumb
 } from 'react-bootstrap';
@@ -42,34 +39,20 @@ function GamesPage() {
     <Content>
       <div className="angled-background" />
       <Container className="py-4">
-        {/* Breadcrumb superior */}
+        
+        <div className="header-hero">
+          <img
+            src={consoleData.IconURL}
+            alt={consoleData.Name}
+          />
+          <h1>Juegos para {consoleData.Name}</h1>
+        </div>
         <Breadcrumb className="bg-transparent px-0 mb-4">
           <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/' }}>Inicio</Breadcrumb.Item>
           <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/consoles' }}>Consolas</Breadcrumb.Item>
           <Breadcrumb.Item active>Juegos para {consoleData.Name}</Breadcrumb.Item>
         </Breadcrumb>
-
-        <Row className="align-items-center mb-4">
-          <Col xs={12} md={3} className="text-center mb-3 mb-md-0">
-            <img
-              src={consoleData.IconURL}
-              alt={consoleData.Name}
-              className="img-fluid rounded shadow"
-              style={{
-                maxHeight: '150px',
-                objectFit: 'contain',
-                backgroundColor: 'var(--color-ultra-dark)',
-                padding: '1rem',
-                borderRadius: '20px'
-              }}
-            />
-          </Col>
-          <Col xs={6} md={6}>
-            <h3 className="text-white mb-3">Juegos para {consoleData.Name}</h3>
-          </Col>
-        </Row>
-
-
+        
         <Product consoleId={consoleData.ID} />
       </Container>
     </Content>
