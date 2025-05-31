@@ -89,7 +89,7 @@ function CustomProduct() {
           />
         </div>
         <div className="col-md-1 d-grid">
-          <button className="btn btn-success" onClick={handleCreate}>Agregar</button>
+          <button className="btn btn-primary" onClick={handleCreate}>Agregar</button>
         </div>
       </div>
       
@@ -137,7 +137,7 @@ function CustomProduct() {
                       />
                     </td>
                     <td className="text-end">
-                      <button className="btn btn-success btn-sm me-2" onClick={handleUpdate}>Guardar</button>
+                      <button className="btn btn-danger btn-sm me-2" onClick={handleUpdate}>Guardar</button>
                       <button className="btn btn-secondary btn-sm" onClick={() => setEditProductId(null)}>Cancelar</button>
                     </td>
                   </>
