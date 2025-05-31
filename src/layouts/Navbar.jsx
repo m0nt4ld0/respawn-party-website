@@ -1,6 +1,11 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../contexts/AuthContext';
+import { GiShoppingCart, GiGamepad } from "react-icons/gi";
+import { MdEmail } from "react-icons/md";
+import { FaUser, FaUsers, FaQuestionCircle } from "react-icons/fa";
+import { FiHome, FiLogOut } from "react-icons/fi";
+
 import './Navbar.css';
 
 function Navbar() {
@@ -31,17 +36,38 @@ function Navbar() {
                 <img src="/images/Logo.png" alt="Logo Talento Games" className="logo-navbar" />
               </NavLink>
             </li>
-            <li className="nav-item"><NavLink className="nav-link" to="/">Inicio</NavLink></li>
-            <li className="nav-item"><NavLink className="nav-link" to="/about-us">Nosotros</NavLink></li>
-            <li className="nav-item"><NavLink className="nav-link" to="/consoles">Juegos</NavLink></li>
-            <li className="nav-item"><NavLink className="nav-link" to="/faq">Preguntas frecuentes</NavLink></li>
-            <li className="nav-item"><NavLink className="nav-link" to="/contact-us">Contacto</NavLink></li>
-            <li className="nav-item"><NavLink className="nav-link" to="/shopping-cart">Carrito</NavLink></li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/">
+                <FiHome className="me-1" /> Inicio
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/about-us"><FaUsers className="me-1" /> Nosotros</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/consoles">
+                <GiGamepad className="me-1" /> Juegos
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/faq">
+              <FaQuestionCircle className="me-1" /> Preguntas frecuentes</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/contact-us">
+                <MdEmail className="me-1" /> Contacto
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/shopping-cart">
+                <GiShoppingCart className="me-1" /> Carrito
+              </NavLink>
+            </li>
 
             {isAuthenticated && (
               <li className="nav-item">
                 <NavLink className="nav-link" to="/user">
-                  Mi Perfil
+                  <FaUser className="me-1" /> Mi Perfil
                 </NavLink>
               </li>
             )}
@@ -52,7 +78,17 @@ function Navbar() {
                 size="sm"
                 onClick={handleAuthClick}
               >
-                {isAuthenticated ? "Cerrar sesión" : "Ingresar"}
+                {isAuthenticated ? (
+                  <>
+                    <FiLogOut className="me-1" />
+                    Cerrar sesión
+                  </>
+                ) : (
+                  <>
+                    <FaUser className="me-1" />
+                    Ingresar
+                  </>
+                )}
               </Button>
             </li>
           </ul>
