@@ -23,7 +23,7 @@ function AnimatedNavItem({ to, icon: Icon, label, hovered }) {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -10 }}
               transition={{
-                opacity: { duration: 0.15 }, // 👈 rápido al aparecer
+                opacity: { duration: 0.15 },
                 x: { duration: 0.15 },
                 when: "beforeChildren",
               }}
