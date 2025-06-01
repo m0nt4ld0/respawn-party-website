@@ -1,46 +1,40 @@
-import { motion } from "framer-motion";
-import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { NavLink } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import './AnimatedNavItem.css';
 
-export default function AnimatedNavItem({ to, icon: Icon, label }) {
-  const [hovered, setHovered] = useState(false);
-
+function AnimatedNavItem({ to, icon: Icon, label, hovered }) {
   return (
-    <li className="nav-item">
-      <NavLink
-        className="nav-link d-flex align-items-center"
-        to={to}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        style={{ width: "auto", overflow: "hidden", whiteSpace: "nowrap" }}
-      >
+    <li className="nav-item animated-nav-item">
+      <NavLink className="nav-link d-flex align-items-center" to={to}>
         <motion.div
-          animate={{ x: hovered ? -6 : 0 }}
-          transition={{ type: "spring", stiffness: 300 }}
-          className="me-1"
+          className="icon-wrapper"
+          initial={{ x: 0 }}
+          animate={hovered ? { x: -5 } : { x: 0 }}
+          transition={{ duration: 0.2 }}
         >
-          <Icon size={20} />
+          <Icon />
         </motion.div>
 
-        <motion.div
-          className="d-flex"
-          style={{ overflow: "hidden" }}
-          initial={false}
-        >
-          {hovered &&
-            label.split("").map((char, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, x: -5 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.03 }}
-                style={{ display: "inline-block" }}
-              >
-                {char}
-              </motion.span>
-            ))}
-        </motion.div>
+        <AnimatePresence>
+          {hovered && (
+            <motion.span
+              className="nav-label"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -10 }}
+              transition={{
+                opacity: { duration: 0.15 }, // 👈 rápido al aparecer
+                x: { duration: 0.15 },
+                when: "beforeChildren",
+              }}
+            >
+              {label}
+            </motion.span>
+          )}
+        </AnimatePresence>
       </NavLink>
     </li>
   );
 }
+
+export default AnimatedNavItem;
