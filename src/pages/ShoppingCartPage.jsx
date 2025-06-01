@@ -67,8 +67,8 @@ function ShoppingCartPage() {
             </div>
 
             <div className="d-flex justify-content-between">
-              <Button variant="outline-danger" onClick={emptyCart}>Vaciar carrito</Button>
-              <Button variant="success" onClick={() => navigate('/checkout')}>
+              <Button variant="btn btn-outline-primary" onClick={emptyCart}>Vaciar carrito</Button>
+              <Button variant="btn btn-primary" onClick={() => navigate('/checkout')}>
                 Finalizar compra
               </Button>
 
