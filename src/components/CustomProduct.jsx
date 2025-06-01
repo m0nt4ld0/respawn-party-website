@@ -124,8 +124,7 @@ function CustomProduct() {
           </button>
         </div>
       </div>
-
-      <h2 className="mt-4">Productos</h2>
+      <br />
       {loading ? (
         <p>Cargando productos...</p>
       ) : (
