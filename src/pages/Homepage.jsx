@@ -25,19 +25,20 @@ function HomePage() {
 
         <Carousel controls={true} indicators={true}>
           <Carousel.Item>
-            <div className="carousel-image-wrapper">
-              <img
-                className="d-block w-100 carousel-item-img clipped-img"
-                src="/images/carousel/1.webp"
-                alt="GTA San Andreas"
-              />
-              <div className="carousel-vignette-overlay" />
-            </div>
+          <div className="carousel-image-wrapper clipped-wrapper">
+            <img
+              className="d-block w-100 carousel-item-img"
+              src="/images/carousel/1.webp"
+              alt="GTA San Andreas"
+            />
+            <div className="carousel-vignette-overlay" />
+          </div>
+
           </Carousel.Item>
           <Carousel.Item>
             <div className="carousel-image-wrapper">
               <img
-                className="d-block w-100 carousel-item-img clipped-img"
+                className="d-block w-100 carousel-item-img"
                 src="/images/carousel/2.jpg"
                 alt="Need For Speed Most Wanted"
               />
@@ -47,7 +48,7 @@ function HomePage() {
           <Carousel.Item>
             <div className="carousel-image-wrapper">
               <img
-                className="d-block w-100 carousel-item-img clipped-img"
+                className="d-block w-100 carousel-item-img"
                 src="/images/carousel/3.jpg"
                 alt="Guitar Hero III"
               />

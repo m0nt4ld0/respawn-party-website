@@ -40,7 +40,112 @@ body {
     text-align: left;
     max-width: 400px;
 }
- 
+ /* ### Efectos de degradado sobre fotos del carousel ### */
+ .carousel-image-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .carousel-item-img {
+    width: 100%;
+    height: 95vh;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .carousel-vignette-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    z-index: 2;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.4) 15%,
+      rgba(0, 0, 0, 0) 30%,
+      rgba(0, 0, 0, 0) 70%,
+      rgba(0, 0, 0, 0.4) 85%,
+      rgba(0, 0, 0, 0.95) 100%
+    );
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+  
+  @media (max-width: 768px) {
+    .carousel-vignette-overlay {
+      clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .carousel-vignette-overlay {
+      clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+    }
+  }
+  
+/* ### Falsos recortes en diagonal sobre imágenes del carousel ### */
+  .carousel-image-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15%;
+    background-color: var(--color-very-dark);
+    z-index: 3;
+    clip-path: polygon(0 100%, 100% 0, 100% 100%, 0% 100%);
+  }
+
+.carousel-image-wrapper::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 15%;
+    background-color: var(--color-very-dark);
+    z-index: 4;
+    clip-path: polygon(100% 100%, 0 0, 0 100%, 100% 100%);
+    pointer-events: none;
+  }
+
+@media (max-width: 768px) {
+    .carousel-image-wrapper::after,
+    .carousel-image-wrapper::before {
+      height: 10%;
+    }
+  }
+
+@media (max-width: 576px) {
+    .carousel-image-wrapper::after,
+    .carousel-image-wrapper::before {
+        height: 8%;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item-img {
+        height: 60vh;
+    }
+
+    .carousel-image-wrapper::after {
+        height: 10%;
+        clip-path: polygon(0 100%, 100% 20%, 100% 100%, 0% 100%);
+    }
+}
+  
+@media (max-width: 576px) {
+    .carousel-item-img {
+        height: 50vh;
+    }
+
+    .carousel-image-wrapper::after {
+        height: 8%;
+        clip-path: polygon(0 100%, 100% 30%, 100% 100%, 0% 100%);
+    }
+}
 
 .floating-logo img {
     width: 35vw;
@@ -63,37 +168,6 @@ b {
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
 }
 
-.carousel-image-wrapper {
-    position: relative;
-    overflow: hidden;
-}
-  
-.carousel-item-img {
-    width: 100%;
-    height: 95vh;
-    object-fit: cover;
-}
-
-  /* Viñeta lateral oscura */
-.carousel-vignette-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    pointer-events: none;
-    z-index: 2;
-    background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.95) 0%,
-    rgba(0, 0, 0, 0.4) 15%,
-    rgba(0, 0, 0, 0) 30%,
-    rgba(0, 0, 0, 0) 70%,
-    rgba(0, 0, 0, 0.4) 85%,
-    rgba(0, 0, 0, 0.65) 100%
-    );
-}
-  
 /* ### Carousel y decoración ### */
 .section-below-carousel {
     margin-top: -10vh; 
