@@ -5,6 +5,8 @@ import { GiShoppingCart, GiGamepad } from "react-icons/gi";
 import { MdEmail } from "react-icons/md";
 import { FaUser, FaUsers, FaQuestionCircle } from "react-icons/fa";
 import { FiHome, FiLogOut } from "react-icons/fi";
+import AnimatedNavItem from './AnimatedNavItem';
+
 
 import './Navbar.css';
 
@@ -36,41 +38,16 @@ function Navbar() {
                 <img src="/images/Logo.png" alt="Logo Talento Games" className="logo-navbar" />
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/">
-                <FiHome className="me-1" /> Inicio
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/about-us"><FaUsers className="me-1" /> Nosotros</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/consoles">
-                <GiGamepad className="me-1" /> Juegos
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/faq">
-              <FaQuestionCircle className="me-1" /> Preguntas frecuentes</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/contact-us">
-                <MdEmail className="me-1" /> Contacto
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/shopping-cart">
-                <GiShoppingCart className="me-1" /> Carrito
-              </NavLink>
-            </li>
-
+            <AnimatedNavItem to="/" icon={FiHome} label="Inicio" />
+            <AnimatedNavItem to="/about-us" icon={FaUsers} label="Nosotros" />
+            <AnimatedNavItem to="/consoles" icon={GiGamepad} label="Juegos" />
+            <AnimatedNavItem to="/faq" icon={FaQuestionCircle} label="FAQ" />
+            <AnimatedNavItem to="/contact-us" icon={MdEmail} label="Contacto" />
+            <AnimatedNavItem to="/shopping-cart" icon={GiShoppingCart} label="Carrito" />
             {isAuthenticated && (
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/user">
-                  <FaUser className="me-1" /> Mi Perfil
-                </NavLink>
-              </li>
+              <AnimatedNavItem to="/user" icon={FaUser} label="Mi Perfil" />
             )}
+
 
             <li className="nav-item d-flex align-items-center">
               <Button
