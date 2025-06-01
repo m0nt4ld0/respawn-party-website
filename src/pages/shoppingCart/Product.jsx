@@ -108,7 +108,7 @@ function Product({ consoleId }) {
                 );
             })}
           </Row>
-          {/* Pagination */}
+          
           <div className="pagination-container">
             <Pagination>
               <Pagination.Prev
