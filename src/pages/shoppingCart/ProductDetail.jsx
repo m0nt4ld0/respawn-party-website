@@ -41,9 +41,8 @@ function ProductDetail() {
   }
 
   return (
-    <Content>
-      <div className="angled-background" />
       <Container>
+        <div className="angled-background" />
         <div className="header-hero">
           <h2>{game.Title}</h2>
         </div>
@@ -91,7 +90,6 @@ function ProductDetail() {
           </Col>
         </Row>
       </Container>
-    </Content>
   );
 }
 
