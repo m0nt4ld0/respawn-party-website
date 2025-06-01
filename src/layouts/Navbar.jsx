@@ -47,37 +47,38 @@ function Navbar() {
 
   return (
     <nav
-      className="navbar navbar-expand-lg fixed-top w-100 navbar-light px-4"
+      className="navbar navbar-expand-lg fixed-top bg-dark px-3 py-2"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <div className="container-fluid">
+        
+        <NavLink className="navbar-brand" to="/">
+          <img src="/images/Logo.png" alt="Logo Talento Games" className="logo-navbar" />
+        </NavLink>
+
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
           data-bs-target="#navbarNav" aria-controls="navbarNav"
           aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <NavLink className="navbar-brand" to="/">
-                <img src="/images/Logo.png" alt="Logo Talento Games" className="logo-navbar" />
-              </NavLink>
-            </li>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <div className="d-flex flex-column flex-lg-row justify-content-between align-items-center w-100">
+            
+            <ul className="navbar-nav mx-auto text-center gap-3 my-3 my-lg-0">
+              <AnimatedNavItem to="/" icon={FiHome} label="Inicio" hovered={hovered} />
+              <AnimatedNavItem to="/about-us" icon={FaUsers} label="Nosotros" hovered={hovered} />
+              <AnimatedNavItem to="/consoles" icon={GiGamepad} label="Juegos" hovered={hovered} />
+              <AnimatedNavItem to="/faq" icon={FaQuestionCircle} label="Preguntas" hovered={hovered} />
+              <AnimatedNavItem to="/contact-us" icon={MdEmail} label="Contacto" hovered={hovered} />
+              <AnimatedNavItem to="/shopping-cart" icon={GiShoppingCart} label="Carrito" hovered={hovered} />
+              {isAuthenticated && (
+                <AnimatedNavItem to="/user" icon={FaUser} label="Mi Perfil" hovered={hovered} />
+              )}
+            </ul>
 
-            <AnimatedNavItem to="/" icon={FiHome} label="Inicio" hovered={hovered} />
-            <AnimatedNavItem to="/about-us" icon={FaUsers} label="Nosotros" hovered={hovered} />
-            <AnimatedNavItem to="/consoles" icon={GiGamepad} label="Juegos" hovered={hovered} />
-            <AnimatedNavItem to="/faq" icon={FaQuestionCircle} label="Preguntas" hovered={hovered} />
-            <AnimatedNavItem to="/contact-us" icon={MdEmail} label="Contacto" hovered={hovered} />
-            <AnimatedNavItem to="/shopping-cart" icon={GiShoppingCart} label="Carrito" hovered={hovered} />
-
-            {isAuthenticated && (
-              <AnimatedNavItem to="/user" icon={FaUser} label="Mi Perfil" hovered={hovered} />
-            )}
-
-            <li className="nav-item d-flex align-items-center">
+            <div className="d-flex justify-content-center justify-content-lg-end">
               <Button
                 variant={isAuthenticated ? "outline-danger" : "outline-primary"}
                 size="sm"
@@ -93,11 +94,13 @@ function Navbar() {
                   </>
                 )}
               </Button>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
+
+
   );
 }
 

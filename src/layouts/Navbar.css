@@ -1,31 +1,16 @@
-.navbar {
-	background-color: var(--color-very-dark) !important;
-	min-height: 5rem;
-	padding-top: 0.5rem;
-}
-
-.navbar-nav {
-	display: flex;
-	align-items: center;
-	height: 100%;
-	gap: 1rem; 
-}
-
 .logo-navbar {
-	width: 5rem;
+	width: 4rem;
 	object-fit: contain;
-}
-
-.nav-link {
+  }
+  
+  .nav-link {
 	color: var(--color-very-light) !important;
-}
-
-.nav-link:hover {
-	color: var(--color) !important;
-}
-
-.nav-link.active {
+	transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
 	color: var(--color) !important;
 	font-weight: bold;
-}
+  }
   
