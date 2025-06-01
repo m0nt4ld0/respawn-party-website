@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { useShoppingCart } from '../contexts/ShoppingCartContext';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
@@ -26,6 +27,7 @@ import './Navbar.css';
 
 function Navbar() {
   const { user, logout, isAuthenticated, isAdmin } = useAuth();
+  const { cart } = useShoppingCart();
   const navigate = useNavigate();
   const [hovered, setHovered] = useState(false);
   const leaveTimeoutRef = useRef(null);
@@ -49,6 +51,9 @@ function Navbar() {
       navigate('/login');
     }
   };
+
+  // Total de productos sumando cantidades
+  const totalItems = cart.reduce((sum, item) => sum + item.cantidad, 0);
 
   return (
     <nav
@@ -77,7 +82,21 @@ function Navbar() {
               <AnimatedNavItem to="/consoles" icon={GiGamepad} label="Juegos" hovered={hovered} />
               <AnimatedNavItem to="/faq" icon={FaQuestionCircle} label="Preguntas" hovered={hovered} />
               <AnimatedNavItem to="/contact-us" icon={MdEmail} label="Contacto" hovered={hovered} />
-              <AnimatedNavItem to="/shopping-cart" icon={GiShoppingCart} label="Carrito" hovered={hovered} />
+
+              <AnimatedNavItem
+                to="/shopping-cart"
+                label="Carrito"
+                hovered={hovered}
+                icon={() => (
+                  <div className="d-flex align-items-center position-relative">
+                    <GiShoppingCart size={20} />
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger px-1 py-0">
+                      {totalItems}
+                    </span>
+                  </div>
+                )}
+              />
+
               {isAuthenticated && (
                 <AnimatedNavItem to="/user" icon={FaUser} label="Mi Perfil" hovered={hovered} />
               )}

@@ -14,3 +14,15 @@
 	font-weight: bold;
   }
   
+  .cart-badge {
+    font-size: 0.5rem;
+    padding: 0.15em 0.4em;
+    transform: translate(-40%, -40%);
+    z-index: 1;
+    min-width: 16px;
+    min-height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
