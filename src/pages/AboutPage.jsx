@@ -14,7 +14,7 @@ function AboutPage() {
           <h1>Somos Talento Games</h1>
         </div>
 
-        <Breadcrumb className="bg-transparent px-0 mb-4">
+          <Breadcrumb className="bg-transparent px-0 mb-4">
             <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/' }}>Inicio</Breadcrumb.Item>
             <Breadcrumb.Item active>Nosotros</Breadcrumb.Item>
           </Breadcrumb>
