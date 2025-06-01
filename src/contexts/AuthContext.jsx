@@ -44,13 +44,17 @@ export function AuthProvider({ children }) {
     setUser(null);
   };
 
+  const isAuthenticated = !!user;
+  const isAdmin = user?.email === "admin@talentogames.com";
+
   const value = {
     user,
     login,
     logout,
     loginWithGoogle,
-    isAuthenticated: !!user,
-    loading, 
+    isAuthenticated,
+    isAdmin,
+    loading,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
