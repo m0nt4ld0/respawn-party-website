@@ -25,9 +25,20 @@ function ShoppingCartPage() {
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/' }}>Inicio</Breadcrumb.Item>
         <Breadcrumb.Item active>Mi pedido</Breadcrumb.Item>
       </Breadcrumb>
-        {cart.length === 0 ? (
-          <p>No hay productos en el carrito.</p>
-        ) : (
+      {cart.length === 0 ? (
+        <div className="d-flex justify-content-center align-items-center flex-column py-5">
+          <img
+            src="/images/8219549_empty_question_search_empty states_basket_icon.png"
+            alt="Carrito vacío"
+            className="mb-4"
+            style={{ width: '250px', height: 'auto', opacity: 0.8 }}
+          />
+          <h4 className="text-info">No hay productos en el carrito.</h4>
+          <Link to="/" className="btn btn-outline-primary mt-4">
+            Volver al inicio
+          </Link>
+        </div>
+      ) : (
           <>
             <ListGroup>
               {cart.map((item, index) => {

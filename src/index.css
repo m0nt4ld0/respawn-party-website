@@ -18,6 +18,19 @@ html, body, #root {
   --toastify-icon-color-info: var(--color-link-hover);
 }
 
+/* #### Textos #### */
+.text-info {
+  color:var(--color) !important;
+}
+
+.text-muted {
+  color:var(--color-medium-dark) !important;
+}
+
+.text-secondary {
+  color:var(--color-very-light) !important;
+}
+
 /* #### Notificaciones (Toast) #### */
 .Toastify__toast {
   background-color: var(--color-dark) !important;
