@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaPlus, FaEdit, FaTrash, FaSave, FaTimes } from 'react-icons/fa';
+import Swal from 'sweetalert2';
+
 
 const API_URL = 'https://683a6f4743bb370a8672b09d.mockapi.io/talentoGames/products';
 
@@ -52,12 +54,36 @@ function CustomProduct() {
       });
   };
 
-  const handleDelete = (id) => {
-    fetch(`${API_URL}/${id}`, { method: 'DELETE' })
-      .then(() => {
-        setProducts(products.filter(p => p.id !== id));
-      });
+  const handleDelete = (id, name) => {
+    Swal.fire({
+      title: `¿Estás seguro?`,
+      text: `¿Querés eliminar el producto "${name}"? Esta acción no se puede deshacer.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#6c757d',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+      backdrop: true, // oscurece el fondo
+      allowOutsideClick: false,
+      allowEscapeKey: false
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`${API_URL}/${id}`, { method: 'DELETE' })
+          .then(() => {
+            setProducts(products.filter(p => p.id !== id));
+            Swal.fire({
+              title: 'Eliminado',
+              text: `El producto "${name}" fue eliminado exitosamente.`,
+              icon: 'success',
+              timer: 1500,
+              showConfirmButton: false
+            });
+          });
+      }
+    });
   };
+  
 
   return (
     <div className="container mt-4">
@@ -174,7 +200,7 @@ function CustomProduct() {
                       </button>
                       <button
                         className="btn btn-danger btn-sm"
-                        onClick={() => handleDelete(p.id)}
+                        onClick={() => handleDelete(p.id, p.name)}
                         title="Eliminar"
                       >
                         <FaTrash />
