@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { ListGroup, Button, Container } from 'react-bootstrap';
+import { ListGroup, Button, Container, Breadcrumb } from 'react-bootstrap';
 import { ShoppingCartContext } from '../contexts/ShoppingCartContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Content from '../layouts/Content';
 
 function ShoppingCartPage() {
@@ -16,8 +16,15 @@ function ShoppingCartPage() {
 
   return (
     <Content>
-      <h1>Mi carrito</h1>
+      <div className="angled-background" />
       <Container className="mt-4">
+      <div className="header-hero">
+          <h1>Mi pedido</h1>
+      </div>
+      <Breadcrumb className="bg-transparent px-0 mb-4">
+        <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/' }}>Inicio</Breadcrumb.Item>
+        <Breadcrumb.Item active>Mi pedido</Breadcrumb.Item>
+      </Breadcrumb>
         {cart.length === 0 ? (
           <p>No hay productos en el carrito.</p>
         ) : (
