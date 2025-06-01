@@ -13,12 +13,12 @@ const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // 👈 agregado
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       setUser(firebaseUser);
-      setLoading(false); // 👈 solo después de que Firebase responde
+      setLoading(false);
     });
 
     return () => unsubscribe();
@@ -50,7 +50,7 @@ export function AuthProvider({ children }) {
     logout,
     loginWithGoogle,
     isAuthenticated: !!user,
-    loading, // 👈 lo exponemos para usarlo en ProtectedRoute
+    loading, 
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

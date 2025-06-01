@@ -6,16 +6,34 @@
     --color-link-hover: #ffa700;
     --color-very-light: #a8a8a8;
     --color-medium-light: #6d6d6d;
+    --color-ultra-dark: #101010;
+    --color-very-dark: #1d1d1d;
     --color-dark: #272727;
     --color-medium-dark: #323232;
-    --color-very-dark: #1d1d1d;
-    --color-ultra-dark: #101010;
+    --color-white:#f8f9fa;
 }
 
 body {
     background-color: var(--color-medium-dark) !important;
     color:var(--color-very-light) !important;
 }
+
+body::before {
+    content: '';
+    position: fixed;
+    top: -200px;
+    left: -200px;
+    width: 200vw;
+    height: 200vh;
+    background: radial-gradient(circle at 25% 30%, var(--color-dark) 0%, transparent 40%),
+                radial-gradient(circle at 75% 60%, var(--color-medium-dark) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, var(--color-very-dark) 0%, transparent 40%);
+    opacity: 0.2;
+    z-index: -1;
+    filter: blur(100px);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
 
 /* #### Accordion (DropDown Item) #### */
 
@@ -46,18 +64,39 @@ body {
 }
 
 /* #### Formularios #### */
-
-.btn-primary {
-   background-color: var(--color) !important;
-   border: 1px solid var(--color) !important;
-   color:var(--color-very-light);
+.form-title, .form-label {
+    color:var(--color-white) !important;
 }
 
+.btn-primary:hover {
+   background-color: var(--color) !important;
+   border: 1px solid var(--color-white) !important;
+   color:var(--color-very-light) !important;
+}
+
+.btn-primary {
+    color: var(--color) !important;
+    border: 1px solid var(--color) !important;
+    background-color:var(--color-very-dark) !important;
+ }
+ 
 .btn-danger {
     color: var(--color) !important;
     border: 1px solid var(--color) !important;
     background-color:var(--color-very-dark) !important;
  }
+
+.btn-outline-primary {
+    color: var(--color-link-hover) !important;
+    border: 1px solid var(--color) !important;
+    background-color:var(--color-medium-dark) !important;
+}
+
+.btn-outline-primary:hover {
+    color: var(--color-ultra-dark) !important;
+    border: 1px solid var(--color) !important;
+    background-color:var(--color) !important;
+}
 
 /* #### Paginacion #### */
 
@@ -108,3 +147,188 @@ body {
     justify-content: center !important;
     margin-top: 1.5rem !important;
 }
+
+/* #### Cards (consolas y juegos) #### */
+.card {
+    background: linear-gradient(135deg, var(--color-ultra-dark), var(--color-very-dark));
+    border-radius: 20px !important;
+    transition: transform 0.25s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+  }
+  
+  .card-img-top {
+    height: 100px;
+    object-fit: contain;
+    background-color: transparent;
+    padding: 1rem;
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+    color: var(--color-very-light) !important;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-very-light);
+  }
+
+/* #### Estilo global para ListGroup #### */
+.list-group {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0;
+  }
+  
+  .list-group-item {
+    background: linear-gradient(135deg, var(--color-ultra-dark), var(--color-very-dark)) !important;
+    border: 1px solid var(--color-dark) !important;
+    border-radius: 12px !important;
+    margin-bottom: 0.75rem;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    color: var(--color-very-light) !important;
+    transition: background-color 0.3s ease;
+  }
+  
+  .list-group-item:hover {
+    background-color: var(--color-dark) !important;
+  }
+  
+  .list-group-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-right: 1rem;
+    border-radius: 8px;
+    background-color: var(--color-ultra-dark);
+    padding: 0.25rem;
+  }
+  
+  .list-group-item .item-content {
+    flex: 1;
+  }
+  
+  .list-group-item .item-content h6 {
+    margin: 0;
+    color: var(--color-white);
+  }
+  
+  .list-group-item .item-content small {
+    display: block;
+    color: var(--color-medium-light);
+  }
+  
+  .list-group-item .item-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+/* #### Breadcrumb #### */
+
+.breadcrumb {
+    background-color: transparent !important;
+    padding: 0;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .breadcrumb-item {
+    color: var(--color-very-light);
+    transition: color 0.3s ease;
+  }
+  
+  .breadcrumb-item:hover a,
+  .breadcrumb-item a:focus {
+    color: var(--color-link-hover);
+    text-decoration: underline;
+  }
+  
+  .breadcrumb-item a {
+    color: var(--color-very-light);
+    text-decoration: none;
+  }
+  
+  .breadcrumb-item.active {
+    color: var(--color) !important;
+    font-weight: 700;
+  }
+  
+  .breadcrumb-item + .breadcrumb-item::before {
+    content: "›";
+    color: var(--color-medium-light);
+    padding: 0 0.5rem;
+    font-weight: 600;
+  }
+  
+/* #### Header Hero #### */
+.angled-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 350px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 167, 0, 0.4) 0%,          
+      rgba(255, 84, 0, 0.6) 35%,           
+      var(--color-medium-dark) 70%, 
+      var(--color-very-dark) 100%
+    );
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    z-index: -1;
+    transition: background 0.5s ease;
+  }
+  
+.angled-background::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at 20% 30%, 
+        rgba(255, 167, 0, 0.15),    
+        transparent 80%
+    );
+    filter: blur(40px);
+    opacity: 0.15;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+  
+.header-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    height: 300px;
+    padding: 1rem 2rem;
+    color: var(--color-white);
+    z-index: 1;
+}
+  
+.header-hero img {
+    max-height: 180px;
+    background-color: var(--color-ultra-dark);
+    padding: 1rem;
+    border-radius: 20px;
+    object-fit: contain;
+    box-shadow: 0 0 12px rgba(0,0,0,0.7);
+}
+  
+.header-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+    max-width: 600px;
+}
+  

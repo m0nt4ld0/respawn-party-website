@@ -1,8 +1,13 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
+import { toast } from 'react-toastify';
 
 export const ShoppingCartContext = createContext();
 
-function ShoppingCart({ children }) {
+export function useShoppingCart() {
+  return useContext(ShoppingCartContext);
+}
+
+function ShoppingCartProvider({ children }) {
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem('cart');
     return savedCart ? JSON.parse(savedCart) : [];
@@ -13,41 +18,57 @@ function ShoppingCart({ children }) {
   }, [cart]);
 
   const addToCart = (producto) => {
+    let itemExists = false;
+  
     setCart((prevCart) => {
       const itemIndex = prevCart.findIndex((item) => item.producto.ID === producto.ID);
-
+      let newCart;
+  
       if (itemIndex !== -1) {
-        return prevCart.map((item, index) =>
+        itemExists = true;
+        newCart = prevCart.map((item, index) =>
           index === itemIndex ? { ...item, cantidad: item.cantidad + 1 } : item
         );
+      } else {
+        newCart = [...prevCart, { producto, cantidad: 1 }];
       }
-
-      return [...prevCart, { producto, cantidad: 1 }];
+  
+      return newCart;
     });
+  
+    toast.success('Producto agregado al carrito');
   };
 
   const removeFromCart = (producto) => {
+    let removed = false;
+  
     setCart((prevCart) => {
       const itemIndex = prevCart.findIndex((item) => item.producto.ID === producto.ID);
+      let newCart = prevCart;
   
       if (itemIndex !== -1) {
+        removed = true;
+  
         if (prevCart[itemIndex].cantidad > 1) {
-          return prevCart.map((item, index) =>
+          newCart = prevCart.map((item, index) =>
             index === itemIndex
               ? { ...item, cantidad: item.cantidad - 1 }
               : item
           );
         } else {
-          return prevCart.filter((item) => item.producto.ID !== producto.ID);
+          newCart = prevCart.filter((item) => item.producto.ID !== producto.ID);
         }
       }
   
-      return prevCart;
+      return newCart;
     });
+  
+    if (removed) toast.info('Producto eliminado del carrito');
   };
 
   const emptyCart = () => {
     setCart([]);
+    toast.warn('Carrito vacío');
   };
 
   return (
@@ -57,4 +78,4 @@ function ShoppingCart({ children }) {
   );
 }
 
-export default ShoppingCart;
+export default ShoppingCartProvider;

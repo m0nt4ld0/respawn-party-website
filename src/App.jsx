@@ -4,22 +4,24 @@ import { useState, useEffect } from 'react';
 import Homepage from './pages/Homepage';
 import { AuthProvider } from "./contexts/AuthContext";
 import LoginPage from "./pages/LoginPage";
-import DashboardPage from "./pages/DashboardPage";
-import RegisterPage from "./pages/RegisterPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 import AboutPage from './pages/AboutPage';
 import FAQPage from './pages/FAQPage';
-import ShoppingCart from './pages/shoppingCart/ShoppingCart';
+import ShoppingCartProvider from './contexts/ShoppingCartContext';
 import ProductDetailPage from './pages/breadcrumb/ProductDetailPage';
 import ShoppingCartPage from './pages/ShoppingCartPage';
+import CheckoutPage from './pages/CheckoutPage';
 import ConsolePage from './pages/breadcrumb/ConsolePage';
 import GamesPage from './pages/breadcrumb/GamesPage';
 import UserPage from './pages/userPanel/UserPage';
 import CustomProductPage from './pages/CustomProductPage';
 import { auth } from "./api/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -33,16 +35,17 @@ function App() {
   }, []);
 
   return (
-    <ShoppingCart>
+    <ShoppingCartProvider>
       <Router>
       <AuthProvider>
+      <ToastContainer position="bottom-right" autoClose={2000} />
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route
-            path="/dashboard"
+            path="/user"
             element={
               <ProtectedRoute>
-                <DashboardPage />
+                <UserPage />
               </ProtectedRoute>
             }
           />
@@ -62,13 +65,12 @@ function App() {
           <Route path="/consoles" element={<ConsolePage  />} />
           <Route path="/shopping-cart" element={<ShoppingCartPage  />} />
           <Route path="/product/:id" element={<ProductDetailPage  />} />
-          <Route path="/user" element={<UserPage  />} />
-          <Route path="/register" element={<RegisterPage  />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="*" element={<NotFoundPage  />} />
         </Routes>
       </AuthProvider>
       </Router>
-    </ShoppingCart>
+    </ShoppingCartProvider>
   );
 }
 

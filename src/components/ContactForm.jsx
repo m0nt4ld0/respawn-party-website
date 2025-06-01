@@ -19,7 +19,7 @@ function ContactForm({ onSubmit }) {
       <div className="row justify-content-center">
         <div className="col-md-8 col-lg-6">
           <div className="card shadow-sm rounded-3 p-4">
-            <h3 className="mb-4 text-center">Formulario de Contacto</h3>
+            <h3 className="mb-4 text-center form-title">¿Dudas? Escribinos</h3>
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="nombre" className="form-label">Nombre</label>
