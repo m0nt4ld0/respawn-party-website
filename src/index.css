@@ -1,5 +1,7 @@
 html, body, #root {
   height: 100%;
+  overflow-x: hidden;
+  width: 100%;
   margin: 0;
   padding: 0;
   --color: #ff5400;
@@ -16,6 +18,10 @@ html, body, #root {
   --toastify-icon-color-warning: var(--color-link-hover);
   --toastify-icon-color-error: var(--color-error);
   --toastify-icon-color-info: var(--color-link-hover);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 /* #### Textos #### */
