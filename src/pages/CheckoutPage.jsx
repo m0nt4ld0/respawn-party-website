@@ -32,9 +32,74 @@ export default function CheckoutPage() {
     navigate('/login');
   };
 
+  // Algoritmo de Luhn para validación de números de tarjeta de crédito
+  function isValidCardNumber(number) {
+    const sanitized = number.replace(/\D/g, '');
+    let sum = 0;
+    let shouldDouble = false;
+  
+    for (let i = sanitized.length - 1; i >= 0; i--) {
+      let digit = parseInt(sanitized[i]);
+  
+      if (shouldDouble) {
+        digit *= 2;
+        if (digit > 9) digit -= 9;
+      }
+  
+      sum += digit;
+      shouldDouble = !shouldDouble;
+    }
+  
+    return sum % 10 === 0;
+  }
+  
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
+    // Tarjeta válida
+    if (!isValidCardNumber(formData.tarjeta)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Número de tarjeta inválido',
+        text: 'Ingresá un número de tarjeta válido.',
+      });
+      return;
+    }
+  
+    // Validar vencimiento (formato MM/AA y fecha futura)
+    const expRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+    if (!expRegex.test(formData.vencimiento)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Fecha inválida',
+        text: 'El vencimiento debe estar en formato MM/AA.',
+      });
+      return;
+    } else {
+      const [month, year] = formData.vencimiento.split('/');
+      const expDate = new Date(`20${year}`, parseInt(month));
+      const now = new Date();
+      if (expDate < now) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Tarjeta vencida',
+          text: 'La tarjeta ya expiró. Ingresá una fecha válida.',
+        });
+        return;
+      }
+    }
+  
+    const cvvRegex = /^\d{3,4}$/;
+    if (!cvvRegex.test(formData.cvv)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'CVV inválido',
+        text: 'El CVV debe tener 3 o 4 dígitos numéricos.',
+      });
+      return;
+    }
+  
     Swal.fire({
       icon: 'success',
       title: '¡Orden colocada!',
@@ -46,6 +111,8 @@ export default function CheckoutPage() {
       navigate('/');
     });
   };
+  
+  
 
   if (!user) {
     return (
