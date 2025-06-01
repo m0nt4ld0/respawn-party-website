@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ListGroup, Button } from 'react-bootstrap';
 import { ShoppingCartContext } from '../contexts/ShoppingCartContext';
-import { useNavigate } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import Content from '../layouts/Content';
 
 function ShoppingCartPage() {
@@ -55,7 +55,13 @@ function ShoppingCartPage() {
                       />
                     </div>
                     <div className="col-12 col-md-7 text-center text-md-start mb-2 mb-md-0">
-                      <h6 className="mb-1">{item.producto?.Title || 'Sin título'}</h6>
+                      <h6 className="mb-1">
+                        <Link
+                            to={`/product/${item.producto?.ID}`}
+                          >
+                            {item.producto?.Title || 'Sin título'}
+                          </Link>
+                      </h6>
                       <small>Precio unitario: ${price.toFixed(2)}</small><br />
                       <small>Subtotal: ${subtotal.toFixed(2)}</small>
                     </div>

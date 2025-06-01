@@ -60,3 +60,15 @@ html, body, #root {
 .Toastify__toast--info .Toastify__progress-bar {
   background: var(--color-link-hover) !important;
 }
+
+/* #### Links #### */
+a {
+  color: var(--color);
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+  text-decoration: none;
+}
