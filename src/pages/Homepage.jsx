@@ -1,4 +1,4 @@
-import { Carousel, Container } from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Navbar from '../layouts/Navbar';
 import Footer from '../layouts/Footer';
@@ -8,52 +8,59 @@ function HomePage() {
   return (
     <>
       <Navbar />
-
-      <div style={{ position: 'relative' }}>
-        <div className="floating-banner d-flex align-items-center px-4">
+      <div className="position-relative pb-5 pb-md-6 pb-lg-7 z-index-1 fondo">
+        <div className="floating-banner d-flex flex-column flex-md-row align-items-center px-3 px-sm-4 py-3">
           <img
             src="/images/Logo.png"
             alt="Talento Games Logo"
-            className="logo-img"
+            className="logo-img img-fluid w-50 w-sm-25"
           />
           <div className="banner-text ms-4">
-            <h3 className="text-white m-0">
+            <h2 className="text-white fs-12 fs-sm-8 fs-md-6 m-0">
               La tienda de juegos retro <br />
               <b>más grande de Argentina</b>
-            </h3>
+            </h2>
           </div>
         </div>
 
-        <Carousel>
+        <Carousel controls={true} indicators={true}>
           <Carousel.Item>
+          <div className="carousel-image-wrapper clipped-wrapper">
             <img
-              className="d-block w-100 carousel-item"
+              className="d-block w-100 carousel-item-img"
               src="/images/carousel/1.webp"
               alt="GTA San Andreas"
             />
-          </Carousel.Item>
+            <div className="carousel-vignette-overlay" />
+          </div>
 
+          </Carousel.Item>
           <Carousel.Item>
-            <img
-              className="d-block w-100 carousel-item"
-              src="/images/carousel/2.jpg"
-              alt="Need For Speed Most Wanted"
-            />
+            <div className="carousel-image-wrapper">
+              <img
+                className="d-block w-100 carousel-item-img"
+                src="/images/carousel/2.jpg"
+                alt="Need For Speed Most Wanted"
+              />
+              <div className="carousel-vignette-overlay" />
+            </div>
           </Carousel.Item>
-
           <Carousel.Item>
-            <img
-              className="d-block w-100 carousel-item"
-              src="/images/carousel/3.jpg"
-              alt="Guitar Hero III"
-            />
+            <div className="carousel-image-wrapper">
+              <img
+                className="d-block w-100 carousel-item-img"
+                src="/images/carousel/3.jpg"
+                alt="Guitar Hero III"
+              />
+              <div className="carousel-vignette-overlay" />
+            </div>
           </Carousel.Item>
-        </Carousel>
-
-        <div className="clip-bottom" />
+        </Carousel>        
       </div>
 
-      <div className="section-below-carousel text-center px-4 py-5">
+      <div
+        className="section-below-carousel text-center px-4 pt-5 pt-md-6 pt-lg-7 pb-5 position-relative z-index-2"
+      >
         <h1>Clásicos</h1>
         <p>
           Que te dan <b>+1000 de aura retro gamer</b>
@@ -61,142 +68,33 @@ function HomePage() {
         <h3 className="mt-5 mb-4">Sólo para entendidos</h3>
 
         <div className="row justify-content-center g-4">
-          {/* Aquí van las tarjetas */}
-          <div className="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div className="custom-card position-relative overflow-hidden">
-              <img
-                src={`/images/cards/psone.jpg`}
-                alt="PlayStation 1"
-                className="img-fluid w-100"
-              />
-              <div className="card-overlay d-flex justify-content-center align-items-center">
-                <h5 className="text-white">
-                  <Link to={`/console/12`} state={{ consoleName: 'PlayStation 1' }}>
-                    PlayStation 1
-                  </Link>
-                </h5>
+          {[
+            { src: 'psone.jpg', id: 12, name: 'PlayStation 1' },
+            { src: 'ps2.jpg', id: 21, name: 'PlayStation 2' },
+            { src: 'Nintendo-DSi.jpg', id: 78, name: 'Nintendo DSi' },
+            { src: 'n64.jpg', id: 2, name: 'Nintendo 64' },
+            { src: 'gba.jpg', id: 5, name: 'GameBoy Advance' },
+            { src: 'megadrive.jpg', id: 1, name: 'Sega MegaDrive' },
+            { src: 'dreamcast.jpg', id: 40, name: 'Sega DreamCast' },
+            { src: 'gamecube.jpg', id: 16, name: 'Nintendo GameCube' },
+          ].map(({ src, id, name }) => (
+            <div key={id} className="col-12 col-sm-6 col-md-4 col-lg-3">
+              <div className="custom-card position-relative overflow-hidden">
+                <img
+                  src={`/images/cards/${src}`}
+                  alt={name}
+                  className="img-fluid w-100"
+                />
+                <div className="card-overlay d-flex justify-content-center align-items-center">
+                  <h5 className="text-white">
+                    <Link to={`/console/${id}`} state={{ consoleName: name }}>
+                      {name}
+                    </Link>
+                  </h5>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div className="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div className="custom-card position-relative overflow-hidden">
-              <img
-                src={`/images/cards/ps2.jpg`}
-                alt="PlayStation 2"
-                className="img-fluid w-100"
-              />
-              <div className="card-overlay d-flex justify-content-center align-items-center">
-                <h5 className="text-white">
-                  <Link to={`/console/21`} state={{ consoleName: 'PlayStation 2' }}>
-                    PlayStation 2
-                  </Link>
-                </h5>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div className="custom-card position-relative overflow-hidden">
-              <img
-                src={`/images/cards/Nintendo-DSi.jpg`}
-                alt="Nintendo DSi"
-                className="img-fluid w-100"
-              />
-              <div className="card-overlay d-flex justify-content-center align-items-center">
-                <h5 className="text-white">
-                  <Link to={`/console/78`} state={{ consoleName: 'Nintendo DSi' }}>
-                    Nintendo DSi
-                  </Link>
-                </h5>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div className="custom-card position-relative overflow-hidden">
-              <img
-                src={`/images/cards/n64.jpg`}
-                alt="Nintendo 64"
-                className="img-fluid w-100"
-              />
-              <div className="card-overlay d-flex justify-content-center align-items-center">
-                <h5 className="text-white">
-                  <Link to={`/console/2`} state={{ consoleName: 'Nintendo 64' }}>
-                    Nintendo 64
-                  </Link>
-                </h5>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div className="custom-card position-relative overflow-hidden">
-              <img
-                src={`/images/cards/gba.jpg`}
-                alt="GameBoy Advance"
-                className="img-fluid w-100"
-              />
-              <div className="card-overlay d-flex justify-content-center align-items-center">
-                <h5 className="text-white">
-                  <Link to={`/console/5`} state={{ consoleName: 'GameBoy Advance' }}>
-                    GameBoy Advance
-                  </Link>
-                </h5>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div className="custom-card position-relative overflow-hidden">
-              <img
-                src={`/images/cards/megadrive.jpg`}
-                alt="Sega MegaDrive"
-                className="img-fluid w-100"
-              />
-              <div className="card-overlay d-flex justify-content-center align-items-center">
-                <h5 className="text-white">
-                  <Link to={`/console/1`} state={{ consoleName: 'Sega MegaDrive' }}>
-                    Sega MegaDrive
-                  </Link>
-                </h5>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div className="custom-card position-relative overflow-hidden">
-              <img
-                src={`/images/cards/dreamcast.jpg`}
-                alt="Sega DreamCast"
-                className="img-fluid w-100"
-              />
-              <div className="card-overlay d-flex justify-content-center align-items-center">
-                <h5 className="text-white">
-                  <Link to={`/console/40`} state={{ consoleName: 'Sega DreamCast' }}>
-                    Sega DreamCast
-                  </Link>
-                </h5>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div className="custom-card position-relative overflow-hidden">
-              <img
-                src={`/images/cards/gamecube.jpg`}
-                alt="Nintendo GameCube"
-                className="img-fluid w-100"
-              />
-              <div className="card-overlay d-flex justify-content-center align-items-center">
-                <h5 className="text-white">
-                  <Link to={`/console/16`} state={{ consoleName: 'Nintendo GameCube' }}>
-                    Nintendo GameCube
-                  </Link>
-                </h5>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 

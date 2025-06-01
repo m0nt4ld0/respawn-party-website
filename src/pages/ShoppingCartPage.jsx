@@ -31,9 +31,9 @@ function ShoppingCartPage() {
           <h4 className="text-info">No hay productos en el carrito.</h4>
           <button
             className="btn btn-outline-primary mt-4"
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/consoles')}
           >
-            Volver al inicio
+            Ver catálogo
           </button>
         </div>
       ) : (
