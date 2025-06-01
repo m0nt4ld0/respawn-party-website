@@ -2,15 +2,6 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    --color: #ff5400;
-    --color-link-hover: #ffa700;
-    --color-very-light: #a8a8a8;
-    --color-medium-light: #6d6d6d;
-    --color-ultra-dark: #101010;
-    --color-very-dark: #1d1d1d;
-    --color-dark: #272727;
-    --color-medium-dark: #323232;
-    --color-white:#f8f9fa;
 }
 
 body {
@@ -331,4 +322,4 @@ body::before {
     line-height: 1.2;
     max-width: 600px;
 }
-  
+

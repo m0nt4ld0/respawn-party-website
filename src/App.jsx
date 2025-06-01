@@ -43,9 +43,9 @@ function AnimatedRoutes() {
           }
         />
         <Route
-          path="/create-product"
+          path="/admin"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute adminOnly={true}>
               <CustomProductPage />
             </ProtectedRoute>
           }

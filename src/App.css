@@ -1,7 +1,17 @@
-#root {
+:root {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+
+  --color: #ff5400;
+  --color-link-hover: #ffa700;
+  --color-very-light: #a8a8a8;
+  --color-medium-light: #6d6d6d;
+  --color-ultra-dark: #101010;
+  --color-very-dark: #1d1d1d;
+  --color-dark: #272727;
+  --color-medium-dark: #323232;
+  --color-white:#f8f9fa;
 }
 
 .logo {
@@ -61,4 +71,35 @@
 
 .breadcrumb-item + .breadcrumb-item::before {
   color: var(--color-very-light);
+}
+
+/* ### Tablas ### */
+.table {
+  background-color: var(--color-dark) !important;
+  color: var(--color-very-light) !important;
+  border-collapse: collapse !important;
+  width: 100% !important;
+  border: 1px solid var(--color-medium-dark) !important;
+}
+
+.table th,
+.table td {
+  border: 1px solid var(--color-medium-dark) !important;
+  padding: 0.75rem !important;
+  vertical-align: middle !important;
+  background-color: var(--color-dark) !important;
+  color: var(--color-very-light) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.table tbody tr:hover td {
+  background-color: var(--color-ultra-dark) !important;
+  color: var(--color-white) !important;
+  cursor: pointer !important;
+}
+
+/* Opcional: para filas con rayas */
+.table-striped tbody tr:nth-of-type(odd) td {
+  background-color: var(--color-medium-dark) !important;
+  color: var(--color-white) !important;
 }
