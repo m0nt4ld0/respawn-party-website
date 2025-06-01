@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { FaPlus, FaEdit, FaTrash, FaSave, FaTimes } from 'react-icons/fa';
 
 const API_URL = 'https://683a6f4743bb370a8672b09d.mockapi.io/talentoGames/products';
 
@@ -60,7 +61,6 @@ function CustomProduct() {
 
   return (
     <div className="container mt-4">
-      
       <h3>Agregar Producto</h3>
       <div className="row g-2 align-items-center">
         <div className="col-md-4">
@@ -89,11 +89,17 @@ function CustomProduct() {
           />
         </div>
         <div className="col-md-1 d-grid">
-          <button className="btn btn-primary" onClick={handleCreate}>Agregar</button>
+          <button
+            className="btn btn-success"
+            onClick={handleCreate}
+            title="Agregar"
+          >
+            <FaPlus />
+          </button>
         </div>
       </div>
-      
-      <h2>Productos</h2>
+
+      <h2 className="mt-4">Productos</h2>
       {loading ? (
         <p>Cargando productos...</p>
       ) : (
@@ -137,8 +143,20 @@ function CustomProduct() {
                       />
                     </td>
                     <td className="text-end">
-                      <button className="btn btn-danger btn-sm me-2" onClick={handleUpdate}>Guardar</button>
-                      <button className="btn btn-secondary btn-sm" onClick={() => setEditProductId(null)}>Cancelar</button>
+                      <button
+                        className="btn btn-success btn-sm me-2"
+                        onClick={handleUpdate}
+                        title="Guardar"
+                      >
+                        <FaSave />
+                      </button>
+                      <button
+                        className="btn btn-secondary btn-sm"
+                        onClick={() => setEditProductId(null)}
+                        title="Cancelar"
+                      >
+                        <FaTimes />
+                      </button>
                     </td>
                   </>
                 ) : (
@@ -147,8 +165,20 @@ function CustomProduct() {
                     <td>${p.price}</td>
                     <td>{p.description}</td>
                     <td className="text-end">
-                      <button className="btn btn-primary btn-sm me-2" onClick={() => startEdit(p)}>Editar</button>
-                      <button className="btn btn-danger btn-sm" onClick={() => handleDelete(p.id)}>Eliminar</button>
+                      <button
+                        className="btn btn-primary btn-sm me-2"
+                        onClick={() => startEdit(p)}
+                        title="Editar"
+                      >
+                        <FaEdit />
+                      </button>
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => handleDelete(p.id)}
+                        title="Eliminar"
+                      >
+                        <FaTrash />
+                      </button>
                     </td>
                   </>
                 )}
@@ -157,7 +187,6 @@ function CustomProduct() {
           </tbody>
         </table>
       )}
-
     </div>
   );
 }
