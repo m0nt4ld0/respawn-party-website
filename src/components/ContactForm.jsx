@@ -1,16 +1,15 @@
 import PropTypes from 'prop-types';
 import useForm from '../hooks/useForm';
 
-function ContactForm({ onSubmit }) {
+function ContactForm({ onSubmit, isSubmitting, isBlocked }) {
   const { formData, handleChange, resetForm } = useForm({
-    nombre: '',
     email: '',
-    consulta: ''
+    message: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); 
-    onSubmit(formData); 
+    await onSubmit(formData); 
     resetForm(); 
   };
 
@@ -22,19 +21,6 @@ function ContactForm({ onSubmit }) {
             <h3 className="mb-4 text-center form-title">¿Dudas? Escribinos</h3>
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
-                <label htmlFor="nombre" className="form-label">Nombre</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="nombre"
-                  name="nombre"
-                  value={formData.nombre}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div className="mb-3">
                 <label htmlFor="email" className="form-label">Correo electrónico</label>
                 <input
                   type="email"
@@ -44,24 +30,33 @@ function ContactForm({ onSubmit }) {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting || isBlocked}
                 />
               </div>
 
               <div className="mb-3">
-                <label htmlFor="consulta" className="form-label">Consulta</label>
+                <label htmlFor="message" className="form-label">Consulta</label>
                 <textarea
                   className="form-control"
-                  id="consulta"
-                  name="consulta"
+                  id="message"
+                  name="message"
                   rows="4"
-                  value={formData.consulta}
+                  value={formData.message}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting || isBlocked}
                 ></textarea>
               </div>
 
               <div className="d-grid">
-                <button type="submit" className="btn btn-primary">Enviar</button>
+                <button 
+                  type="submit" 
+                  className="btn btn-primary"
+                  disabled={isSubmitting || isBlocked}
+                >
+                  {isBlocked ? 'Temporalmente bloqueado' : 
+                   isSubmitting ? 'Enviando...' : 'Enviar'}
+                </button>
               </div>
             </form>
           </div>
@@ -72,7 +67,14 @@ function ContactForm({ onSubmit }) {
 }
 
 ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool,
+  isBlocked: PropTypes.bool
+};
+
+ContactForm.defaultProps = {
+  isSubmitting: false,
+  isBlocked: false
 };
 
 export default ContactForm;

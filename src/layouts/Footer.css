@@ -1,8 +1,7 @@
-
 /* **** Estilos de pie de página *** */
 .pie {
     background-color: var(--color-very-dark);
-    color:var(--color-very-light);
+    color: var(--color-very-light);
     font-size: 12px;
 }
 
@@ -17,81 +16,19 @@
 }
 
 .pie-menu li a:hover {
-    text-decoration: none;
     color: var(--color-link-hover);
 }
 
-.pie-menu-redes {
-    list-style-type: none;
-	padding: 0;
-	margin: 0;
-	display:flex;
-	flex-direction:column;
-	align-items: flex-start;  
-}
-
-.pie-menu-redes h2 {
-	font-size:1rem;
-}
-
-.pie-menu-redes li {
-	display: inline-block;
+.logoTalentoGames {
+    width: 18rem;
+    height: 13rem;
 }
 
 .pie-menu-redes li a {
-	text-decoration: none;
-	color: var(--color-very-light);
-}
-.pie-menu-redes li a:hover {
-	color: var(--color-link-hover);
-}
-
-#socialMedia {
-	width:20px;
-	height:auto;
-}
-
-.logoTalentoGames {
-	width: 18rem;
-	height: 13rem;
-}
-
-.pie-fondo-claro {
-    background-color: #fff;
-    color: var(--color-cinci);
-    font-size: 12px;
-}
-
-.pie-fondo-claro ul{
-    list-style-type: none;
-}
-
-.pie-fondo-claro li {
-	margin-bottom:5px;
-}
-
-.pie-fondo-claro li a {
-    text-decoration: underline;
-	font-weight: bold;
-	color:var(--color-very-dark);
-}
-
-.pie-fondo-claro b {
-	color: var(--color-uno);
-}
-
-.pie-fondo-claro-divisor {
-	color: var(--color-seis);
-	height: 100%;
-}
-
-.pie-fondo-claro strong a {
+    color: var(--color-very-light);
     text-decoration: none;
-    color: var(--color-cinci);
 }
 
-.mensaje-pie {
-	background-color: var(--gris-claro);
-	font-family: 'Roboto', sans-serif;
-	font-size: 13px;
+.pie-menu-redes li a:hover {
+    color: var(--color-link-hover);
 }
