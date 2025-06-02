@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import useForm from '../hooks/useForm';
 
-function ContactForm({ onSubmit, isSubmitting }) {
+function ContactForm({ onSubmit, isSubmitting, isBlocked }) {
   const { formData, handleChange, resetForm } = useForm({
     email: '',
     message: ''
@@ -30,7 +30,7 @@ function ContactForm({ onSubmit, isSubmitting }) {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || isBlocked}
                 />
               </div>
 
@@ -44,7 +44,7 @@ function ContactForm({ onSubmit, isSubmitting }) {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || isBlocked}
                 ></textarea>
               </div>
 
@@ -52,9 +52,10 @@ function ContactForm({ onSubmit, isSubmitting }) {
                 <button 
                   type="submit" 
                   className="btn btn-primary"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || isBlocked}
                 >
-                  {isSubmitting ? 'Enviando...' : 'Enviar'}
+                  {isBlocked ? 'Temporalmente bloqueado' : 
+                   isSubmitting ? 'Enviando...' : 'Enviar'}
                 </button>
               </div>
             </form>
@@ -67,11 +68,13 @@ function ContactForm({ onSubmit, isSubmitting }) {
 
 ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  isSubmitting: PropTypes.bool
+  isSubmitting: PropTypes.bool,
+  isBlocked: PropTypes.bool
 };
 
 ContactForm.defaultProps = {
-  isSubmitting: false
+  isSubmitting: false,
+  isBlocked: false
 };
 
 export default ContactForm;
