@@ -132,17 +132,6 @@ Pasado ese límite, advierte al usuario que tendrá que esperar 15 (quince) minu
 Si el carrito está vacío, mostrará el mensaje "No hay productos en el carrito." con un botón que nos invita a explorar el catálogo para seleccionar juegos para adquirirlos.
 ![Captura desde 2025-06-01 23-54-59](https://github.com/user-attachments/assets/da4b0ae1-a6a3-4838-b550-57e56d828f1d)
 
-### Registro de usuario
-
-### Iniciar sesión (autenticación)
-La web ofrece la posibilidad de autenticarse usando una cuenta de Google, o autenticarse utilizando otro e-mail que haya sido registrado previamente (ver Registro de usuario). 
-
-Al hacer clic en el botón Ingresar de la barra de navegación, nos lleva a la siguiente página para iniciar sesión en el sitio:
-![Captura desde 2025-06-01 23-59-10](https://github.com/user-attachments/assets/76a85a05-be88-4746-ad07-823307b3f6dc)
-
-Inmediatamente después de autenticarnos, nos lleva a nuestro perfil. Si iniciamos sesión con nuestra cuenta de Google, muestra nuestra foto:
-![Captura desde 2025-06-02 00-15-55](https://github.com/user-attachments/assets/f7c1e598-6b2a-4f61-b23a-c83cc9055616)
-
 En la pantalla de compra nos pide que ingresemos una tarjeta de crédito. La validación está hecha con el algorimno de Luhn, para poder avanzar de pantalla recomiendo usar una herramienta como este [generador de tarjetas Fake](https://neapay.com/online-tools/credit-card-number-generator-validator.html).
 
 Ejemplo:
@@ -155,7 +144,16 @@ Al procesar la compra, nos muestra un mensaje de éxito, y nos redirige a la hom
 
 ![image](https://github.com/user-attachments/assets/22610d2c-38c5-46da-912f-aa8f483c5113)
 
+### Registro de usuario
 
+### Iniciar sesión (autenticación)
+La web ofrece la posibilidad de autenticarse usando una cuenta de Google, o autenticarse utilizando otro e-mail que haya sido registrado previamente (ver Registro de usuario). 
+
+Al hacer clic en el botón Ingresar de la barra de navegación, nos lleva a la siguiente página para iniciar sesión en el sitio:
+![Captura desde 2025-06-01 23-59-10](https://github.com/user-attachments/assets/76a85a05-be88-4746-ad07-823307b3f6dc)
+
+Inmediatamente después de autenticarnos, nos lleva a nuestro perfil. Si iniciamos sesión con nuestra cuenta de Google, muestra nuestra foto:
+![Captura desde 2025-06-02 00-15-55](https://github.com/user-attachments/assets/f7c1e598-6b2a-4f61-b23a-c83cc9055616)
 
 ### Iniciar sesión como administrador
 Para inicar sesión con privilegios de Administrador, utilizar:
