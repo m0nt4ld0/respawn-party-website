@@ -2,6 +2,29 @@
 
 Este es un proyecto realizado como parte del curso **Talento Tech - React** durante el primer cuatrimestre de 2025. El proyecto simula un negocio de venta de videojuegos retro y está desarrollado en **React** utilizando **JSX**. La aplicación simula una tienda de videojuegos retro donde los usuarios pueden explorar una variedad de juegos, agregarlos a un carrito de compras y realizar la compra. 
 
+# Tabla de Contenidos
+
+- [Características](#características)
+- [Tecnologías utilizadas](#tecnologías-utilizadas)
+- [Requerimientos mínimos](#requerimientos-mínimos)
+- [Cómo utilizarlo](#cómo-utilizarlo)
+  - [Clonar el repositorio](#clonar-el-repositorio)
+  - [Instalar las dependencias](#instalar-las-dependencias)
+  - [Configuración del archivo .env](#configuración-del-archivo-env)
+  - [Ejecutar el proyecto](#ejecutar-el-proyecto)
+- [Contribuciones](#contribuciones)
+- [Documentación de usuario](#documentación-de-usuario)
+  - [Inicio](#inicio)
+  - [Nosotros](#nosotros)
+  - [Juegos](#juegos)
+  - [Preguntas](#preguntas)
+  - [Contacto](#contacto)
+  - [Carrito](#carrito)
+  - [Registro de usuario](#registro-de-usuario)
+  - [Iniciar sesión (autenticación)](#iniciar-sesión-autenticación)
+  - [Iniciar sesión como administrador](#iniciar-sesión-como-administrador)
+  - [Página no encontrada (404)](#página-no-encontrada-404)
+
 ## Características
 - **Carrito de compras:** Los usuarios pueden agregar juegos al carrito y proceder a la compra.
 - **API de RetroAchievements:** Se consumen datos en tiempo real de la API de RetroAchievements para mostrar información sobre los juegos retro y sus logros.
