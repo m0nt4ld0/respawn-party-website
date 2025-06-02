@@ -143,6 +143,19 @@ Al hacer clic en el botón Ingresar de la barra de navegación, nos lleva a la s
 Inmediatamente después de autenticarnos, nos lleva a nuestro perfil. Si iniciamos sesión con nuestra cuenta de Google, muestra nuestra foto:
 ![Captura desde 2025-06-02 00-15-55](https://github.com/user-attachments/assets/f7c1e598-6b2a-4f61-b23a-c83cc9055616)
 
+En la pantalla de compra nos pide que ingresemos una tarjeta de crédito. La validación está hecha con el algorimno de Luhn, para poder avanzar de pantalla recomiendo usar una herramienta como este [generador de tarjetas Fake](https://neapay.com/online-tools/credit-card-number-generator-validator.html).
+
+Ejemplo:
+
+- **Número**: 4514884147835118
+- **CVV**: 147
+- **Vencimiento**: 10/29
+
+Al procesar la compra, nos muestra un mensaje de éxito, y nos redirige a la homepage.
+
+![image](https://github.com/user-attachments/assets/22610d2c-38c5-46da-912f-aa8f483c5113)
+
+
 
 ### Iniciar sesión como administrador
 Para inicar sesión con privilegios de Administrador, utilizar:
@@ -156,7 +169,7 @@ Esta cuenta de administrador es ficticia, hecha específicamente para demostrar 
 El administrador tiene la posibilidad de dar de alta nuevos productos, editar los productos existentes y eliminar productos.
 
 Al intentar eliminar un producto, nos va a pedir la confirmación de que realmente estamos seguros, antes de proceder:
-![Captura desde 2025-06-02 00-15-01](https://github.com/user-attachments/assets/d23e8f26-586a-46b2-8a45-ce709dd23dd1)
+
 
 
 ### Página no encontrada (404)
