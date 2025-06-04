@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FaPlus, FaEdit, FaTrash, FaSave, FaTimes } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
-
-const API_URL = 'https://683a6f4743bb370a8672b09d.mockapi.io/talentoGames/products';
+const API_URL = import.meta.env.VITE_MOCKAPI_API_URL;
 
 function CustomProduct() {
   const [products, setProducts] = useState([]);
@@ -64,7 +63,7 @@ function CustomProduct() {
       cancelButtonColor: '#6c757d',
       confirmButtonText: 'Sí, eliminar',
       cancelButtonText: 'Cancelar',
-      backdrop: true, // oscurece el fondo
+      backdrop: true,
       allowOutsideClick: false,
       allowEscapeKey: false
     }).then((result) => {
@@ -83,13 +82,12 @@ function CustomProduct() {
       }
     });
   };
-  
 
   return (
     <div className="container mt-4">
       <h3>Agregar Producto</h3>
-      <div className="row g-2 align-items-center">
-        <div className="col-md-4">
+      <div className="row g-2 align-items-end">
+        <div className="col-12 col-md-4">
           <input
             className="form-control"
             value={newProduct.name}
@@ -97,7 +95,7 @@ function CustomProduct() {
             placeholder="Nombre"
           />
         </div>
-        <div className="col-md-3">
+        <div className="col-12 col-md-3">
           <input
             type="number"
             className="form-control"
@@ -106,7 +104,7 @@ function CustomProduct() {
             placeholder="Precio"
           />
         </div>
-        <div className="col-md-4">
+        <div className="col-12 col-md-4">
           <input
             className="form-control"
             value={newProduct.description}
@@ -114,7 +112,7 @@ function CustomProduct() {
             placeholder="Descripción"
           />
         </div>
-        <div className="col-md-1 d-grid">
+        <div className="col-12 col-md-1 d-grid">
           <button
             className="btn btn-success"
             onClick={handleCreate}
@@ -124,93 +122,101 @@ function CustomProduct() {
           </button>
         </div>
       </div>
-      <br />
+
+      <hr className="my-4" />
+
       {loading ? (
         <p>Cargando productos...</p>
       ) : (
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Precio</th>
-              <th>Descripción</th>
-              <th className="text-end">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map(p => (
-              <tr key={p.id}>
-                {editProductId === p.id ? (
-                  <>
-                    <td>
-                      <input
-                        className="form-control"
-                        value={editProductData.name}
-                        onChange={e => setEditProductData({ ...editProductData, name: e.target.value })}
-                        placeholder="Nombre"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        className="form-control"
-                        value={editProductData.price}
-                        onChange={e => setEditProductData({ ...editProductData, price: e.target.value })}
-                        placeholder="Precio"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        className="form-control"
-                        value={editProductData.description}
-                        onChange={e => setEditProductData({ ...editProductData, description: e.target.value })}
-                        placeholder="Descripción"
-                      />
-                    </td>
-                    <td className="text-end">
-                      <button
-                        className="btn btn-success btn-sm me-2"
-                        onClick={handleUpdate}
-                        title="Guardar"
-                      >
-                        <FaSave />
-                      </button>
-                      <button
-                        className="btn btn-secondary btn-sm"
-                        onClick={() => setEditProductId(null)}
-                        title="Cancelar"
-                      >
-                        <FaTimes />
-                      </button>
-                    </td>
-                  </>
-                ) : (
-                  <>
-                    <td>{p.name}</td>
-                    <td>${p.price}</td>
-                    <td>{p.description}</td>
-                    <td className="text-end">
-                      <button
-                        className="btn btn-primary btn-sm me-2"
-                        onClick={() => startEdit(p)}
-                        title="Editar"
-                      >
-                        <FaEdit />
-                      </button>
-                      <button
-                        className="btn btn-danger btn-sm"
-                        onClick={() => handleDelete(p.id, p.name)}
-                        title="Eliminar"
-                      >
-                        <FaTrash />
-                      </button>
-                    </td>
-                  </>
-                )}
+        <div className="table-responsive">
+          <table className="table table-striped align-middle">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Descripción</th>
+                <th className="text-end">Acciones</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {products.map(p => (
+                <tr key={p.id}>
+                  {editProductId === p.id ? (
+                    <>
+                      <td>
+                        <input
+                          className="form-control"
+                          value={editProductData.name}
+                          onChange={e => setEditProductData({ ...editProductData, name: e.target.value })}
+                          placeholder="Nombre"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          className="form-control"
+                          value={editProductData.price}
+                          onChange={e => setEditProductData({ ...editProductData, price: e.target.value })}
+                          placeholder="Precio"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          className="form-control"
+                          value={editProductData.description}
+                          onChange={e => setEditProductData({ ...editProductData, description: e.target.value })}
+                          placeholder="Descripción"
+                        />
+                      </td>
+                      <td className="text-end">
+                        <div className="d-inline-flex">
+                          <button
+                            className="btn btn-success btn-sm me-2"
+                            onClick={handleUpdate}
+                            title="Guardar"
+                          >
+                            <FaSave />
+                          </button>
+                          <button
+                            className="btn btn-secondary btn-sm"
+                            onClick={() => setEditProductId(null)}
+                            title="Cancelar"
+                          >
+                            <FaTimes />
+                          </button>
+                        </div>
+                      </td>
+                    </>
+                  ) : (
+                    <>
+                      <td>{p.name}</td>
+                      <td>${p.price}</td>
+                      <td>{p.description}</td>
+                      <td className="text-end">
+                        <div className="d-inline-flex">
+                          <button
+                            className="btn btn-primary btn-sm me-2"
+                            onClick={() => startEdit(p)}
+                            title="Editar"
+                          >
+                            <FaEdit />
+                          </button>
+                          <button
+                            className="btn btn-danger btn-sm"
+                            onClick={() => handleDelete(p.id, p.name)}
+                            title="Eliminar"
+                          >
+                            <FaTrash />
+                          </button>
+                        </div>
+                      </td>
+                    </>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
