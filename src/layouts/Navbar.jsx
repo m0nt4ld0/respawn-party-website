@@ -30,6 +30,7 @@ function Navbar() {
   const { cart } = useShoppingCart();
   const navigate = useNavigate();
   const [hovered, setHovered] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const leaveTimeoutRef = useRef(null);
 
   const handleMouseEnter = () => {
@@ -43,17 +44,33 @@ function Navbar() {
     }, 600);
   };
 
-  const handleAuthClick = () => {
+  const handleAuthClick = async () => {
     if (isAuthenticated) {
-      logout();
-      navigate('/');
+      try {
+        setIsLoggingOut(true);
+        
+        navigate('/');
+        
+        setTimeout(async () => {
+          try {
+            await logout();
+          } catch (error) {
+            console.error('Error durante logout:', error);
+          } finally {
+            setIsLoggingOut(false);
+          }
+        }, 100);
+        
+      } catch (error) {
+        console.error('Error durante logout:', error);
+        setIsLoggingOut(false);
+      }
     } else {
       navigate('/login');
     }
   };
 
-  // Total de productos sumando cantidades
-  const totalItems = cart.reduce((sum, item) => sum + item.cantidad, 0);
+  const totalItems = cart?.reduce((sum, item) => sum + item.cantidad, 0) || 0;
 
   return (
     <nav
@@ -110,10 +127,12 @@ function Navbar() {
                 variant={isAuthenticated ? "outline-danger" : "outline-primary"}
                 size="sm"
                 onClick={handleAuthClick}
+                disabled={isLoggingOut}
               >
                 {isAuthenticated ? (
                   <>
-                    <FiLogOut className="me-1" /> Cerrar sesión
+                    <FiLogOut className="me-1" /> 
+                    {isLoggingOut ? 'Cerrando...' : 'Cerrar sesión'}
                   </>
                 ) : (
                   <>
