@@ -69,15 +69,15 @@ export default function LoginPage() {
                   />
                 </div>
 
-                <div className="d-grid mb-2">
-                  <button onClick={handleRegister} className="btn btn-outline-primary">
-                    Registrarme
-                  </button>
-                </div>
-
                 <div className="d-grid">
                   <button onClick={handleLogin} className="btn btn-primary">
                     Ingresar
+                  </button>
+                </div>
+                <br />
+                <div className="d-grid mb-2">
+                  <button onClick={handleRegister} className="btn btn-outline-primary">
+                    Registrarme
                   </button>
                 </div>
               </form>
