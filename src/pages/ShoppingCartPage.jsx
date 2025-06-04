@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { ListGroup, Button } from 'react-bootstrap';
 import { ShoppingCartContext } from '../contexts/ShoppingCartContext';
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Content from '../layouts/Content';
+import Swal from 'sweetalert2';
 
 function ShoppingCartPage() {
   const { cart, addToCart, removeFromCart, emptyCart } = useContext(ShoppingCartContext);
@@ -17,6 +18,40 @@ function ShoppingCartPage() {
     { to: '/', label: 'Inicio' },
     { label: 'Mi pedido', active: true }
   ];
+
+  const handleEmptyCart = async () => {
+    const result = await Swal.fire({
+      title: '¿Vaciar carrito?',
+      text: 'Esta acción eliminará todos los productos en su carrito. ¿Desea continuar?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#dc3545',
+      cancelButtonColor: '#6c757d',
+      confirmButtonText: 'Vaciar',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true,
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      allowEnterKey: false,
+      focusConfirm: false,
+      focusCancel: true
+    });
+
+    if (result.isConfirmed) {
+      emptyCart();
+      
+      // Mostrar mensaje de confirmación
+      await Swal.fire({
+        title: '¡Carrito vaciado!',
+        text: 'Todos los productos han sido eliminados del carrito.',
+        icon: 'success',
+        confirmButtonColor: '#198754',
+        confirmButtonText: 'Entendido',
+        timer: 2000,
+        timerProgressBar: true
+      });
+    }
+  };
 
   return (
     <Content title="Mi pedido" breadcrumbItems={breadcrumbItems}>
@@ -81,7 +116,7 @@ function ShoppingCartPage() {
           </div>
 
           <div className="d-flex justify-content-between">
-            <Button variant="outline-primary" onClick={emptyCart}>Vaciar carrito</Button>
+            <Button variant="outline-primary" onClick={handleEmptyCart}>Vaciar carrito</Button>
             <Button variant="primary" onClick={() => navigate('/checkout')}>
               Finalizar compra
             </Button>
