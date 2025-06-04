@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FaPlus, FaEdit, FaTrash, FaSave, FaTimes } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
-const API_URL = process.env.VITE_MOCKAPI_API_URL;
+const API_URL = import.meta.env.VITE_MOCKAPI_API_URL;
 
 function CustomProduct() {
   const [products, setProducts] = useState([]);
