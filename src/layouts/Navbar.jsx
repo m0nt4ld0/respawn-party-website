@@ -3,24 +3,12 @@ import { useAuth } from '../contexts/AuthContext';
 import { useShoppingCart } from '../contexts/ShoppingCartContext';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import SearchBar from '../components/SearchBar';
 
-import {
-  GiShoppingCart,
-  GiGamepad,
-} from "react-icons/gi";
-import {
-  MdEmail,
-} from "react-icons/md";
-import {
-  FaUser,
-  FaUserCog,
-  FaUsers,
-  FaQuestionCircle,
-} from "react-icons/fa";
-import {
-  FiHome,
-  FiLogOut,
-} from "react-icons/fi";
+import { GiShoppingCart, GiGamepad } from "react-icons/gi";
+import { MdEmail } from "react-icons/md";
+import { FaUser, FaUserCog, FaUsers, FaQuestionCircle } from "react-icons/fa";
+import { FiHome, FiLogOut } from "react-icons/fi";
 
 import AnimatedNavItem from './AnimatedNavItem';
 import './Navbar.css';
@@ -48,9 +36,8 @@ function Navbar() {
     if (isAuthenticated) {
       try {
         setIsLoggingOut(true);
-        
         navigate('/');
-        
+
         setTimeout(async () => {
           try {
             await logout();
@@ -60,7 +47,6 @@ function Navbar() {
             setIsLoggingOut(false);
           }
         }, 100);
-        
       } catch (error) {
         console.error('Error durante logout:', error);
         setIsLoggingOut(false);
@@ -79,27 +65,30 @@ function Navbar() {
       onMouseLeave={handleMouseLeave}
     >
       <div className="container-fluid">
-
         <NavLink className="navbar-brand" to="/">
           <img src="/images/Logo.png" alt="Logo Talento Games" className="logo-navbar" />
         </NavLink>
 
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
-          data-bs-target="#navbarNav" aria-controls="navbarNav"
-          aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span className="navbar-toggler-icon"></span>
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <div className="d-flex flex-column flex-lg-row justify-content-between align-items-center w-100">
-
             <ul className="navbar-nav mx-auto text-center gap-3 my-3 my-lg-0">
               <AnimatedNavItem to="/" icon={FiHome} label="Inicio" hovered={hovered} />
               <AnimatedNavItem to="/about-us" icon={FaUsers} label="Nosotros" hovered={hovered} />
               <AnimatedNavItem to="/consoles" icon={GiGamepad} label="Juegos" hovered={hovered} />
               <AnimatedNavItem to="/faq" icon={FaQuestionCircle} label="Preguntas" hovered={hovered} />
               <AnimatedNavItem to="/contact-us" icon={MdEmail} label="Contacto" hovered={hovered} />
-
               <AnimatedNavItem
                 to="/shopping-cart"
                 label="Carrito"
@@ -113,7 +102,6 @@ function Navbar() {
                   </div>
                 )}
               />
-
               {isAuthenticated && (
                 <AnimatedNavItem to="/user" icon={FaUser} label="Mi Perfil" hovered={hovered} />
               )}
@@ -122,7 +110,8 @@ function Navbar() {
               )}
             </ul>
 
-            <div className="d-flex justify-content-center justify-content-lg-end">
+            <div className="d-flex flex-column flex-lg-row align-items-center gap-2 justify-content-center justify-content-lg-end">
+              <SearchBar />
               <Button
                 variant={isAuthenticated ? "outline-danger" : "outline-primary"}
                 size="sm"
@@ -131,7 +120,7 @@ function Navbar() {
               >
                 {isAuthenticated ? (
                   <>
-                    <FiLogOut className="me-1" /> 
+                    <FiLogOut className="me-1" />
                     {isLoggingOut ? 'Cerrando...' : 'Cerrar sesión'}
                   </>
                 ) : (
@@ -141,7 +130,6 @@ function Navbar() {
                 )}
               </Button>
             </div>
-
           </div>
         </div>
       </div>

@@ -1,0 +1,15 @@
+.search-bar {
+    background-color: var(--color-medium-dark);
+    height: 40px;
+    max-width: 280px;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .search-bar input::placeholder {
+    color: var(--color-very-light);
+  }
+  
+  .search-bar:hover {
+    box-shadow: 0 0 0 2px var(--color-link-hover);
+  }
+  
