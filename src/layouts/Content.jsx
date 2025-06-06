@@ -2,13 +2,117 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import {
   Container,
-  Breadcrumb
+  Breadcrumb,
+  Row,
+  Col,
+  Card
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import seoImage from '/images/Logo.png';
 import './Content.css';
+
+// Componente de skeleton para cards de consolas
+const ConsoleSkeleton = () => (
+  <Row>
+    {[...Array(9)].map((_, i) => (
+      <Col key={i} md={6} lg={4} className="mb-4">
+        <Card className="console-card h-100 shadow-sm border-0">
+          <div className="text-center pt-4 px-4">
+            <div 
+              className="placeholder bg-secondary rounded mx-auto"
+              style={{
+                width: '150px',
+                height: '150px',
+                animation: 'pulse 1.5s ease-in-out infinite alternate'
+              }}
+            />
+          </div>
+          <Card.Body className="console-card-body d-flex flex-column justify-content-between">
+            <div>
+              <div 
+                className="placeholder bg-secondary rounded mb-3 mx-auto"
+                style={{
+                  width: '70%',
+                  height: '24px',
+                  animation: 'pulse 1.5s ease-in-out infinite alternate'
+                }}
+              />
+            </div>
+            <div className="text-center mt-auto">
+              <div 
+                className="placeholder bg-primary rounded-pill mx-auto"
+                style={{
+                  width: '120px',
+                  height: '38px',
+                  animation: 'pulse 1.5s ease-in-out infinite alternate'
+                }}
+              />
+            </div>
+          </Card.Body>
+        </Card>
+      </Col>
+    ))}
+  </Row>
+);
+
+// Componente de skeleton para paginación
+const PaginationSkeleton = () => (
+  <div className="d-flex justify-content-center mt-4">
+    <div className="d-flex gap-2">
+      {[...Array(5)].map((_, i) => (
+        <div
+          key={i}
+          className="placeholder bg-secondary rounded"
+          style={{
+            width: '40px',
+            height: '40px',
+            animation: 'pulse 1.5s ease-in-out infinite alternate'
+          }}
+        />
+      ))}
+    </div>
+  </div>
+);
+
+// Componente de skeleton genérico para contenido
+const GenericSkeleton = () => (
+  <div className="skeleton-container">
+    <div 
+      className="placeholder bg-secondary rounded mb-3"
+      style={{
+        width: '100%',
+        height: '200px',
+        animation: 'pulse 1.5s ease-in-out infinite alternate'
+      }}
+    />
+    <div 
+      className="placeholder bg-secondary rounded mb-2"
+      style={{
+        width: '80%',
+        height: '20px',
+        animation: 'pulse 1.5s ease-in-out infinite alternate'
+      }}
+    />
+    <div 
+      className="placeholder bg-secondary rounded mb-2"
+      style={{
+        width: '60%',
+        height: '20px',
+        animation: 'pulse 1.5s ease-in-out infinite alternate'
+      }}
+    />
+    <div 
+      className="placeholder bg-secondary rounded"
+      style={{
+        width: '70%',
+        height: '20px',
+        animation: 'pulse 1.5s ease-in-out infinite alternate'
+      }}
+    />
+  </div>
+);
 
 function Content({
   title,
@@ -17,13 +121,32 @@ function Content({
   seoTitle,
   seoDescription,
   seoKeywords,
-  seoUrl
+  seoUrl,
+  isLoading = false,
+  skeletonType = 'generic' // 'console', 'generic', 'pagination'
 }) {
   const defaultTitle = "Talento Games";
   const defaultDescription = "Venta de juegos retro.";
   const defaultKeywords = "consolas, videojuegos, Talento Games, juegos, eventos gamer";
   const defaultImage = "/images/Logo.png";
   const defaultUrl = window.location.href;
+
+  const renderSkeleton = () => {
+    switch (skeletonType) {
+      case 'console':
+        return (
+          <>
+            <PaginationSkeleton />
+            <ConsoleSkeleton />
+            <PaginationSkeleton />
+          </>
+        );
+      case 'pagination':
+        return <PaginationSkeleton />;
+      default:
+        return <GenericSkeleton />;
+    }
+  };
 
   return (
     <div
@@ -49,6 +172,25 @@ function Content({
         <meta name="twitter:title" content={seoTitle ? `${seoTitle} | Talento Games` : defaultTitle} />
         <meta name="twitter:description" content={seoDescription || defaultDescription} />
         <meta name="twitter:image" content={defaultImage} />
+        
+        {/* Estilos críticos para skeleton inline */}
+        <style>
+          {`
+            @keyframes pulse {
+              0% { opacity: 0.6; }
+              100% { opacity: 1; }
+            }
+            .skeleton-container .placeholder {
+              background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+              background-size: 200% 100%;
+              animation: shimmer 1.5s infinite;
+            }
+            @keyframes shimmer {
+              0% { background-position: -200% 0; }
+              100% { background-position: 200% 0; }
+            }
+          `}
+        </style>
       </Helmet>
 
       <Navbar />
@@ -96,7 +238,7 @@ function Content({
             exit={{ opacity: 0, y: -30 }}
             transition={{ duration: 0.5 }}
           >
-            {children}
+            {isLoading ? renderSkeleton() : children}
           </motion.div>
         </Container>
       </main>
