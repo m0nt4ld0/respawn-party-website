@@ -64,7 +64,7 @@ function ShoppingCartPage() {
       {cart.length === 0 ? (
         <div className="d-flex justify-content-center align-items-center flex-column py-5">
           <img
-            src="/images/8219549_empty_question_search_empty states_basket_icon.png"
+            src="/images/8219549_empty_question_search_empty states_basket_icon.webp"
             alt="Carrito vacío"
             className="mb-4"
             style={{ width: '250px', height: 'auto', opacity: 0.8 }}

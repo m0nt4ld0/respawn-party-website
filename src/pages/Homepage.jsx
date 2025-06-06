@@ -11,7 +11,7 @@ function HomePage() {
       <div className="position-relative pb-5 pb-md-6 pb-lg-7 z-index-1 fondo">
         <div className="floating-banner d-flex flex-column flex-md-row align-items-center px-3 px-sm-4 py-3">
           <img
-            src="/images/Logo.png"
+            src="/images/Logo.webp"
             alt="Talento Games Logo"
             className="logo-img img-fluid w-50 w-sm-25"
           />
@@ -39,7 +39,7 @@ function HomePage() {
             <div className="carousel-image-wrapper">
               <img
                 className="d-block w-100 carousel-item-img"
-                src="/images/carousel/2.jpg"
+                src="/images/carousel/2.webp"
                 alt="Need For Speed Most Wanted"
               />
               <div className="carousel-vignette-overlay" />
@@ -49,7 +49,7 @@ function HomePage() {
             <div className="carousel-image-wrapper">
               <img
                 className="d-block w-100 carousel-item-img"
-                src="/images/carousel/3.jpg"
+                src="/images/carousel/3.webp"
                 alt="Guitar Hero III"
               />
               <div className="carousel-vignette-overlay" />
@@ -69,14 +69,14 @@ function HomePage() {
 
         <div className="row justify-content-center g-4">
           {[
-            { src: 'psone.jpg', id: 12, name: 'PlayStation 1' },
-            { src: 'ps2.jpg', id: 21, name: 'PlayStation 2' },
-            { src: 'Nintendo-DSi.jpg', id: 78, name: 'Nintendo DSi' },
-            { src: 'n64.jpg', id: 2, name: 'Nintendo 64' },
-            { src: 'gba.jpg', id: 5, name: 'GameBoy Advance' },
-            { src: 'megadrive.jpg', id: 1, name: 'Sega MegaDrive' },
-            { src: 'dreamcast.jpg', id: 40, name: 'Sega DreamCast' },
-            { src: 'gamecube.jpg', id: 16, name: 'Nintendo GameCube' },
+            { src: 'psone.webp', id: 12, name: 'PlayStation 1' },
+            { src: 'ps2.webp', id: 21, name: 'PlayStation 2' },
+            { src: 'Nintendo-DSi.webp', id: 78, name: 'Nintendo DSi' },
+            { src: 'n64.webp', id: 2, name: 'Nintendo 64' },
+            { src: 'gba.webp', id: 5, name: 'GameBoy Advance' },
+            { src: 'megadrive.webp', id: 1, name: 'Sega MegaDrive' },
+            { src: 'dreamcast.webp', id: 40, name: 'Sega DreamCast' },
+            { src: 'gamecube.webp', id: 16, name: 'Nintendo GameCube' },
           ].map(({ src, id, name }) => (
             <div key={id} className="col-12 col-sm-6 col-md-4 col-lg-3">
               <div className="custom-card position-relative overflow-hidden">
