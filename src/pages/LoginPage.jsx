@@ -39,7 +39,12 @@ export default function LoginPage() {
   }, [user, navigate]);
 
   return (
-    <Content>
+    <Content
+      title="Somos Talento Games"
+      seoTitle="Inicio"
+      seoDescription="Descubrí los mejores juegos y consolas en alquiler en Talento Games."
+      seoKeywords="venta consolas, videojuegos, Talento Games"
+      seoUrl="https://talento-games.vercel.app/">
       <div className="container py-5 mt-5">
         <div className="row justify-content-center">
           <div className="col-md-6 col-lg-4">

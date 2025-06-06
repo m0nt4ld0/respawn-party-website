@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { useState, useEffect } from 'react';
 import { AuthProvider } from "./contexts/AuthContext";
 import ShoppingCartProvider from './contexts/ShoppingCartContext';
+import { ConsoleProvider } from './contexts/ConsoleContext';
 
+import SearchResultsPage from './pages/SearchResultsPage';
 import Homepage from './pages/Homepage';
 import LoginPage from "./pages/LoginPage";
 import ContactPage from './pages/ContactPage';
@@ -25,6 +27,7 @@ import { onAuthStateChanged } from "firebase/auth";
 
 import { AnimatePresence } from 'framer-motion';
 import { ToastContainer } from 'react-toastify';
+import { HelmetProvider } from 'react-helmet-async';
 import 'react-toastify/dist/ReactToastify.css';
 
 function AnimatedRoutes() {
@@ -59,6 +62,7 @@ function AnimatedRoutes() {
         <Route path="/shopping-cart" element={<ShoppingCartPage />} />
         <Route path="/product/:id" element={<ProductDetailPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/search" element={<SearchResultsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </AnimatePresence>
@@ -77,14 +81,18 @@ function App() {
   }, []);
 
   return (
-    <ShoppingCartProvider>
+    <HelmetProvider>
       <Router>
         <AuthProvider>
-          <ToastContainer position="bottom-right" autoClose={2000} />
-          <AnimatedRoutes />
+          <ConsoleProvider>
+            <ShoppingCartProvider>
+              <ToastContainer position="bottom-right" autoClose={2000} />
+              <AnimatedRoutes />
+            </ShoppingCartProvider>
+          </ConsoleProvider>
         </AuthProvider>
       </Router>
-    </ShoppingCartProvider>
+    </HelmetProvider>
   );
 }
 

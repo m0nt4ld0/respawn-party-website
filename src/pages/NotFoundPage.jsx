@@ -4,7 +4,12 @@ import Content from '../layouts/Content';
 
 function NotFoundPage(){
     return (
-        <Content>
+        <Content
+            title="Somos Talento Games"
+            seoTitle="Inicio"
+            seoDescription="Descubrí los mejores juegos y consolas en alquiler en Talento Games."
+            seoKeywords="venta consolas, videojuegos, Talento Games"
+            seoUrl="https://talento-games.vercel.app/">
             <div className="angled-background" />
             <Container className="mt-4">
                 <div className="header-hero">

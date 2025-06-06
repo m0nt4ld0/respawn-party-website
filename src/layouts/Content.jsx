@@ -6,9 +6,24 @@ import {
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import './Content.css';
 
-function Content({ title, breadcrumbItems = [], children }) {
+function Content({
+  title,
+  breadcrumbItems = [],
+  children,
+  seoTitle,
+  seoDescription,
+  seoKeywords,
+  seoUrl
+}) {
+  const defaultTitle = "Talento Games";
+  const defaultDescription = "Venta de juegos retro.";
+  const defaultKeywords = "consolas, videojuegos, Talento Games, juegos, eventos gamer";
+  const defaultImage = "/images/Logo.png";
+  const defaultUrl = window.location.href;
+
   return (
     <div
       style={{
@@ -17,6 +32,24 @@ function Content({ title, breadcrumbItems = [], children }) {
         minHeight: '100vh',
       }}
     >
+      <Helmet>
+        <title>{seoTitle ? `${seoTitle} | Talento Games` : defaultTitle}</title>
+        <meta name="description" content={seoDescription || defaultDescription} />
+        <meta name="keywords" content={seoKeywords || defaultKeywords} />
+        <meta name="author" content="Talento Games" />
+
+        <meta property="og:title" content={seoTitle ? `${seoTitle} | Talento Games` : defaultTitle} />
+        <meta property="og:description" content={seoDescription || defaultDescription} />
+        <meta property="og:image" content={seoImage || defaultImage} />
+        <meta property="og:url" content={seoUrl || defaultUrl} />
+        <meta property="og:type" content="website" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seoTitle ? `${seoTitle} | Talento Games` : defaultTitle} />
+        <meta name="twitter:description" content={seoDescription || defaultDescription} />
+        <meta name="twitter:image" content={defaultImage} />
+      </Helmet>
+
       <Navbar />
 
       <main
