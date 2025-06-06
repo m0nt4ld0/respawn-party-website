@@ -7,7 +7,7 @@ import {
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import seoImage from '/images/Logo.png';
+import seoImage from '/images/Logo.webp';
 import './Content.css';
 
 function Content({
@@ -22,7 +22,7 @@ function Content({
   const defaultTitle = "Talento Games";
   const defaultDescription = "Venta de juegos retro.";
   const defaultKeywords = "consolas, videojuegos, Talento Games, juegos, eventos gamer";
-  const defaultImage = "/images/Logo.png";
+  const defaultImage = "/images/Logo.webp";
   const defaultUrl = window.location.href;
 
   return (
