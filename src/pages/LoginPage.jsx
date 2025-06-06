@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
-import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
+import { sanitizeInput } from '../utils/sanitize';
+import { auth } from "../api/firebase";
+import { useAuth } from "../contexts/AuthContext";
+
 import LoginWithGoogle from "../components/LoginWithGoogle";
 import Content from '../layouts/Content';
-import { auth } from "../api/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -58,7 +61,7 @@ export default function LoginPage() {
                     className="form-control"
                     placeholder="Correo electrónico"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => setEmail(sanitizeInput(e.target.value))}
                     required
                   />
                 </div>
