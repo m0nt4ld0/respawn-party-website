@@ -1,5 +1,5 @@
 {
-  "name": "respawn-party",
+  "name": "talento-games",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -34,9 +34,5 @@
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
     "vite": "^6.2.0"
-  },
-  "scripts": {
-    "vercel-build": "npm install --legacy-peer-deps && npm run build"
   }
-
 }
