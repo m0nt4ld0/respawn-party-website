@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin
+
+Allow: /
+
+Sitemap: https://talento-games.vercel.app/sitemap.xml
