@@ -27,6 +27,7 @@ import { onAuthStateChanged } from "firebase/auth";
 
 import { AnimatePresence } from 'framer-motion';
 import { ToastContainer } from 'react-toastify';
+import { HelmetProvider } from 'react-helmet-async';
 import 'react-toastify/dist/ReactToastify.css';
 
 function AnimatedRoutes() {
@@ -80,16 +81,18 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <AuthProvider>
-        <ConsoleProvider>
-          <ShoppingCartProvider>
-            <ToastContainer position="bottom-right" autoClose={2000} />
-            <AnimatedRoutes />
-          </ShoppingCartProvider>
-        </ConsoleProvider>
-      </AuthProvider>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <AuthProvider>
+          <ConsoleProvider>
+            <ShoppingCartProvider>
+              <ToastContainer position="bottom-right" autoClose={2000} />
+              <AnimatedRoutes />
+            </ShoppingCartProvider>
+          </ConsoleProvider>
+        </AuthProvider>
+      </Router>
+    </HelmetProvider>
   );
 }
 

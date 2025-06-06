@@ -66,11 +66,15 @@ function SearchResultsPage() {
   return (
     <Content
       title="Resultados de búsqueda"
+      seoTitle="Inicio"
+      seoDescription="Descubrí los mejores juegos y consolas en alquiler en Talento Games."
+      seoKeywords="venta consolas, videojuegos, Talento Games"
+      seoUrl="https://talento-games.vercel.app/"
       breadcrumbItems={[
         { label: 'Inicio', to: '/', active: false },
         { label: 'Resultados', active: true },
-      ]}
-    >
+      ]}>
+      
       <Form onSubmit={handleSearch} className="mb-4">
         <Row className="g-2 align-items-center">
           <Col xs={12} md={3}>

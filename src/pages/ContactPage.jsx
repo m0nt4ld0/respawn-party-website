@@ -136,7 +136,11 @@ function ContactPage() {
   };
 
   return (
-    <Content title="Contactanos" breadcrumbItems={breadcrumbItems}>
+    <Content 
+      seoDescription="Descubrí los mejores juegos y consolas en alquiler en Talento Games."
+      seoKeywords="alquiler consolas, videojuegos, Talento Games"
+      seoUrl="https://talento-games.vercel.app/"
+      title="Contactanos" breadcrumbItems={breadcrumbItems}>
       {submitMessage && (
         <div className={`alert ${
           submitMessage.includes('correctamente') ? 'alert-success' : 

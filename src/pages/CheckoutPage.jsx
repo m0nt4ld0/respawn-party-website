@@ -134,7 +134,12 @@ export default function CheckoutPage() {
 
   return (
     <div className="mt-5">
-    <Content>
+    <Content
+      title="Somos Talento Games"
+      seoTitle="Inicio"
+      seoDescription="Descubrí los mejores juegos y consolas en alquiler en Talento Games."
+      seoKeywords="alquiler consolas, videojuegos, Talento Games"
+      seoUrl="https://talento-games.vercel.app/">
     <div className="angled-background" />
     <Container className="mt-4">
       <div className="header-hero">

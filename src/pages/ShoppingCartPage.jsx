@@ -54,7 +54,13 @@ function ShoppingCartPage() {
   };
 
   return (
-    <Content title="Mi pedido" breadcrumbItems={breadcrumbItems}>
+    <Content 
+      title="Mi pedido - Talento Games"
+      seoTitle="Inicio"
+      seoDescription="Descubrí los mejores juegos y consolas en alquiler en Talento Games."
+      seoKeywords="venta consolas, videojuegos, Talento Games"
+      seoUrl="https://talento-games.vercel.app/"
+      breadcrumbItems={breadcrumbItems}>
       {cart.length === 0 ? (
         <div className="d-flex justify-content-center align-items-center flex-column py-5">
           <img

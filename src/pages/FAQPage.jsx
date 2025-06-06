@@ -9,7 +9,13 @@ function FAQPage() {
   ];
 
   return (
-    <Content title="Preguntas Frecuentes" breadcrumbItems={breadcrumbItems}>
+    <Content 
+      title="Preguntas Frecuentes" 
+      breadcrumbItems={breadcrumbItems}
+      seoTitle="Inicio"
+      seoDescription="Descubrí los mejores juegos y consolas en alquiler en Talento Games."
+      seoKeywords="venta consolas, videojuegos, Talento Games"
+      seoUrl="https://talento-games.vercel.app/">
       <Accordion>
         <DropdownItem
           eventKey="0"

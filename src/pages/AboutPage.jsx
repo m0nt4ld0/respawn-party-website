@@ -4,6 +4,10 @@ function AboutPage() {
   return (
     <Content
       title="Somos Talento Games"
+      seoTitle="Inicio"
+      seoDescription="Descubrí los mejores juegos y consolas en alquiler en Talento."
+      seoKeywords="alquiler consolas, videojuegos, Talento Games"
+      seoUrl="https://talento-games.vercel.app/"
       breadcrumbItems={[
         { label: 'Inicio', to: '/', active: false },
         { label: 'Nosotros', active: true },
