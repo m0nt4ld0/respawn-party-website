@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
 import { useNavigate,Link } from 'react-router-dom';
 import { Modal, Container, Breadcrumb, Button } from 'react-bootstrap';
-import useForm from '../hooks/useForm';
-import { useShoppingCart } from '../contexts/ShoppingCartContext';
+
 import Swal from 'sweetalert2';
+
+import useForm from '../hooks/useForm';
 import Content from '../layouts/Content';
+
+import { useShoppingCart } from '../contexts/ShoppingCartContext';
+import { useAuth } from '../contexts/AuthContext';
+import { sanitizeInput } from '../utils/sanitize';
 
 export default function CheckoutPage() {
   const { user } = useAuth();
@@ -57,7 +61,6 @@ export default function CheckoutPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
   
-    // Tarjeta válida
     if (!isValidCardNumber(formData.tarjeta)) {
       Swal.fire({
         icon: 'error',
@@ -67,7 +70,6 @@ export default function CheckoutPage() {
       return;
     }
   
-    // Validar vencimiento (formato MM/AA y fecha futura)
     const expRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
     if (!expRegex.test(formData.vencimiento)) {
       Swal.fire({
@@ -77,17 +79,25 @@ export default function CheckoutPage() {
       });
       return;
     } else {
-      const [month, year] = formData.vencimiento.split('/');
-      const expDate = new Date(`20${year}`, parseInt(month));
-      const now = new Date();
-      if (expDate < now) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Tarjeta vencida',
-          text: 'La tarjeta ya expiró. Ingresá una fecha válida.',
-        });
-        return;
-      }
+        const [month, year] = formData.vencimiento.split('/');
+        const expMonth = parseInt(month, 10);
+        const expYear = parseInt(`20${year}`, 10);
+
+        const now = new Date();
+        const currentMonth = now.getMonth() + 1;
+        const currentYear = now.getFullYear();
+
+        if (
+          expYear < currentYear || 
+          (expYear === currentYear && expMonth <= currentMonth)
+        ) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Fecha inválida',
+            text: 'La tarjeta debe tener al menos un mes de validez.',
+          });
+          return;
+        }
     }
   
     const cvvRegex = /^\d{3,4}$/;
@@ -163,7 +173,7 @@ export default function CheckoutPage() {
                     className="form-control"
                     id="nombre"
                     name="nombre"
-                    value={formData.nombre}
+                    value={sanitizeInput(formData.nombre)}
                     onChange={handleChange}
                     required
                   />
@@ -176,7 +186,7 @@ export default function CheckoutPage() {
                     className="form-control"
                     id="direccion"
                     name="direccion"
-                    value={formData.direccion}
+                    value={sanitizeInput(formData.direccion)}
                     onChange={handleChange}
                     required
                   />
@@ -189,7 +199,7 @@ export default function CheckoutPage() {
                     className="form-control"
                     id="tarjeta"
                     name="tarjeta"
-                    value={formData.tarjeta}
+                    value={sanitizeInput(formData.tarjeta)}
                     onChange={handleChange}
                     required
                     maxLength="16"
@@ -204,7 +214,7 @@ export default function CheckoutPage() {
                       className="form-control"
                       id="vencimiento"
                       name="vencimiento"
-                      value={formData.vencimiento}
+                      value={sanitizeInput(formData.vencimiento)}
                       onChange={handleChange}
                       placeholder="MM/AA"
                       required
@@ -218,7 +228,7 @@ export default function CheckoutPage() {
                       className="form-control"
                       id="cvv"
                       name="cvv"
-                      value={formData.cvv}
+                      value={sanitizeInput(formData.cvv)}
                       onChange={handleChange}
                       required
                       maxLength="4"

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import useForm from '../hooks/useForm';
+import { sanitizeInput } from '../utils/sanitize';
 
 function ContactForm({ onSubmit, isSubmitting, isBlocked }) {
   const { formData, handleChange, resetForm } = useForm({
@@ -27,7 +28,7 @@ function ContactForm({ onSubmit, isSubmitting, isBlocked }) {
                   className="form-control"
                   id="email"
                   name="email"
-                  value={formData.email}
+                  value={sanitizeInput(formData.email)}
                   onChange={handleChange}
                   required
                   disabled={isSubmitting || isBlocked}
@@ -41,7 +42,7 @@ function ContactForm({ onSubmit, isSubmitting, isBlocked }) {
                   id="message"
                   name="message"
                   rows="4"
-                  value={formData.message}
+                  value={sanitizeInput(formData.message)}
                   onChange={handleChange}
                   required
                   disabled={isSubmitting || isBlocked}

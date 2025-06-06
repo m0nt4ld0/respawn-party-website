@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaPlus, FaEdit, FaTrash, FaSave, FaTimes } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { sanitizeInput } from '../utils/sanitize';
 
 const API_URL = import.meta.env.VITE_MOCKAPI_API_URL;
 
@@ -91,7 +92,7 @@ function CustomProduct() {
           <input
             className="form-control"
             value={newProduct.name}
-            onChange={e => setNewProduct({ ...newProduct, name: e.target.value })}
+            onChange={e => setNewProduct({ ...newProduct, name: sanitizeInput(e.target.value) })}
             placeholder="Nombre"
           />
         </div>
@@ -108,7 +109,7 @@ function CustomProduct() {
           <input
             className="form-control"
             value={newProduct.description}
-            onChange={e => setNewProduct({ ...newProduct, description: e.target.value })}
+            onChange={e => setNewProduct({ ...newProduct, description: sanitizeInput(e.target.value) })}
             placeholder="Descripción"
           />
         </div>
@@ -147,7 +148,7 @@ function CustomProduct() {
                         <input
                           className="form-control"
                           value={editProductData.name}
-                          onChange={e => setEditProductData({ ...editProductData, name: e.target.value })}
+                          onChange={e => setEditProductData({ ...editProductData, name: sanitizeInput(e.target.value) })}
                           placeholder="Nombre"
                         />
                       </td>
@@ -164,7 +165,7 @@ function CustomProduct() {
                         <input
                           className="form-control"
                           value={editProductData.description}
-                          onChange={e => setEditProductData({ ...editProductData, description: e.target.value })}
+                          onChange={e => setEditProductData({ ...editProductData, description: sanitizeInput(e.target.value) })}
                           placeholder="Descripción"
                         />
                       </td>

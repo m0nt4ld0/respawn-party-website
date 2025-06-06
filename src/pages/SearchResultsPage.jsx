@@ -1,12 +1,12 @@
 import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { sanitizeInput } from '../utils/sanitize';
 import { useEffect, useState, useContext } from 'react';
-import { Row, Col, Card, Button, Form, Spinner, InputGroup } from 'react-bootstrap';
+import { Row, Col, Card, Button, Form, Spinner, InputGroup, Dropdown, DropdownButton } from 'react-bootstrap';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import { ShoppingCartContext } from '../contexts/ShoppingCartContext';
 import { fetchGameListByConsoleId } from '../api/retroAchievements';
 import Content from '../layouts/Content';
 import { ConsoleContext } from '../contexts/ConsoleContext';
-import { Dropdown, DropdownButton } from 'react-bootstrap';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -63,6 +63,8 @@ function SearchResultsPage() {
   const currentProducts = filtered.slice(indexOfFirstProduct, indexOfLastProduct);
   const totalPages = Math.ceil(filtered.length / productsPerPage);
 
+  const selectedConsoleObj = consoles.find(c => c.ID.toString() === selectedConsole);
+
   return (
     <Content
       title="Resultados de búsqueda"
@@ -74,21 +76,21 @@ function SearchResultsPage() {
         { label: 'Inicio', to: '/', active: false },
         { label: 'Resultados', active: true },
       ]}>
-      
+
       <Form onSubmit={handleSearch} className="mb-4">
         <Row className="g-2 align-items-center">
           <Col xs={12} md={3}>
             <DropdownButton
               id="dropdown-console"
               title={
-                selectedConsole
+                selectedConsoleObj
                   ? <>
                       <img
-                        src={consoles.find(c => c.ID.toString() === selectedConsole)?.IconURL}
+                        src={selectedConsoleObj.IconURL}
                         alt=""
                         style={{ height: '20px', marginRight: '8px' }}
                       />
-                      {consoles.find(c => c.ID.toString() === selectedConsole)?.Name}
+                      {selectedConsoleObj.Name}
                     </>
                   : 'Selecciona una consola'
               }
@@ -114,7 +116,7 @@ function SearchResultsPage() {
               <Form.Control
                 type="text"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => setSearchQuery(sanitizeInput(e.target.value))}
                 placeholder="Buscar juego..."
               />
               <Button type="submit" variant="primary">Buscar</Button>
@@ -122,7 +124,6 @@ function SearchResultsPage() {
           </Col>
         </Row>
       </Form>
-
 
       {loading || loadingConsoles ? (
         <div className="d-flex justify-content-center mt-5">
