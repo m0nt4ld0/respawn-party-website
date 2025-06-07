@@ -132,6 +132,7 @@ function Content({
   const defaultDescription = "Venta de juegos retro.";
   const defaultKeywords = "consolas, videojuegos, Talento Games, juegos, eventos gamer";
   const defaultImage = "/images/Logo.webp";
+
   const defaultUrl = seoUrl || window.location.origin + location.pathname;
 
   const renderSkeleton = () => {
@@ -150,6 +151,8 @@ function Content({
         return <GenericSkeleton />;
     }
   };
+  
+  const defaultUrl = window.location.href;
 
   return (
     <div

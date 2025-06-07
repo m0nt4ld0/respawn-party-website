@@ -5,25 +5,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import ShoppingCartProvider from './contexts/ShoppingCartContext';
 import { ConsoleProvider } from './contexts/ConsoleContext';
 
-// Pasa a lazy loading las páginas críticas también
-const Homepage = lazy(() => import('./pages/Homepage'));
-const LoginPage = lazy(() => import('./pages/LoginPage'));
-
 import ProtectedRoute from "./components/ProtectedRoute";
-
-// Lazy loading para las demás páginas
-const SearchResultsPage = lazy(() => import('./pages/SearchResultsPage'));
-const ContactPage = lazy(() => import('./pages/ContactPage'));
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
-const AboutPage = lazy(() => import('./pages/AboutPage'));
-const FAQPage = lazy(() => import('./pages/FAQPage'));
-const ProductDetailPage = lazy(() => import('./pages/breadcrumb/ProductDetailPage'));
-const ShoppingCartPage = lazy(() => import('./pages/ShoppingCartPage'));
-const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
-const ConsolePage = lazy(() => import('./pages/breadcrumb/ConsolePage'));
-const GamesPage = lazy(() => import('./pages/breadcrumb/GamesPage'));
-const UserPage = lazy(() => import('./pages/userPanel/UserPage'));
-const CustomProductPage = lazy(() => import('./pages/CustomProductPage'));
 
 import { auth } from "./api/firebase";
 import { onAuthStateChanged } from "firebase/auth";
@@ -51,33 +33,119 @@ const ProtectedRouteWrapper = ({ children, adminOnly = false }) => (
   </Suspense>
 );
 
+// Lazy-loaded pages
+const Homepage = lazy(() => import('./pages/Homepage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const FAQPage = lazy(() => import('./pages/FAQPage'));
+const SearchResultsPage = lazy(() => import('./pages/SearchResultsPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const ProductDetailPage = lazy(() => import('./pages/breadcrumb/ProductDetailPage'));
+const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
+const ConsolePage = lazy(() => import('./pages/breadcrumb/ConsolePage'));
+const GamesPage = lazy(() => import('./pages/breadcrumb/GamesPage'));
+const UserPage = lazy(() => import('./pages/userPanel/UserPage'));
+const CustomProductPage = lazy(() => import('./pages/CustomProductPage'));
+const ShoppingCartPage = lazy(() => import('./pages/ShoppingCartPage'));
+
 function AnimatedRoutes() {
   const location = useLocation();
 
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        {/* LoginPage ahora lazy */}
-        <Route 
-          path="/login" 
+        {/* Públicas */}
+        <Route
+          path="/login"
           element={
             <Suspense fallback={<PageLoader />}>
               <LoginPage />
             </Suspense>
-          } 
+          }
         />
-
-        {/* Homepage ahora lazy */}
-        <Route 
-          path="/" 
+        <Route
+          path="/"
           element={
             <Suspense fallback={<PageLoader />}>
               <Homepage />
             </Suspense>
-          } 
+          }
         />
-        
-        {/* Rutas protegidas */}
+        <Route
+          path="/about-us"
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <AboutPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/contact-us"
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <ContactPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/faq"
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <FAQPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/search"
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <SearchResultsPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/consoles"
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <ConsolePage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/console/:id"
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <GamesPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/product/:id"
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <ProductDetailPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/shopping-cart"
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <ShoppingCartPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <CheckoutPage />
+            </Suspense>
+          }
+        />
+
+        {/* Protegidas */}
         <Route
           path="/user"
           element={
@@ -94,95 +162,15 @@ function AnimatedRoutes() {
             </ProtectedRouteWrapper>
           }
         />
-        
-        {/* Rutas de productos */}
-        <Route 
-          path="/console/:id" 
-          element={
-            <Suspense fallback={<PageLoader />}>
-              <GamesPage />
-            </Suspense>
-          } 
-        />
-        <Route 
-          path="/product/:id" 
-          element={
-            <Suspense fallback={<PageLoader />}>
-              <ProductDetailPage />
-            </Suspense>
-          } 
-        />
-        <Route 
-          path="/consoles" 
-          element={
-            <Suspense fallback={<PageLoader />}>
-              <ConsolePage />
-            </Suspense>
-          } 
-        />
-        
-        {/* Rutas de compras */}
-        <Route 
-          path="/shopping-cart" 
-          element={
-            <Suspense fallback={<PageLoader />}>
-              <ShoppingCartPage />
-            </Suspense>
-          } 
-        />
-        <Route 
-          path="/checkout" 
-          element={
-            <Suspense fallback={<PageLoader />}>
-              <CheckoutPage />
-            </Suspense>
-          } 
-        />
-        
-        {/* Rutas de información */}
-        <Route 
-          path="/about-us" 
-          element={
-            <Suspense fallback={<PageLoader />}>
-              <AboutPage />
-            </Suspense>
-          } 
-        />
-        <Route 
-          path="/contact-us" 
-          element={
-            <Suspense fallback={<PageLoader />}>
-              <ContactPage />
-            </Suspense>
-          } 
-        />
-        <Route 
-          path="/faq" 
-          element={
-            <Suspense fallback={<PageLoader />}>
-              <FAQPage />
-            </Suspense>
-          } 
-        />
-        
-        {/* Búsqueda */}
-        <Route 
-          path="/search" 
-          element={
-            <Suspense fallback={<PageLoader />}>
-              <SearchResultsPage />
-            </Suspense>
-          } 
-        />
-        
+
         {/* Página 404 */}
-        <Route 
-          path="*" 
+        <Route
+          path="*"
           element={
             <Suspense fallback={<PageLoader />}>
               <NotFoundPage />
             </Suspense>
-          } 
+          }
         />
       </Routes>
     </AnimatePresence>
