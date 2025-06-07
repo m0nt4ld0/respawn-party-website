@@ -15,7 +15,16 @@ export default defineConfig({
   ],
   build: {
     sourcemap: false,
-    minify: 'esbuild',
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,  // Opcional: elimina console.log y otros
+        drop_debugger: true,
+      },
+      format: {
+        comments: false, // Quitar comentarios
+      },
+    },
     outDir: 'dist',
     rollupOptions: {
       output: {
