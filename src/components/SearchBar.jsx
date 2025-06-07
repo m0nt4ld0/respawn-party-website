@@ -8,7 +8,7 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-function SearchBar() {
+function SearchBar({ inputRef }) {
   const navigate = useNavigate();
   const query = useQuery().get('query')?.toLowerCase() || '';
   const selectedConsoleId = useQuery().get('console') || '';
@@ -24,20 +24,21 @@ function SearchBar() {
   }, [query, selectedConsoleId]);
 
   const handleSearch = (e) => {
-    const isValidQuery = (input) => /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ\-_.]+$/.test(input);
-
     e.preventDefault();
-  
+
+    const isValidQuery = (input) =>
+      /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ\-_.]+$/.test(input);
+
     if (!isValidQuery(searchQuery.trim())) {
       alert('La búsqueda contiene caracteres no permitidos.');
       return;
     }
-  
+
     navigate(`/search?query=${encodeURIComponent(searchQuery.trim())}&console=${selectedConsole}`);
   };
-  
+
   return (
-    <Form onSubmit={handleSearch} className="d-flex align-items-center">
+    <Form onSubmit={handleSearch} className="d-flex align-items-center w-100">
       <InputGroup>
         <DropdownButton
           id="dropdown-console"
@@ -57,6 +58,7 @@ function SearchBar() {
           }
           onSelect={setSelectedConsole}
           variant="outline-secondary"
+          style={{ minWidth: '160px' }}
         >
           {consoles.map((c) => (
             <Dropdown.Item key={c.ID} eventKey={c.ID}>
@@ -69,13 +71,17 @@ function SearchBar() {
             </Dropdown.Item>
           ))}
         </DropdownButton>
+
         <Form.Control
+          ref={inputRef}
           type="text"
           placeholder="Buscar juego..."
           id="buscar-juego"
           value={searchQuery}
           onChange={(e) => setSearchQuery(sanitizeInput(e.target.value))}
+          style={{ minWidth: '240px' }}
         />
+
         <Button type="submit" variant="primary">Buscar</Button>
       </InputGroup>
     </Form>
