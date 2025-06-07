@@ -30,6 +30,11 @@ function GamesPage() {
     return <p>Error: No se encontró información de la consola.</p>;
   }
 
+  const iconFileName = consoleData.IconURL
+  ? new URL(consoleData.IconURL).pathname.split('/').pop()
+  : 'default-console.png';
+
+
   return (
     <Content
       title={`Juegos para ${consoleData.Name}`}
@@ -41,7 +46,7 @@ function GamesPage() {
     >
       <div className="text-center mb-4">
         <img
-          src={consoleData.IconURL}
+          src={`/images/icons/consoles/${iconFileName}`}
           alt={consoleData.Name}
           style={{ maxHeight: '100px' }}
         />

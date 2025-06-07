@@ -11,15 +11,19 @@ import Content from '../../layouts/Content';
 import { Link } from 'react-router-dom';
 
 // Componente optimizado para cada consola individual
-const ConsoleCard = React.memo(({ console, index }) => {
+const ConsoleCard = React.memo(({ system, index }) => {
+  const iconFileName = system.IconURL
+    ? new URL(system.IconURL).pathname.split('/').pop()
+    : 'default-console.png';
+
   return (
     <Col key={index} md={6} lg={4} className="mb-4">
       <Card className="console-card h-100 shadow-sm border-0">
         <div className="text-center pt-4 px-4">
           <Card.Img
             variant="top"
-            src={console.IconURL}
-            alt={console.Name}
+            src={`/images/icons/consoles/${iconFileName}`}
+            alt={system.Name}
             className="console-img mx-auto"
             loading="lazy"
           />
@@ -27,13 +31,13 @@ const ConsoleCard = React.memo(({ console, index }) => {
         <Card.Body className="console-card-body d-flex flex-column justify-content-between">
           <div>
             <Card.Title className="console-title text-center mb-3">
-              {console.Name}
+              {system.Name}
             </Card.Title>
           </div>
           <div className="text-center mt-auto">
             <Link
-              to={`/console/${console.ID}`}
-              state={{ console }}
+              to={`/console/${system.ID}`}
+              state={ system.Name }
               className="btn btn-primary rounded-pill px-4"
             >
               Ver juegos
@@ -79,7 +83,6 @@ const ConsolePage = React.memo(() => {
   const [currentPage, setCurrentPage] = useState(1);
   const consolesPerPage = 9;
 
-  // Memoizar los cálculos de paginación para evitar recálculos innecesarios
   const paginatedData = useMemo(() => {
     const indexOfLastConsole = currentPage * consolesPerPage;
     const indexOfFirstConsole = indexOfLastConsole - consolesPerPage;
@@ -113,10 +116,10 @@ const ConsolePage = React.memo(() => {
       />
 
       <Row>
-        {paginatedData.currentConsoles.map((console, index) => (
+        {paginatedData.currentConsoles.map((system, index) => (
           <ConsoleCard
-            key={console.ID}
-            console={console}
+            key={system.ID}
+            system={system}
             index={index}
           />
         ))}
@@ -130,5 +133,6 @@ const ConsolePage = React.memo(() => {
     </Content>
   );
 });
+
 
 export default ConsolePage;

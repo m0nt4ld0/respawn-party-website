@@ -16,7 +16,6 @@ function LoginWithGoogle() {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-      console.log("Usuario autenticado con Google:", user);
     } catch (error) {
       console.error("Error al iniciar sesión con Google:", error.message);
       alert("Error al iniciar sesión con Google: " + error.message);
@@ -50,11 +49,9 @@ export default function LoginPage() {
     e.preventDefault();
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      console.log("Usuario registrado:", userCredential.user);
       alert("Registro exitoso. Ya podés iniciar sesión.");
     } catch (error) {
-      console.error("Error al registrar:", error.message);
-      alert("Error al registrar: " + error.message);
+      alert(`Error al registrar: ${error.message}`);
     }
   };
 

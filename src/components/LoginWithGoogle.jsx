@@ -4,8 +4,7 @@ import { auth, googleProvider } from "../api/firebase";
 function LoginWithGoogle() {
   const handleGoogleLogin = async () => {
     try {
-      const result = await signInWithPopup(auth, googleProvider);
-      console.log("Usuario autenticado con Google:", result.user);
+      await signInWithPopup(auth, googleProvider);
     } catch (error) {
       console.error("Error al iniciar sesión con Google:", error);
     }
