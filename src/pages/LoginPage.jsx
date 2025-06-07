@@ -3,11 +3,34 @@ import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import { sanitizeInput } from '../utils/sanitize';
-import { auth } from "../api/firebase";
 import { useAuth } from "../contexts/AuthContext";
+import { auth } from "../api/firebase";
 
-import LoginWithGoogle from "../components/LoginWithGoogle";
 import Content from '../layouts/Content';
+
+// ✅ Componente interno (no default)
+function LoginWithGoogle() {
+  const handleGoogleLogin = async () => {
+    try {
+      const { GoogleAuthProvider, signInWithPopup } = await import('firebase/auth');
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log("Usuario autenticado con Google:", user);
+    } catch (error) {
+      console.error("Error al iniciar sesión con Google:", error.message);
+      alert("Error al iniciar sesión con Google: " + error.message);
+    }
+  };
+
+  return (
+    <div className="d-grid">
+      <button onClick={handleGoogleLogin} className="btn btn-danger">
+        Iniciar sesión con Google
+      </button>
+    </div>
+  );
+}
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -47,7 +70,8 @@ export default function LoginPage() {
       seoTitle="Inicio"
       seoDescription="Descubrí los mejores juegos y consolas en alquiler en Talento Games."
       seoKeywords="venta consolas, videojuegos, Talento Games"
-      seoUrl="https://talento-games.vercel.app/">
+      seoUrl="https://talento-games.vercel.app/"
+    >
       <div className="container py-5 mt-5">
         <div className="row justify-content-center">
           <div className="col-md-6 col-lg-4">
