@@ -79,43 +79,60 @@ function ShoppingCartPage() {
         </div>
       ) : (
         <>
-          <ListGroup>
-            {cart.map((item, index) => {
-              const price = Number(item.producto?.ID) || 0;
-              const subtotal = price * item.cantidad;
+<ListGroup>
+  {cart.map((item, index) => {
+    const price = Number(item.producto?.ID) || 0;
+    const subtotal = price * item.cantidad;
 
-              return (
-                <ListGroup.Item key={index} className="bg-dark text-light">
-                  <div className="row align-items-center">
-                    <div className="col-12 col-md-1 d-flex justify-content-center mb-2 mb-md-0">
-                      <img
-                        src={`https://retroachievements.org/${item.producto?.ImageIcon}`}
-                        alt={item.producto?.Title || 'Producto'}
-                        className="img-fluid"
-                        style={{ maxHeight: '50px', objectFit: 'contain' }}
-                      />
-                    </div>
-                    <div className="col-12 col-md-7 text-center text-md-start mb-2 mb-md-0">
-                      <h6 className="mb-1">
-                        <Link
-                            to={`/product/${item.producto?.ID}`}
-                          >
-                            {item.producto?.Title || 'Sin título'}
-                          </Link>
-                      </h6>
-                      <small>Precio unitario: ${price.toFixed(2)}</small><br />
-                      <small>Subtotal: ${subtotal.toFixed(2)}</small>
-                    </div>
-                    <div className="col-12 col-md-4 d-flex justify-content-center justify-content-md-end align-items-center gap-2">
-                      <Button variant="primary" size="sm" onClick={() => addToCart(item.producto)}>+</Button>
-                      <span>x{item.cantidad}</span>
-                      <Button variant="danger" size="sm" onClick={() => removeFromCart(item.producto)}>-</Button>
-                    </div>
-                  </div>
-                </ListGroup.Item>
-              );
-            })}
-          </ListGroup>
+    return (
+      <div className="row align-items-center">
+      <ListGroup.Item key={index} className="bg-dark text-light">
+          {/* Columna izquierda: imagen y texto */}
+          <div className="col-md-8 d-flex align-items-center">
+            <img
+              src={`https://retroachievements.org/${item.producto?.ImageIcon}`}
+              alt={item.producto?.Title || 'Producto'}
+              className="img-fluid me-3"
+              style={{ width: '50px', height: '50px', objectFit: 'contain' }}
+            />
+            <div>
+              <h6 className="mb-1">
+                <Link to={`/product/${item.producto?.ID}`} className="text-light text-decoration-none">
+                  {item.producto?.Title || 'Sin título'}
+                </Link>
+              </h6>
+              <small>Precio unitario: ${price.toFixed(2)}</small><br />
+              <small>Subtotal: ${subtotal.toFixed(2)}</small>
+            </div>
+          </div>
+
+          {/* Columna derecha: botones */}
+          <div className="col-md-4 d-flex justify-content-end align-items-center ">
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={() => addToCart(item.producto)}
+            >
+              +
+            </Button>
+            <span className="fw-semibold">x{item.cantidad}</span>
+            <Button
+              variant="danger"
+              size="sm"
+              onClick={() => removeFromCart(item.producto)}
+            >
+              −
+            </Button>
+          </div>
+        
+      </ListGroup.Item>
+      </div>
+    );
+  })}
+</ListGroup>
+
+
+
 
           <div className="d-flex justify-content-end mt-3 mb-3">
             <h4>Total: ${total.toFixed(2)}</h4>
