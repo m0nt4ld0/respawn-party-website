@@ -72,6 +72,7 @@ function SearchBar() {
         <Form.Control
           type="text"
           placeholder="Buscar juego..."
+          id="buscar-juego"
           value={searchQuery}
           onChange={(e) => setSearchQuery(sanitizeInput(e.target.value))}
         />

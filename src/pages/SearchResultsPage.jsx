@@ -117,6 +117,7 @@ function SearchResultsPage() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(sanitizeInput(e.target.value))}
+                id="buscar-juego"
                 placeholder="Buscar juego..."
               />
               <Button type="submit" variant="primary">Buscar</Button>
