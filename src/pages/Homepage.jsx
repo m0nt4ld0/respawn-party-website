@@ -48,7 +48,7 @@ function HomePage() {
       <div className="position-relative pb-5 pb-md-6 pb-lg-7 z-index-1 fondo">
         <div className="floating-banner d-flex flex-column flex-md-row align-items-center px-3 px-sm-4 py-3">
           <img
-            src="/images/Logo.png"
+            src="/images/Logo.webp"
             alt="Talento Games Logo"
             className="logo-img img-fluid w-50 w-sm-25"
             loading="eager"

@@ -10,10 +10,9 @@ import {
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import seoImage from '/images/Logo.png';
+import seoImage from '/images/Logo.webp';
 import './Content.css';
 
-// Componente de skeleton para cards de consolas
 const ConsoleSkeleton = () => (
   <Row>
     {[...Array(9)].map((_, i) => (
@@ -132,9 +131,9 @@ function Content({
   const defaultTitle = "Talento Games";
   const defaultDescription = "Venta de juegos retro.";
   const defaultKeywords = "consolas, videojuegos, Talento Games, juegos, eventos gamer";
-  const defaultImage = "/images/Logo.png";
+  const defaultImage = "/images/Logo.webp";
   const defaultUrl = seoUrl || window.location.origin + location.pathname;
-  
+
   const renderSkeleton = () => {
     switch (skeletonType) {
       case 'console':

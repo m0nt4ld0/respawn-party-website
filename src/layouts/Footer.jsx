@@ -20,32 +20,32 @@ function Footer() {
             {
                 name: 'WhatsApp',
                 urlAddress: 'https://www.whatsapp.com',
-                imgAddresss: '/images/icons/social_media_applications_23-whatsapp-512.png'
+                imgAddresss: '/images/icons/social_media_applications_23-whatsapp-512.webp'
             },
             {
                 name: 'Facebook',
                 urlAddress: 'https://www.facebook.com/respawn.party',
-                imgAddresss: '/images/icons/square-facebook-512.png'
+                imgAddresss: '/images/icons/square-facebook-512.webp'
             },
             {
                 name: 'YouTube',
                 urlAddress: 'https://www.youtube.com/@RespawnParty',
-                imgAddresss: '/images/icons/youtube-512.png'
+                imgAddresss: '/images/icons/youtube-512.webp'
             },
             {
                 name: 'Twitch',
                 urlAddress: 'https://www.twitch.com',
-                imgAddresss: 'https://cdn2.iconfinder.com/data/icons/social-media-iconez/64/Twitch-512.png'
+                imgAddresss: 'https://cdn2.iconfinder.com/data/icons/social-media-iconez/64/Twitch-512.webp'
             },
             {
                 name: 'Discord',
                 urlAddress: 'https://www.discord.com/respawn.party',
-                imgAddresss: '/images/icons/discord-512.png'
+                imgAddresss: '/images/icons/discord-512.webp'
             },
             {
                 name: 'TikTok',
                 urlAddress: 'https://www.tiktok.com/@respawn.party',
-                imgAddresss: '/images/icons/tiktok-logo-512.png'
+                imgAddresss: '/images/icons/tiktok-logo-512.webp'
             }
         ]
     };
@@ -60,7 +60,7 @@ function Footer() {
                             <p className="d-flex justify-content-center justify-content-md-start">
                                 <img
                                     className="logoTalentoGames"
-                                    src="/images/Logo.png"
+                                    src="/images/Logo.webp"
                                     alt="Logo Talento Games"
                                 />
                             </p>

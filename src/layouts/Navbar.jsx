@@ -66,7 +66,7 @@ function Navbar() {
     >
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
-          <img src="/images/Logo.png" alt="Logo Talento Games" className="logo-navbar" />
+          <img src="/images/Logo.webp" alt="Logo Talento Games" className="logo-navbar" />
         </NavLink>
 
         <button
