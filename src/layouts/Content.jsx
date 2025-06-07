@@ -149,8 +149,6 @@ function Content({
         return <GenericSkeleton />;
     }
   };
-  
-  const defaultUrl = window.location.href;
 
   return (
     <div
