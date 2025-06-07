@@ -136,7 +136,7 @@ function Navbar() {
               {searchActive && (
                 <motion.div
                   key="search-bar"
-                  className="overflow-hidden flex-grow-1"
+                  className="flex-grow-1 position-relative z-3"
                   initial={{ width: 0, opacity: 0 }}
                   animate={{ width: "100%", opacity: 1 }}
                   exit={{ width: 0, opacity: 0 }}
