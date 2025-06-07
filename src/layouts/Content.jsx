@@ -114,6 +114,8 @@ const GenericSkeleton = () => (
   </div>
 );
 
+import { useLocation } from 'react-router-dom';
+
 function Content({
   title,
   breadcrumbItems = [],
@@ -125,12 +127,14 @@ function Content({
   isLoading = false,
   skeletonType = 'generic' // 'console', 'generic', 'pagination'
 }) {
+  const location = useLocation();
+
   const defaultTitle = "Talento Games";
   const defaultDescription = "Venta de juegos retro.";
   const defaultKeywords = "consolas, videojuegos, Talento Games, juegos, eventos gamer";
   const defaultImage = "/images/Logo.png";
-  const defaultUrl = window.location.href;
-
+  const defaultUrl = seoUrl || window.location.origin + location.pathname;
+  
   const renderSkeleton = () => {
     switch (skeletonType) {
       case 'console':

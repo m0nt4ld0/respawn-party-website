@@ -5,12 +5,13 @@ import { AuthProvider } from "./contexts/AuthContext";
 import ShoppingCartProvider from './contexts/ShoppingCartContext';
 import { ConsoleProvider } from './contexts/ConsoleContext';
 
-// IMPORTACIONES DIRECTAS (no lazy) - componentes críticos
-import Homepage from './pages/Homepage';
-import LoginPage from "./pages/LoginPage";
+// Pasa a lazy loading las páginas críticas también
+const Homepage = lazy(() => import('./pages/Homepage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+
 import ProtectedRoute from "./components/ProtectedRoute";
 
-// LAZY LOADING solo para páginas menos críticas
+// Lazy loading para las demás páginas
 const SearchResultsPage = lazy(() => import('./pages/SearchResultsPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
@@ -32,7 +33,7 @@ import { ToastContainer } from 'react-toastify';
 import { HelmetProvider } from 'react-helmet-async';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Componente de loading más simple y rápido
+// Componente de loading para Suspense fallback
 const PageLoader = () => (
   <div className="d-flex justify-content-center align-items-center" style={{ height: '50vh' }}>
     <div className="spinner-border text-primary" role="status">
@@ -56,7 +57,7 @@ function AnimatedRoutes() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        {/* Ruta de login - alta prioridad */}
+        {/* LoginPage ahora lazy */}
         <Route 
           path="/login" 
           element={
@@ -65,8 +66,8 @@ function AnimatedRoutes() {
             </Suspense>
           } 
         />
-        
-        {/* Homepage - máxima prioridad */}
+
+        {/* Homepage ahora lazy */}
         <Route 
           path="/" 
           element={
@@ -81,9 +82,7 @@ function AnimatedRoutes() {
           path="/user"
           element={
             <ProtectedRouteWrapper>
-              <Suspense fallback={<PageLoader />}>
-                <UserPage />
-              </Suspense>
+              <UserPage />
             </ProtectedRouteWrapper>
           }
         />
@@ -91,14 +90,12 @@ function AnimatedRoutes() {
           path="/admin"
           element={
             <ProtectedRouteWrapper adminOnly={true}>
-              <Suspense fallback={<PageLoader />}>
-                <CustomProductPage />
-              </Suspense>
+              <CustomProductPage />
             </ProtectedRouteWrapper>
           }
         />
         
-        {/* Rutas de productos - alta prioridad */}
+        {/* Rutas de productos */}
         <Route 
           path="/console/:id" 
           element={
@@ -142,7 +139,7 @@ function AnimatedRoutes() {
           } 
         />
         
-        {/* Rutas de información - baja prioridad */}
+        {/* Rutas de información */}
         <Route 
           path="/about-us" 
           element={
