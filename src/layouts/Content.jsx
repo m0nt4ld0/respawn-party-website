@@ -56,7 +56,6 @@ const ConsoleSkeleton = () => (
   </Row>
 );
 
-// Componente de skeleton para paginación
 const PaginationSkeleton = () => (
   <div className="d-flex justify-content-center mt-4">
     <div className="d-flex gap-2">
@@ -75,7 +74,6 @@ const PaginationSkeleton = () => (
   </div>
 );
 
-// Componente de skeleton genérico para contenido
 const GenericSkeleton = () => (
   <div className="skeleton-container">
     <div 
@@ -179,7 +177,6 @@ function Content({
         <meta name="twitter:description" content={seoDescription || defaultDescription} />
         <meta name="twitter:image" content={defaultImage} />
         
-        {/* Estilos críticos para skeleton inline */}
         <style>
           {`
             @keyframes pulse {
