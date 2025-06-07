@@ -1,6 +1,7 @@
 # Proyecto Final: Talento Games - Tienda de Videojuegos Retro
 
 Este es un proyecto realizado como parte del curso **Talento Tech - React** durante el primer cuatrimestre de 2025. El proyecto simula un negocio de venta de videojuegos retro y está desarrollado en **React** utilizando **JSX**. La aplicación simula una tienda de videojuegos retro donde los usuarios pueden explorar una variedad de juegos, agregarlos a un carrito de compras y realizar la compra. 
+[Demo en YouTube](https://www.youtube.com/watch?v=DRMYStHDOvA)
 
 # Tabla de Contenidos
 
