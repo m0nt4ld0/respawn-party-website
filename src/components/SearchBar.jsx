@@ -1,7 +1,15 @@
 import { useState, useContext, useEffect } from 'react';
 import { sanitizeInput } from '../utils/sanitize';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { InputGroup, Form, Button, DropdownButton, Dropdown, Spinner } from 'react-bootstrap';
+import {
+  Form,
+  Button,
+  DropdownButton,
+  Dropdown,
+  Spinner,
+  Row,
+  Col,
+} from 'react-bootstrap';
 import { ConsoleContext } from '../contexts/ConsoleContext';
 
 function useQuery() {
@@ -38,52 +46,60 @@ function SearchBar({ inputRef }) {
   };
 
   return (
-    <Form onSubmit={handleSearch} className="d-flex align-items-center w-100">
-      <InputGroup>
-        <DropdownButton
-          id="dropdown-console"
-          title={
-            loadingConsoles ? (
-              <Spinner animation="border" size="sm" />
-            ) : selectedConsole ? (
-              <>
+    <Form onSubmit={handleSearch} className="w-100">
+      <Row className="g-2 align-items-center">
+        <Col xs={12} md="auto">
+          <DropdownButton
+            id="dropdown-console"
+            title={
+              loadingConsoles ? (
+                <Spinner animation="border" size="sm" />
+              ) : selectedConsole ? (
+                <>
+                  <img
+                    src={consoles.find(c => c.ID.toString() === selectedConsole)?.IconURL}
+                    alt=""
+                    style={{ height: '20px', marginRight: '8px' }}
+                  />
+                  {consoles.find(c => c.ID.toString() === selectedConsole)?.Name}
+                </>
+              ) : 'Consola'
+            }
+            onSelect={setSelectedConsole}
+            variant="outline-secondary"
+            className="w-100"
+          >
+            {consoles.map((c) => (
+              <Dropdown.Item key={c.ID} eventKey={c.ID}>
                 <img
-                  src={consoles.find(c => c.ID.toString() === selectedConsole)?.IconURL}
-                  alt=""
+                  src={c.IconURL}
+                  alt={c.Name}
                   style={{ height: '20px', marginRight: '8px' }}
                 />
-                {consoles.find(c => c.ID.toString() === selectedConsole)?.Name}
-              </>
-            ) : 'Consola'
-          }
-          onSelect={setSelectedConsole}
-          variant="outline-secondary"
-          style={{ minWidth: '160px' }}
-        >
-          {consoles.map((c) => (
-            <Dropdown.Item key={c.ID} eventKey={c.ID}>
-              <img
-                src={c.IconURL}
-                alt={c.Name}
-                style={{ height: '20px', marginRight: '8px' }}
-              />
-              {c.Name}
-            </Dropdown.Item>
-          ))}
-        </DropdownButton>
+                {c.Name}
+              </Dropdown.Item>
+            ))}
+          </DropdownButton>
+        </Col>
 
-        <Form.Control
-          ref={inputRef}
-          type="text"
-          placeholder="Buscar juego..."
-          id="buscar-juego"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(sanitizeInput(e.target.value))}
-          style={{ minWidth: '240px' }}
-        />
+        <Col xs={12} md="auto">
+          <Form.Control
+            ref={inputRef}
+            type="text"
+            placeholder="Buscar juego..."
+            id="buscar-juego"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(sanitizeInput(e.target.value))}
+            className="w-100"
+          />
+        </Col>
 
-        <Button type="submit" variant="primary">Buscar</Button>
-      </InputGroup>
+        <Col xs={12} md="auto">
+          <Button type="submit" variant="primary" className="w-100">
+            Buscar
+          </Button>
+        </Col>
+      </Row>
     </Form>
   );
 }

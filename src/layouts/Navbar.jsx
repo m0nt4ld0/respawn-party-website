@@ -22,6 +22,8 @@ function Navbar() {
   const [hovered, setHovered] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const leaveTimeoutRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -81,46 +83,55 @@ function Navbar() {
         <NavLink className="navbar-brand me-3 flex-shrink-0" to="/">
           <img src="/images/Logo.webp" alt="Logo Talento Games" className="logo-navbar" />
         </NavLink>
+        <Button
+  className="d-lg-none btn btn-outline-light me-2"
+  onClick={() => setMenuOpen(prev => !prev)}
+  aria-label="Menú"
+>
+  <span style={{ fontSize: '1.5rem' }}>☰</span>
+</Button>
 
-        <div className="collapse navbar-collapse flex-grow-1" id="navbarNav">
+<div className={`collapse navbar-collapse flex-grow-1 ${menuOpen ? 'show' : ''}`} id="navbarNav">
+
           <div className="d-flex align-items-center w-100 flex-nowrap gap-2">
-            <AnimatePresence initial={false}>
-              {!searchActive && (
-                <motion.ul
-                  key="nav-items"
-                  className="navbar-nav mx-auto text-center gap-3 my-3 my-lg-0 d-flex flex-row flex-nowrap align-items-center"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <AnimatedNavItem to="/" icon={FiHome} label="Inicio" hovered={hovered} />
-                  <AnimatedNavItem to="/about-us" icon={FaUsers} label="Nosotros" hovered={hovered} />
-                  <AnimatedNavItem to="/consoles" icon={GiGamepad} label="Juegos" hovered={hovered} />
-                  <AnimatedNavItem to="/faq" icon={FaQuestionCircle} label="Preguntas" hovered={hovered} />
-                  <AnimatedNavItem to="/contact-us" icon={MdEmail} label="Contacto" hovered={hovered} />
-                  <AnimatedNavItem
-                    to="/shopping-cart"
-                    label="Carrito"
-                    hovered={hovered}
-                    icon={() => (
-                      <div className="d-flex align-items-center position-relative">
-                        <GiShoppingCart size={20} />
-                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger px-1 py-0 cart-badge">
-                          {totalItems}
-                        </span>
-                      </div>
-                    )}
-                  />
-                  {isAuthenticated && (
-                    <AnimatedNavItem to="/user" icon={FaUser} label="Mi Perfil" hovered={hovered} />
-                  )}
-                  {isAuthenticated && isAdmin && (
-                    <AnimatedNavItem to="/admin" icon={FaUserCog} label="Admin" hovered={hovered} />
-                  )}
-                </motion.ul>
-              )}
-            </AnimatePresence>
+          <AnimatePresence initial={false}>
+  {(!searchActive && (menuOpen || window.innerWidth >= 992)) && (
+    <motion.ul
+      key="nav-items"
+      className="navbar-nav text-center gap-3 my-3 my-lg-0 d-flex flex-column flex-lg-row align-items-start align-items-lg-center"
+      initial={{ opacity: 0, height: 0 }}
+      animate={{ opacity: 1, height: 'auto' }}
+      exit={{ opacity: 0, height: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      <AnimatedNavItem to="/" icon={FiHome} label="Inicio" hovered={hovered} />
+      <AnimatedNavItem to="/about-us" icon={FaUsers} label="Nosotros" hovered={hovered} />
+      <AnimatedNavItem to="/consoles" icon={GiGamepad} label="Juegos" hovered={hovered} />
+      <AnimatedNavItem to="/faq" icon={FaQuestionCircle} label="Preguntas" hovered={hovered} />
+      <AnimatedNavItem to="/contact-us" icon={MdEmail} label="Contacto" hovered={hovered} />
+      <AnimatedNavItem
+        to="/shopping-cart"
+        label="Carrito"
+        hovered={hovered}
+        icon={() => (
+          <div className="d-flex align-items-center position-relative">
+            <GiShoppingCart size={20} />
+            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger px-1 py-0 cart-badge">
+              {totalItems}
+            </span>
+          </div>
+        )}
+      />
+      {isAuthenticated && (
+        <AnimatedNavItem to="/user" icon={FaUser} label="Mi Perfil" hovered={hovered} />
+      )}
+      {isAuthenticated && isAdmin && (
+        <AnimatedNavItem to="/admin" icon={FaUserCog} label="Admin" hovered={hovered} />
+      )}
+    </motion.ul>
+  )}
+</AnimatePresence>
+
 
             <motion.button
               key="search-button"
