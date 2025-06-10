@@ -22,8 +22,6 @@ function Navbar() {
   const [hovered, setHovered] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
-  const [isCollapsed, setIsCollapsed] = useState(true);
-
   const leaveTimeoutRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -79,105 +77,104 @@ function Navbar() {
       onMouseLeave={handleMouseLeave}
       style={{ zIndex: 1030 }}
     >
-      <div className="container-fluid d-flex align-items-center justify-content-between">
-        <NavLink className="navbar-brand" to="/">
+      <div className="container-fluid d-flex align-items-center flex-nowrap justify-content-between">
+        <NavLink className="navbar-brand me-3 flex-shrink-0" to="/">
           <img src="/images/Logo.webp" alt="Logo Talento Games" className="logo-navbar" />
         </NavLink>
-        <button
-          className="navbar-toggler"
-          type="button"
-          onClick={() => setIsCollapsed(prev => !prev)}
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-      </div>
 
-      <div className={`collapse navbar-collapse ${!isCollapsed ? 'show' : ''}`} id="navbarNav">
-        <ul className="navbar-nav d-flex flex-column w-100 text-center gap-2 mt-3">
-          <li className="nav-item w-100">
-            <NavLink to="/" className="nav-link text-light d-flex flex-column align-items-center">
-              <FiHome size={20} />
-              Inicio
-            </NavLink>
-          </li>
-          <li className="nav-item w-100">
-            <NavLink to="/about-us" className="nav-link text-light d-flex flex-column align-items-center">
-              <FaUsers size={20} />
-              Nosotros
-            </NavLink>
-          </li>
-          <li className="nav-item w-100">
-            <NavLink to="/consoles" className="nav-link text-light d-flex flex-column align-items-center">
-              <GiGamepad size={20} />
-              Juegos
-            </NavLink>
-          </li>
-          <li className="nav-item w-100">
-            <NavLink to="/faq" className="nav-link text-light d-flex flex-column align-items-center">
-              <FaQuestionCircle size={20} />
-              Preguntas
-            </NavLink>
-          </li>
-          <li className="nav-item w-100">
-            <NavLink to="/contact-us" className="nav-link text-light d-flex flex-column align-items-center">
-              <MdEmail size={20} />
-              Contacto
-            </NavLink>
-          </li>
-          <li className="nav-item w-100 position-relative">
-            <NavLink to="/shopping-cart" className="nav-link text-light d-flex flex-column align-items-center">
-              <div className="position-relative">
-                <GiShoppingCart size={20} />
-                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger px-1 py-0">
-                  {totalItems}
-                </span>
-              </div>
-              Carrito
-            </NavLink>
-          </li>
+        <div className="collapse navbar-collapse flex-grow-1" id="navbarNav">
+          <div className="d-flex align-items-center w-100 flex-nowrap gap-2">
+            <AnimatePresence initial={false}>
+              {!searchActive && (
+                <motion.ul
+                  key="nav-items"
+                  className="navbar-nav mx-auto text-center gap-3 my-3 my-lg-0 d-flex flex-row flex-nowrap align-items-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <AnimatedNavItem to="/" icon={FiHome} label="Inicio" hovered={hovered} />
+                  <AnimatedNavItem to="/about-us" icon={FaUsers} label="Nosotros" hovered={hovered} />
+                  <AnimatedNavItem to="/consoles" icon={GiGamepad} label="Juegos" hovered={hovered} />
+                  <AnimatedNavItem to="/faq" icon={FaQuestionCircle} label="Preguntas" hovered={hovered} />
+                  <AnimatedNavItem to="/contact-us" icon={MdEmail} label="Contacto" hovered={hovered} />
+                  <AnimatedNavItem
+                    to="/shopping-cart"
+                    label="Carrito"
+                    hovered={hovered}
+                    icon={() => (
+                      <div className="d-flex align-items-center position-relative">
+                        <GiShoppingCart size={20} />
+                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger px-1 py-0 cart-badge">
+                          {totalItems}
+                        </span>
+                      </div>
+                    )}
+                  />
+                  {isAuthenticated && (
+                    <AnimatedNavItem to="/user" icon={FaUser} label="Mi Perfil" hovered={hovered} />
+                  )}
+                  {isAuthenticated && isAdmin && (
+                    <AnimatedNavItem to="/admin" icon={FaUserCog} label="Admin" hovered={hovered} />
+                  )}
+                </motion.ul>
+              )}
+            </AnimatePresence>
 
-          {isAuthenticated && (
-            <li className="nav-item w-100">
-              <NavLink to="/user" className="nav-link text-light d-flex flex-column align-items-center">
-                <FaUser size={20} />
-                Mi Perfil
-              </NavLink>
-            </li>
-          )}
-          {isAuthenticated && isAdmin && (
-            <li className="nav-item w-100">
-              <NavLink to="/admin" className="nav-link text-light d-flex flex-column align-items-center">
-                <FaUserCog size={20} />
-                Admin
-              </NavLink>
-            </li>
-          )}
-        </ul>
+            <motion.button
+              key="search-button"
+              className="btn btn-outline-light d-flex align-items-center flex-shrink-0"
+              onClick={toggleSearch}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <BiSearch size={20} />
+            </motion.button>
 
-        {/* Barra de búsqueda: dropdown, input y botón, todos al 100% */}
-        <div className="w-100 px-3 mt-3">
-          <SearchBar inputRef={inputRef} autoFocus />
-        </div>
+            <AnimatePresence>
+              {searchActive && (
+                <motion.div
+                  key="search-bar"
+                  className="flex-grow-1 position-relative z-3"
+                  initial={{ width: 0, opacity: 0 }}
+                  animate={{ width: "100%", opacity: 1 }}
+                  exit={{ width: 0, opacity: 0 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <SearchBar inputRef={inputRef} autoFocus />
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-        {/* Botón de login/logout debajo del search */}
-        <div className="w-100 px-3 mt-3 mb-3">
-          <Button
-            variant={isAuthenticated ? "outline-danger" : "outline-primary"}
-            onClick={handleAuthClick}
-            disabled={isLoggingOut}
-            className="w-100"
-          >
-            {isAuthenticated ? (
-              <>
-                <FiLogOut className="me-1" />
-                {isLoggingOut ? 'Cerrando...' : 'Cerrar sesión'}
-              </>
-            ) : (
-              <>
-                <FaUser className="me-1" /> Ingresar
-              </>
+            {!searchActive && (
+              <motion.div
+                key="auth-button"
+                className="flex-shrink-0"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <Button
+                  variant={isAuthenticated ? "outline-danger" : "outline-primary"}
+                  size="sm"
+                  onClick={handleAuthClick}
+                  disabled={isLoggingOut}
+                >
+                  {isAuthenticated ? (
+                    <>
+                      <FiLogOut className="me-1" />
+                      {isLoggingOut ? 'Cerrando...' : 'Cerrar sesión'}
+                    </>
+                  ) : (
+                    <>
+                      <FaUser className="me-1" /> Ingresar
+                    </>
+                  )}
+                </Button>
+              </motion.div>
             )}
-          </Button>
+          </div>
         </div>
       </div>
     </nav>
