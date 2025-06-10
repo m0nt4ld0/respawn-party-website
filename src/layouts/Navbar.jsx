@@ -119,7 +119,7 @@ function Navbar() {
             {(!searchActive && (menuOpen || window.innerWidth >= 992)) && (
               <motion.ul
                 key="nav-items"
-                className="navbar-nav text-center gap-3 my-3 my-lg-0 d-flex flex-column flex-lg-row align-items-start align-items-lg-center"
+                 className="navbar-nav gap-3 my-3 my-lg-0 d-flex flex-column flex-lg-row align-items-center justify-content-center mx-auto text-center"
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
