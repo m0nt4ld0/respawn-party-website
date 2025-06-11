@@ -22,6 +22,8 @@ function Navbar() {
   const [hovered, setHovered] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const leaveTimeoutRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -71,114 +73,150 @@ function Navbar() {
   const totalItems = cart?.reduce((sum, item) => sum + item.cantidad, 0) || 0;
 
   return (
-    <nav
-      className="navbar navbar-expand-lg fixed-top bg-dark px-3 py-2"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      style={{ zIndex: 1030 }}
-    >
-      <div className="container-fluid d-flex align-items-center flex-nowrap justify-content-between">
-        <NavLink className="navbar-brand me-3 flex-shrink-0" to="/">
-          <img src="/images/Logo.webp" alt="Logo Talento Games" className="logo-navbar" />
-        </NavLink>
+      <nav
+        className="navbar navbar-expand-lg fixed-top bg-dark px-3 py-4"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        style={{ zIndex: 1030 }}
+      >
+        <div className="container-fluid">
+          <div className="w-100 d-flex flex-column flex-lg-row align-items-start align-items-lg-center gap-2 px-3">
+    
+            {/* Fila solo para móviles */}
+            <div className="d-flex d-lg-none w-100 align-items-center justify-content-between mb-2 position-relative">
+              <Button
+                className="btn btn-outline-light"
+                onClick={() => setMenuOpen(prev => !prev)}
+                aria-label="Menú"
+              >
+                <span style={{ fontSize: '1.5rem' }}>☰</span>
+              </Button>
+              <NavLink to="/" className="position-absolute start-50 translate-middle-x">
+                <img src="/images/Logo.webp" alt="Logo Talento Games" className="logo-navbar" />
+              </NavLink>
+              <div style={{ width: '2.5rem' }} />
+            </div>
+    
+            {/* Logo para pantallas grandes */}
+            <NavLink
+              to="/"
+              className="d-none d-lg-block me-auto"
+              style={{ height: '40px' }}
+            >
+              <img
+                src="/images/Logo.webp"
+                alt="Logo Talento Games"
+                className="logo-navbar"
+                style={{ height: '100%', objectFit: 'contain' }}
+              />
+            </NavLink>
+    
+            {/* 🟦 Parte izquierda: menú y carrito */}
+            <div className={`collapse navbar-collapse ${menuOpen ? 'show' : ''}`} id="navbarNav">
+              <div className="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center gap-2">
+                <AnimatePresence initial={false}>
+                  {(!searchActive && (menuOpen || window.innerWidth >= 992)) && (
+                    <motion.ul
+                      key="nav-items"
+                      className="navbar-nav d-flex flex-row flex-wrap w-100 justify-content-center"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <AnimatedNavItem to="/" icon={FiHome} label="Inicio" hovered={hovered} />
+                      <AnimatedNavItem to="/about-us" icon={FaUsers} label="Nosotros" hovered={hovered} />
+                      <AnimatedNavItem to="/consoles" icon={GiGamepad} label="Juegos" hovered={hovered} />
+                      <AnimatedNavItem to="/faq" icon={FaQuestionCircle} label="Preguntas" hovered={hovered} />
+                      <AnimatedNavItem to="/contact-us" icon={MdEmail} label="Contacto" hovered={hovered} />
+                      <AnimatedNavItem
+                        to="/shopping-cart"
+                        label="Carrito"
+                        hovered={hovered}
+                        icon={() => (
+                          <div className="d-flex align-items-center position-relative">
+                            <GiShoppingCart size={20} />
+                            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger px-1 py-0 cart-badge">
+                              {totalItems}
+                            </span>
+                          </div>
+                        )}
+                      />
+                      {isAuthenticated && (
+                        <AnimatedNavItem to="/user" icon={FaUser} label="Mi Perfil" hovered={hovered} />
+                      )}
+                      {isAuthenticated && isAdmin && (
+                        <AnimatedNavItem to="/admin" icon={FaUserCog} label="Admin" hovered={hovered} />
+                      )}
+                    </motion.ul>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
+    
+            {/* 🟥 Parte derecha: barra de búsqueda y login */}
+            <div className="ms-lg-auto d-flex flex-column flex-lg-row-reverse align-items-center gap-2 mx-auto">
 
-        <div className="collapse navbar-collapse flex-grow-1" id="navbarNav">
-          <div className="d-flex align-items-center w-100 flex-nowrap gap-2">
-            <AnimatePresence initial={false}>
+              <motion.button
+                key="search-button"
+                className="btn btn-outline-light d-flex align-items-center flex-shrink-0"
+                onClick={toggleSearch}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <BiSearch size={20} />
+              </motion.button>
+
+              <AnimatePresence>
+                {searchActive && (
+                  <motion.div
+                    key="search-bar"
+                    className="position-relative z-3 w-100 mx-auto px-2"
+                    initial={{ width: 0, opacity: 0 }}
+                    animate={{ width: "100%", opacity: 1 }}
+                    exit={{ width: 0, opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <SearchBar inputRef={inputRef} autoFocus />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               {!searchActive && (
-                <motion.ul
-                  key="nav-items"
-                  className="navbar-nav mx-auto text-center gap-3 my-3 my-lg-0 d-flex flex-row flex-nowrap align-items-center"
+                <motion.div
+                  key="auth-button"
+                  className="w-100 w-lg-auto"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
                 >
-                  <AnimatedNavItem to="/" icon={FiHome} label="Inicio" hovered={hovered} />
-                  <AnimatedNavItem to="/about-us" icon={FaUsers} label="Nosotros" hovered={hovered} />
-                  <AnimatedNavItem to="/consoles" icon={GiGamepad} label="Juegos" hovered={hovered} />
-                  <AnimatedNavItem to="/faq" icon={FaQuestionCircle} label="Preguntas" hovered={hovered} />
-                  <AnimatedNavItem to="/contact-us" icon={MdEmail} label="Contacto" hovered={hovered} />
-                  <AnimatedNavItem
-                    to="/shopping-cart"
-                    label="Carrito"
-                    hovered={hovered}
-                    icon={() => (
-                      <div className="d-flex align-items-center position-relative">
-                        <GiShoppingCart size={20} />
-                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger px-1 py-0 cart-badge">
-                          {totalItems}
-                        </span>
-                      </div>
+                  <Button
+                    variant={isAuthenticated ? "outline-danger" : "outline-primary"}
+                    size="sm"
+                    onClick={handleAuthClick}
+                    disabled={isLoggingOut}
+                    className="w-100"
+                  >
+                    {isAuthenticated ? (
+                      <>
+                        <FiLogOut className="me-1" />
+                        {isLoggingOut ? 'Cerrando...' : 'Cerrar sesión'}
+                      </>
+                    ) : (
+                      <>
+                        <FaUser className="me-1" /> Ingresar
+                      </>
                     )}
-                  />
-                  {isAuthenticated && (
-                    <AnimatedNavItem to="/user" icon={FaUser} label="Mi Perfil" hovered={hovered} />
-                  )}
-                  {isAuthenticated && isAdmin && (
-                    <AnimatedNavItem to="/admin" icon={FaUserCog} label="Admin" hovered={hovered} />
-                  )}
-                </motion.ul>
-              )}
-            </AnimatePresence>
-
-            <motion.button
-              key="search-button"
-              className="btn btn-outline-light d-flex align-items-center flex-shrink-0"
-              onClick={toggleSearch}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <BiSearch size={20} />
-            </motion.button>
-
-            <AnimatePresence>
-              {searchActive && (
-                <motion.div
-                  key="search-bar"
-                  className="flex-grow-1 position-relative z-3"
-                  initial={{ width: 0, opacity: 0 }}
-                  animate={{ width: "100%", opacity: 1 }}
-                  exit={{ width: 0, opacity: 0 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <SearchBar inputRef={inputRef} autoFocus />
+                  </Button>
                 </motion.div>
               )}
-            </AnimatePresence>
+            </div>
 
-            {!searchActive && (
-              <motion.div
-                key="auth-button"
-                className="flex-shrink-0"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                <Button
-                  variant={isAuthenticated ? "outline-danger" : "outline-primary"}
-                  size="sm"
-                  onClick={handleAuthClick}
-                  disabled={isLoggingOut}
-                >
-                  {isAuthenticated ? (
-                    <>
-                      <FiLogOut className="me-1" />
-                      {isLoggingOut ? 'Cerrando...' : 'Cerrar sesión'}
-                    </>
-                  ) : (
-                    <>
-                      <FaUser className="me-1" /> Ingresar
-                    </>
-                  )}
-                </Button>
-              </motion.div>
-            )}
+
           </div>
         </div>
-      </div>
-    </nav>
-  );
+      </nav>
+    );
 }
 
 export default Navbar;
