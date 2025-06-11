@@ -155,7 +155,8 @@ function Navbar() {
             </div>
     
             {/* 🟥 Parte derecha: barra de búsqueda y login */}
-            <div className="ms-lg-auto d-flex flex-row-reverse align-items-center gap-2">
+            <div className="ms-lg-auto d-flex flex-column flex-lg-row-reverse align-items-center gap-2 mx-auto">
+
               <motion.button
                 key="search-button"
                 className="btn btn-outline-light d-flex align-items-center flex-shrink-0"
@@ -165,7 +166,7 @@ function Navbar() {
               >
                 <BiSearch size={20} />
               </motion.button>
-    
+
               <AnimatePresence>
                 {searchActive && (
                   <motion.div
@@ -180,12 +181,11 @@ function Navbar() {
                   </motion.div>
                 )}
               </AnimatePresence>
-    
+
               {!searchActive && (
                 <motion.div
                   key="auth-button"
-                  className="flex-shrink-0"
-                  style={{ maxWidth: '120px' }}
+                  className="w-100 w-lg-auto"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -195,7 +195,7 @@ function Navbar() {
                     size="sm"
                     onClick={handleAuthClick}
                     disabled={isLoggingOut}
-                    className="w-100 w-lg-auto"
+                    className="w-100"
                   >
                     {isAuthenticated ? (
                       <>
@@ -211,6 +211,8 @@ function Navbar() {
                 </motion.div>
               )}
             </div>
+
+
           </div>
         </div>
       </nav>
