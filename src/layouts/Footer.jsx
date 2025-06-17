@@ -60,7 +60,7 @@ function Footer() {
                             <p className="d-flex justify-content-center justify-content-md-start">
                                 <img
                                     className="logoTalentoGames"
-                                    src="/images/Logo.webp"
+                                    src="https://res.cloudinary.com/dxgejxkju/image/upload/v1750123685/Logo_ntyedz.webp"
                                     alt="Logo Talento Games"
                                 />
                             </p>
