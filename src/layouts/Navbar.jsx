@@ -92,7 +92,7 @@ function Navbar() {
                 <span style={{ fontSize: '1.5rem' }}>☰</span>
               </Button>
               <NavLink to="/" className="position-absolute start-50 translate-middle-x">
-                <img src="/images/Logo.webp" alt="Logo Talento Games" className="logo-navbar" />
+                <img src="https://res.cloudinary.com/dxgejxkju/image/upload/v1750123685/Logo_ntyedz.webp" alt="Logo Talento Games" className="logo-navbar" />
               </NavLink>
               <div style={{ width: '2.5rem' }} />
             </div>
@@ -104,7 +104,7 @@ function Navbar() {
               style={{ height: '40px' }}
             >
               <img
-                src="/images/Logo.webp"
+                src="https://res.cloudinary.com/dxgejxkju/image/upload/v1750123685/Logo_ntyedz.webp"
                 alt="Logo Talento Games"
                 className="logo-navbar"
                 style={{ height: '100%', objectFit: 'contain' }}

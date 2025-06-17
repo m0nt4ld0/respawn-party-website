@@ -10,7 +10,7 @@ import {
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import seoImage from '/images/Logo.webp';
+import seoImage from 'https://res.cloudinary.com/dxgejxkju/image/upload/v1750123685/Logo_ntyedz.webp';
 import './Content.css';
 
 const ConsoleSkeleton = () => (
@@ -129,7 +129,7 @@ function Content({
   const defaultTitle = "Talento Games";
   const defaultDescription = "Venta de juegos retro.";
   const defaultKeywords = "consolas, videojuegos, Talento Games, juegos, eventos gamer";
-  const defaultImage = "/images/Logo.webp";
+  const defaultImage = "https://res.cloudinary.com/dxgejxkju/image/upload/v1750123685/Logo_ntyedz.webp";
 
   const defaultUrl = seoUrl || window.location.origin + location.pathname;
 
