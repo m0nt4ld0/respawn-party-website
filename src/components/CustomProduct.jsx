@@ -23,6 +23,18 @@ function CustomProduct() {
   }, []);
 
   const handleCreate = () => {
+    const { name, price } = newProduct;
+  
+    if (!name.trim()) {
+      Swal.fire('Error', 'Debe ingresar un nombre para el producto.', 'error');
+      return;
+    }
+  
+    if (isNaN(price) || Number(price) <= 0) {
+      Swal.fire('Error', 'El precio del producto debe ser mayor a cero.', 'error');
+      return;
+    }
+  
     fetch(API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -34,6 +46,7 @@ function CustomProduct() {
         setNewProduct({ name: '', price: '', description: '' });
       });
   };
+  
 
   const startEdit = (product) => {
     setEditProductId(product.id);
@@ -41,6 +54,18 @@ function CustomProduct() {
   };
 
   const handleUpdate = () => {
+    const { name, price } = editProductData;
+  
+    if (!name.trim()) {
+      Swal.fire('Error', 'Debe ingresar un nombre para el producto.', 'error');
+      return;
+    }
+  
+    if (isNaN(price) || Number(price) <= 0) {
+      Swal.fire('Error', 'El precio del producto debe ser mayor a cero.', 'error');
+      return;
+    }
+  
     fetch(`${API_URL}/${editProductId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -53,6 +78,7 @@ function CustomProduct() {
         setEditProductData({ name: '', price: '', description: '' });
       });
   };
+  
 
   const handleDelete = (id, name) => {
     Swal.fire({
