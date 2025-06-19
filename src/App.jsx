@@ -53,95 +53,74 @@ function AnimatedRoutes() {
   const location = useLocation();
 
   return (
+    <Suspense fallback={<PageLoader />}>
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         {/* Públicas */}
         <Route
           path="/login"
           element={
-            <Suspense fallback={<PageLoader />}>
-              <LoginPage />
-            </Suspense>
+            <LoginPage />
           }
         />
         <Route
           path="/"
           element={
-            <Suspense fallback={<PageLoader />}>
-              <Homepage />
-            </Suspense>
+            <Homepage />
           }
         />
         <Route
           path="/about-us"
           element={
-            <Suspense fallback={<PageLoader />}>
-              <AboutPage />
-            </Suspense>
+            <AboutPage />
           }
         />
         <Route
           path="/contact-us"
           element={
-            <Suspense fallback={<PageLoader />}>
-              <ContactPage />
-            </Suspense>
+            <ContactPage />
           }
         />
         <Route
           path="/faq"
           element={
-            <Suspense fallback={<PageLoader />}>
-              <FAQPage />
-            </Suspense>
+            <FAQPage />
           }
         />
         <Route
           path="/search"
           element={
-            <Suspense fallback={<PageLoader />}>
-              <SearchResultsPage />
-            </Suspense>
+            <SearchResultsPage />
           }
         />
         <Route
           path="/consoles"
           element={
-            <Suspense fallback={<PageLoader />}>
-              <ConsolePage />
-            </Suspense>
+            <ConsolePage />
           }
         />
         <Route
           path="/console/:id"
           element={
-            <Suspense fallback={<PageLoader />}>
-              <GamesPage />
-            </Suspense>
+            <GamesPage />
           }
         />
         <Route
           path="/product/:id"
           element={
-            <Suspense fallback={<PageLoader />}>
-              <ProductDetailPage />
-            </Suspense>
+            <ProductDetailPage />
           }
         />
         <Route
           path="/shopping-cart"
           element={
-            <Suspense fallback={<PageLoader />}>
-              <ShoppingCartPage />
-            </Suspense>
+            <ShoppingCartPage />
           }
         />
         <Route
           path="/checkout"
           element={
-            <Suspense fallback={<PageLoader />}>
-              <CheckoutPage />
-            </Suspense>
+            <CheckoutPage />
           }
         />
 
@@ -167,13 +146,12 @@ function AnimatedRoutes() {
         <Route
           path="*"
           element={
-            <Suspense fallback={<PageLoader />}>
-              <NotFoundPage />
-            </Suspense>
+            <NotFoundPage />
           }
         />
       </Routes>
     </AnimatePresence>
+    </Suspense>
   );
 }
 

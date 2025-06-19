@@ -10,8 +10,9 @@ import {
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import seoImage from 'https://res.cloudinary.com/dxgejxkju/image/upload/v1750123685/Logo_ntyedz.webp';
 import './Content.css';
+
+const seoImage = 'https://res.cloudinary.com/dxgejxkju/image/upload/v1750123685/Logo_ntyedz.webp';
 
 const ConsoleSkeleton = () => (
   <Row>
